@@ -1,12 +1,7 @@
-*{ padding: 0; margin: 0; }
-
-li{ list-style: none; }
-
 a{ text-decoration: none; }
 
 button{ cursor: pointer; }
 
-/*로그인박스 내용 구현*/
 .loginbox{
   width: 780px;
   height: 550px;
@@ -19,10 +14,10 @@ button{ cursor: pointer; }
   line-height: 100px;
   text-align: center;
   font-size: 20px;
-  font-weight: normal;
+  font-weight: bold;
 }
 
-.login form{
+.loginbox form{
   width: 100%;
   height: 450px;
   background-color: #fff;
@@ -41,8 +36,8 @@ button{ cursor: pointer; }
 
 .loginbox input{
   display: block;
-  width: 100%;
-  height: 50px;
+  width: 200pt;
+  height: 40px;
   margin-bottom: 25px;
   border: none;
   background-color: #ededed;
@@ -54,7 +49,7 @@ button{ cursor: pointer; }
   display: block;
   width: 120px;
   height: 40px;
-  margin: 0 auto;
+  margin: 5px;
   border: none;
   background-color: #1673ea;
   color: #fff;
