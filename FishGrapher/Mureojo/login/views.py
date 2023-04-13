@@ -1,8 +1,6 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.http import HttpResponse
-
 
 def index(request):
-    return HttpResponse("signup 작동 중!")
+    return render(request, 'login/index.html')
