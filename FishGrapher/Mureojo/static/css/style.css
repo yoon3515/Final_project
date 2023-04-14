@@ -1,0 +1,69 @@
+a{ text-decoration: none; }
+button{ cursor: pointer; }
+li{ list-style-type: none; }
+
+/*login.html 로그인박스 서식*/
+.loginbox{
+  width: 780px;
+  height: 550px;
+  margin: 0 auto;
+}
+
+.loginbox a{
+  color: #333;
+  font-size: 12px;
+  margin: 0 auto;
+}
+
+.loginbox button{
+  display: block;
+  width: 120px;
+  height: 40px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  border: none;
+  background-color: #1673ea;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.loginbox fieldset{
+  border: none;
+}
+
+.loginbox form{
+  width: 100%;
+  height: 450px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.loginbox h2{
+  width: 100%;
+  height: 100px;
+  margin: 0 auto;
+  line-height: 50px;
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.loginbox input{
+  display: block;
+  width: 200pt;
+  height: 40px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  border: none;
+  background-color: #ededed;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.loginbox legend{
+  position: absolute;
+  left: -999em;
+}

@@ -25,4 +25,3 @@ urlpatterns = [
     path('map/', include('map.urls')),
     path('', login.views.index, name='index'),
 ]
-
