@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html>
 <head>
-    <title>로그인</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% block title %}
+로그인
+{% endblock %}
 </head>
 
-{% block content%}
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/style_login.css' %}">
+{% block content %}
 <div class="loginbox">
     <h2>로그인</h2>
     <form action="{% url 'login:login' %}" name="custlogin" method="post">
