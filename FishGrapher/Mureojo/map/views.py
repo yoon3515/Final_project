@@ -1,25 +1,35 @@
-import os
-import pandas as pd
-import folium
-from django.conf import settings
+import json
+import pymongo
 from django.shortcuts import render
+from .models import FishingSpot
 
-def show_map(request):
-    # CSV 파일 읽기
-    csv_file = os.path.join(settings.BASE_DIR, 'map', 'mapdata', 'map_coordinate.csv') # 파일 경로 수정
-    df = pd.read_csv(csv_file)
+def get_fishing_spots(request):
+    # MongoDB에 연결
+    client = pymongo.MongoClient('mongodb://localhost:27017/')
 
-    # 지도 생성
-    center = [df['latitude'].mean(), df['longtitude'].mean()]  # 데이터의 중심을 지도 중심으로 설정
-    m = folium.Map(location=center, zoom_start=10)
+    # 데이터베이스 선택
+    db = client['mul_db']
 
-    # 핀마크로 위치 데이터 표시
-    for index, row in df.dropna(subset=['latitude', 'longtitude']).iterrows():  # 결측치를 제외하고 데이터를 반복
-        tooltip = str(row['area_name']) + ' - ' + str(row['address'])  # 숫자를 문자열로 변환하여 더해줌
-        folium.Marker([row['latitude'], row['longtitude']], tooltip=tooltip).add_to(m)
+    # 컬렉션 선택
+    collection = db['fishing_spots']
 
-    # 지도 출력
-    m = m._repr_html_()
-    context = {'map': m, 'center': center} # 'center' 변수 추가
+    # 데이터 검색
+    spots = collection.find()
 
-    return render(request, 'map.html', context)
+    markers = []
+    for spot in spots:
+        marker = {
+            'name': spot['name'],
+            'address': spot['address'],
+            'lat': spot['lat'],
+            'lng': spot['lng'],
+        }
+        markers.append(marker)
+
+    markers_json = json.dumps(markers)
+
+    KAKAO_MAP_API_KEY = '50e62e5f254634adaf3d813b56794396'
+    return render(request, 'map/fishing_spots.html', {
+        'markers_json': markers_json,
+        'kakao_map_api_key': KAKAO_MAP_API_KEY,
+    })
