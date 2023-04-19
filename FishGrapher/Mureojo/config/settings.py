@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'accounts',
     'map',
 ]
 
@@ -135,3 +136,6 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# 로그인 설정
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

@@ -12,16 +12,16 @@
   <h2>로그인</h2>
   <form method="post">
     {% csrf_token %}
+    {% include "form_errors.html" %}
     <p>
-      <input title="" type="email" name="login" placeholder="이메일" autofocus="autofocus" required="" id="id_login">
+      <input type="text" class="form-control" name="username" placeholder="이메일" id="username">
     </p>
     <p>
-      <input title="" type="password" name="password" placeholder="비밀번호" required="" id="id_password">
+      <input type="password" class="form-control" name="password" placeholder="비밀번호" id="password"
+             value="{{ form.password.value|defalt_if_none:'' }}">
     </p>
     <button type="submit">로그인</button>
     <button type="button" onclick="location.href='/accounts/signup/'">회원가입</button>
-    {% load socialaccount %}
-    <a href="{% provider_login_url 'kakao' method='oauth2' %}">카카오 로그인</a>
   </form>
 </div>
 {% endblock %}
