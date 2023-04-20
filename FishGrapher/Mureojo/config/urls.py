@@ -2,9 +2,11 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
 from map.views import get_fishing_spots
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='base.html'), name='home'),
     path('accounts/', include('accounts.urls')),
     path('map/', include('map.urls')),

@@ -14,11 +14,11 @@
     {% csrf_token %}
     {% include "form_errors.html" %}
     <p>
-      <input type="text" class="form-control" name="username" placeholder="이메일" id="username">
+      <input type="text" class="form-control" name="username" placeholder="아이디" id="username">
     </p>
     <p>
       <input type="password" class="form-control" name="password" placeholder="비밀번호" id="password"
-             value="{{ form.password.value|defalt_if_none:'' }}">
+             value="{{ form.password.value|default_if_none:'' }}">
     </p>
     <button type="submit">로그인</button>
     <button type="button" onclick="location.href='/accounts/signup/'">회원가입</button>
