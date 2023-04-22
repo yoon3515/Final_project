@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <!-- 내비게이션 바 -->
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/">Map</a></li>
+            <li><a href="{% url 'search_fish:search_fish'%}">Search</a></li>
+            <li><a href="#">Mypage</a></li>
+            <li><a href="#">FishBook</a></li>
+        </ul>
+    </nav>
+
+    <!-- 내용 자리 -->
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,30 @@
+<style>
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+  }
+  form {
+    /* 원하는 경우 form 요소에 대한 추가적인 스타일링을 할 수 있습니다. */
+  }
+  .message {
+    /* 원하는 경우 message 요소에 대한 추가적인 스타일링을 할 수 있습니다. */
+  }
+</style>
+
+<body>
+  <div class="container">
+    <form method="get" action="{% url 'search_fish:fishinfo' %}">
+      <input type="text" name="q" placeholder="물고기 이름을 입력하세요.">
+      <button type="submit">검색</button>
+    </form>
+
+    {% if message %}
+      <div class="message">
+        <p>{{ message }}</p>
+        <p>검색어를 입력해 주세요.</p>
+      </div>
+    {% endif %}
+  </div>
+</body>
