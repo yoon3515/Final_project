@@ -85,18 +85,18 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    'accounts': {
-        'ENGINE': 'djongo',
-        'NAME': 'mul_db',
-        'HOST': '127.0.0.1',
-        'PORT': '27017',
-        'USERNAME': 'user2',
-        'PASSWORD': 'tjrhkdgus',
-        'AUTH_SOURCE': 'mul_db'
+    'fish_db': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'fish_db',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'USER': 'rhkdgus',
+        'PASSWORD': 'Asdf!234',
     }
 }
 
-# DATABASE_ROUTERS = ['config.accountsRouter.AccountsRouter']
+DATABASE_ROUTERS = ['config.routers.DefaultRouter', 'config.routers.FishRouter']
+AUTH_USER_MODEL = 'accounts.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -145,8 +145,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # 로그인 설정
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
-AUTHENTICATION_BACKENDS = [
-    'accounts.backends.MongoDBBackend',
-    'django.contrib.auth.backends.ModelBackend',
-]

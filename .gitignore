@@ -1,1 +1,3 @@
-FishGrapher/Mureojo/secrets.json
+*.pyc
+__pycache__/
+secrets.json
