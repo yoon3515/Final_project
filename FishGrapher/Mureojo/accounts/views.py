@@ -1,69 +1,43 @@
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.hashers import check_password
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
-from accounts.forms import UserForm
-from pymongo import MongoClient
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import redirect, render
+from .models import User
+from .forms import UserForm
 
 # Create your views here.
 
-def signup(request):
-  if request.method == "POST":
-    username = request.POST['username']
-    email = request.POST['email']
-    password = request.POST['password1']
-        
-    try:
-      # MongoDB 연결
-      client = MongoClient('mongodb://localhost:27017/')
-      db = client['mul_db']
-      users = db['users']
 
-      # user 중복 확인
-      if users.find_one({'username': username}):
-        return HttpResponse('User already exists')
+def CustomSignup(request):
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+            raw_password = form.cleaned_data.get('password1')
+            user = User.objects.create(username=username, email=email, password=raw_password)
+            return redirect('accounts:login')
 
-      # user 데이터 저장
-      user = {
-        'username': username,
-        'email': email,
-        'password': password
-      }
-      users.insert_one(user)
-
-      return redirect('login')
-    except Exception as e:
-      # Handle the exception here
-      print(f"DB 연결에 실패했습니다: {e}")
-      return HttpResponse('Error connecting to MongoDB')
-  
-  form = UserForm(request.POST)
-  if not form.is_valid():
+    else:
+        form = UserForm()
     return render(request, 'accounts/signup.html', {'form': form})
 
 
-def login(request):
-  if request.method == 'POST':
-    username = request.POST['username']
-    password = request.POST['password']
-    
-    # Connect to MongoDB with authentication
-    client = MongoClient('mongodb://localhost:27017/')
-    db = client['mul_db']
-    users = db['users']
+def CustomLogin(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
 
-    # Check if the user exists in MongoDB
-    user = users.find_one({'username': username})
-    if not user:
-      return HttpResponse('User does not exist')
+        # Authenticate user using MongoDB
+        user = authenticate(request, username=username, password=password)
 
-    # Check if the password matches the hashed password in MongoDB
-    if not check_password(password, user['password']):
-      return HttpResponse('Invalid password')
-        
-    # User authenticated, log them in and redirect to home page
-    user_id = str(user['_id'])
-    request.session['user_id'] = user_id
+        if user is not None:
+            # Login user
+            login(request, user)
+            return redirect('home')
+    else:
+        return render(request, 'accounts/login.html')
+
+
+def CustomLogout(request):
+    logout(request)
     return redirect('home')
-
-  return render(request, 'login.html')
