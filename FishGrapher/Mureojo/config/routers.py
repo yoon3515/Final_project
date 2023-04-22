@@ -1,3 +1,4 @@
+'''
 class DefaultRouter:
     route_app_labels = {'map'}
     db_name = 'default'
@@ -76,3 +77,4 @@ class FishRouter:
         if app_label in self.route_app_labels:
             return self.db_name
         return None
+'''
