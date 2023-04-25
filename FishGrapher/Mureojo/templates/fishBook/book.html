@@ -27,25 +27,25 @@
   <div id="middle">
     <div class="result_area">
       <div class="card_area">
-        {% for fish_book in book %}
+        {% for CaughtFishInfo in book %}
         <div class="card" style="width: 200px;">
           <a href="http://127.0.0.1:8000/fishInfo/">
-            <img class="card-img-top" src="{{FishBook.image_url}}">
+            <img class="card-img-top" src="{{CaughtFishInfo.myfish_photo}}">
           </a>
           <div class='card-body'>
-            <h4 class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{fish_book.fish_name}}</h4>
+            <h4 class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{CaughtFishInfo.fish_book}}</h4>
 <!--            <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{fish_book.ingredient}}</p>-->
           </div>
         </div>
         {% empty %}
         <h4>결과없음</h4>
         {% endfor %}
-        {% for fish_book in book %}
+        {% for CaughtFishInfo in book %}
           <div class='card-body'>
             {% if fish_book.count > 1 %}
-            <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{fish_book.fish_name}} ({{fish_book.fish_name}})</p>
+            <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{CaughtFishInfo.fish_book}} ({{CaughtFishInfo.count}})</p>
             {% else %}
-            <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{fish_book.fish_name}}</p>
+            <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{CaughtFishInfo.fish_book}}</p>
             {% endif %}
           </div>
         {% empty %}

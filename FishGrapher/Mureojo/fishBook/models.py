@@ -17,3 +17,14 @@ class FishBook(models.Model):
     class Meta:
         managed = False
         db_table = 'fish_book'
+
+
+class CaughtFishInfo(models.Model):
+    member = models.ForeignKey(AccountsUser, models.DO_NOTHING)
+    fish_book = models.ForeignKey('FishBook', models.DO_NOTHING)
+    caught_date = models.DateField()
+    myfish_photo = models.CharField(db_column='myFish_photo', max_length=200)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'caught_fish_info'
