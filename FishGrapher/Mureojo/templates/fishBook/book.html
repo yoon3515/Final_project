@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+<head>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% block title %}
+  Fish Book
+  {% endblock %}
+</head>
+
+{% block content %}
+<div id="wrap">
+  <div id="header" role="banner">
+    <div class="logo_area">
+      <h1 id="logo" style="font-family: 'Lilita One', sans-serif;">
+        <a href="http://127.0.0.1:8000/fishBook/">
+          Fish Book
+        </a>
+      </h1>
+    </div>
+    <div class="search_area">
+      <form id="search_form" action="{% url 'book:book' %}" method="get">
+        <input type="text" name="fish" placeholder=" {{  query}}">
+        <input type="submit" value="검색">
+      </form>
+    </div>
+  </div>
+  <div id="middle">
+    <div class="result_area">
+      <div class="card_area">
+        {% for fish_book in book %}
+        <div class="card" style="width: 200px;">
+          <a href="http://127.0.0.1:8000/fishInfo/">
+            <img class="card-img-top" src="{{FishBook.image_url}}">
+          </a>
+          <div class='card-body'>
+            <h4 class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{fish_book.fish_name}}</h4>
+<!--            <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{fish_book.ingredient}}</p>-->
+          </div>
+        </div>
+        {% empty %}
+        <h4>결과없음</h4>
+        {% endfor %}
+        {% for fish_book in book %}
+          <div class='card-body'>
+            {% if fish_book.count > 1 %}
+            <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{fish_book.fish_name}} ({{fish_book.fish_name}})</p>
+            {% else %}
+            <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{fish_book.fish_name}}</p>
+            {% endif %}
+          </div>
+        {% empty %}
+          <h4>결과없음</h4>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

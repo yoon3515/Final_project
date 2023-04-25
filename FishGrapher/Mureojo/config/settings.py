@@ -9,18 +9,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 
-# settings.py
-import pymongo
-
-import random
-import string
-
-SECRET_KEY = ''.join(random.choices(string.ascii_letters + string.digits, k=50))
-
-
-client = pymongo.MongoClient("mongodb://localhost:27017/")
-db = client["mul_db"]
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'accounts',
     'map',
+    'fishBook',
 ]
 
 MIDDLEWARE = [
