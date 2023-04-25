@@ -19,6 +19,16 @@ class FishBook(models.Model):
         db_table = 'fish_book'
 
 
+class AccountsUser(models.Model):
+    username = models.CharField(max_length=255, blank=True, null=True)
+    email = models.CharField(unique=True, max_length=50)
+    password = models.CharField(max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = 'accounts_user'
+
+
 class CaughtFishInfo(models.Model):
     member = models.ForeignKey(AccountsUser, models.DO_NOTHING)
     fish_book = models.ForeignKey('FishBook', models.DO_NOTHING)
@@ -28,3 +38,6 @@ class CaughtFishInfo(models.Model):
     class Meta:
         managed = False
         db_table = 'caught_fish_info'
+
+
+
