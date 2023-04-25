@@ -85,17 +85,17 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    # 'fish_db': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'fish_db',
-    #     'HOST': 'localhost',
-    #     'PORT': '3306',
-    #     'USER': 'rhkdgus',
-    #     'PASSWORD': 'Asdf!234',
-    # }
+    'fish_db': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'fish_db',
+        'HOST': '15.152.232.36',
+        'PORT': '3306',
+        'USER': 'rhkdgus',
+        'PASSWORD': 'Asdf!234',
+    }
 }
 
-# DATABASE_ROUTERS = ['config.routers.DefaultRouter', 'config.routers.FishRouter']
+DATABASE_ROUTERS = ['config.routers.DefaultRouter', 'config.routers.FishRouter']
 AUTH_USER_MODEL = 'accounts.User'
 
 # Password validation
