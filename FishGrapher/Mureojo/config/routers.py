@@ -39,7 +39,7 @@ class DefaultRouter:
 
 
 class FishRouter:
-    route_app_labels = {'accounts'}
+    route_app_labels = {'accounts', 'fishBook'}
     db_name = 'fish_db'
 
     def db_for_read(self, model, **hints):

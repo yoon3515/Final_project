@@ -8,7 +8,7 @@
 <div id="header" role="banner">
     <div class="logo_area">
         <h1 id="logo" style="font-family: 'Lilita One', sans-serif;">
-            <a href="http://127.0.0.1:8000/fish_info/">
+            <a href="{% url 'fish_info' %}">
                 물고기 정보
             </a>
         </h1>
@@ -16,6 +16,16 @@
 </div>
 <div id="middle">
     <div class="fish_info_area">
+        {% for fish_book in book %}
+          <div class="fish-card">
+            <img src="{{ fish_book.image_url }}" alt="{{ fish_book.fish_name }}">
+            <h3>{{ fish_book.fish_name }}</h3>
+            <p>{{ fish_book.scientific_name }}</p>
+            <a href="{% url 'fishBook:fish_detail' fish_book.id %}">자세히 보기</a>
+          </div>
+        {% empty %}
+        <h4>결과없음</h4>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

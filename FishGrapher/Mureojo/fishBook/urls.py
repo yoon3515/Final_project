@@ -5,7 +5,8 @@ from . import views
 app_name = 'fishBook'
 
 urlpatterns = [
-	path('', views.fish_book_list, name='fish_book_list'),
-	path('save_fish_book/', views.save_fish_book, name='save_fish_book'),
+	path('book/', views.my_caught_fish_list, name='my_caught_fish_list'),
+	path('save_fish/', views.save_fish, name='save_fish'),
+	path('search_fish/', views.search_fish, name='search_fish'),
 ]
 

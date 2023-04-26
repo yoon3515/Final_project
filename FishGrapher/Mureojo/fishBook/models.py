@@ -14,6 +14,8 @@ class FishBook(models.Model):
     description = models.CharField(max_length=200)
     image_url = models.CharField(max_length=200)
 
+    objects = models.Manager()  # 'objects' 속성 정의
+
     class Meta:
         managed = False
         db_table = 'fish_book'
@@ -23,6 +25,8 @@ class AccountsUser(models.Model):
     username = models.CharField(max_length=255, blank=True, null=True)
     email = models.CharField(unique=True, max_length=50)
     password = models.CharField(max_length=50)
+
+    objects = models.Manager()  # 'objects' 속성 정의
 
     class Meta:
         managed = False
@@ -34,6 +38,8 @@ class CaughtFishInfo(models.Model):
     fish_book = models.ForeignKey('FishBook', models.DO_NOTHING)
     caught_date = models.DateField()
     myfish_photo = models.CharField(db_column='myFish_photo', max_length=200)  # Field name made lowercase.
+
+    objects = models.Manager()  # 'objects' 속성 정의
 
     class Meta:
         managed = False
