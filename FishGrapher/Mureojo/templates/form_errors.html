@@ -1,7 +1,7 @@
 {% if form.errors %}
 <div class="alert alert-danger">
   {% for field in form %}
-  <!-- 필드 오류 시 -->
+  <!-- field errors -->
   {% if field.errors %}
   <div>
     <strong>{{ field.label }}</strong>
@@ -9,7 +9,7 @@
   </div>
   {% endif %}
   {% endfor %}
-  <!-- 넌필드 오류 시 -->
+  <!-- nonfield errors -->
   {% for error in form.non_field_errors %}
   <div>
     <strong>{{ error }}</strong>

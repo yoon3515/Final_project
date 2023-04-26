@@ -71,8 +71,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'log_db',
+        'HOST': '15.152.232.36',
+        'PORT': '3306',
+        'USER': 'rhkdgus',
+        'PASSWORD': 'Asdf!234',
     },
     'fish_db': {
         'ENGINE': 'django.db.backends.mysql',
@@ -84,8 +88,10 @@ DATABASES = {
     }
 }
 
-DATABASE_ROUTERS = ['config.routers.DefaultRouter', 'config.routers.FishRouter']
-AUTH_USER_MODEL = 'accounts.User'
+DATABASE_ROUTERS = ['config.routers.FishRouter']
+# AUTH_USER_MODEL = 'accounts.User'
+
+SITE_ID = 1
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
