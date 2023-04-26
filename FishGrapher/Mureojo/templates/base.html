@@ -6,6 +6,33 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <!-- 제목 자리 -->
     <title>{% block title %}{% endblock %}</title>
+    <!-- JavaScript 코드 추가-->
+    <script type="text/javascript">
+        function openCamera() {
+            // 카메라에 접근
+            navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+                .then(function(stream) {
+                    var video = document.querySelector('video');
+                    video.srcObject = stream;
+                    video.onloadedmetadata = function(e) {
+                        video.play();
+                    };
+    
+                    // 촬영 버튼 추가
+                    var canvas = document.querySelector('canvas');
+                    var button = document.createElement('button');
+                    button.innerText = "사진 촬영";
+                    button.addEventListener('click', function() {
+                        // 촬영된 이미지 그리기
+                        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+                    });
+                    document.querySelector('.navbar').appendChild(button);
+                })
+                .catch(function(err) {
+                    console.log("에러가 발생했습니다: " + err);
+                });
+        }
+    </script>
 </head>
 <body>
     <!-- 내비게이션 바 -->
@@ -25,6 +52,7 @@
                 <a href="#">Search</a>
                 <a href="#">Mypage</a>
                 <a href="#">FishBook</a>
+                <a href="#" onclick="openCamera()">사진 촬영</a>
             </li>
         </ul>
     </nav>
