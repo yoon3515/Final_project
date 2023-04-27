@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from .models import FishBook, CaughtFishInfo
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
+from django.db.models import Q
 # from django.contrib.auth.models import User
 
 
@@ -48,14 +49,24 @@ def my_caught_fish_list(request):
     return render(request, 'fishBook/book.html', {'caught_fishes': caught_fishes, 'fish_books': fish_books})
 
 
+# def search_fish(request):
+#     if request.method == 'POST':
+#         search_keyword = request.POST.get('search_keyword')
+#         if search_keyword:
+#             result_fishes = FishBook.objects.filter(fish_name__contains=search_keyword).first()
+#             if result_fishes:
+#                 return render(request, 'fishBook/search_fish.html', {'result_fishes': result_fishes})
+#     return render(request, 'fishBook/book.html')
+
 def search_fish(request):
-    if request.method == 'POST':
-        search_keyword = request.POST.get('search_keyword')
-        if search_keyword:
-            result_fishes = FishBook.objects.filter(fish_name__contains=search_keyword).first()
-            if result_fishes:
-                return render(request, 'fishBook/search_fish.html', {'result_fishes': result_fishes})
-    return render(request, 'fishBook/book.html')
+    query = request.GET.get('search')
+    result_fishes = CaughtFishInfo.objects.none()
+    if query:
+        result_fishes = CaughtFishInfo.objects.filter(fish_book__fish_name__icontains=query)
+    return render(request, 'fishBook/book_result.html', {'query': query, 'result': result_fishes})
+
+
+
 
 
 # @login_required
