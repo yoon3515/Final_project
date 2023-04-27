@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'accounts',
     'map',
     'fishBook',
+    'fish_info',
 ]
 
 MIDDLEWARE = [

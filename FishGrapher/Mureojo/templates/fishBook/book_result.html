@@ -28,24 +28,25 @@
     <div class="result_area">
       <div class="card_area">
 <!--        검색결과 보여주기-->
-        {% if result %}
-          {% for fish in result %}
+        {% if result_fish_books %}
+          {% for fish in result_fish_books %}
             <div class="fish-card" style="width: 200px;">
-              <!--        사진 경로 설정하기-->
-              <a href="#">
-                <img class="card-img-top" src="{{fish.image_url}}">
+              <a href="{% url 'fish_info:fish_info' fish.id %}">
+                <img class="card-img-top" src="{{ fish.image }}" alt="{{ fish.image }} 이미지">
               </a>
               <div class='card-body'>
-                {% if fish.caughtfishinfo_set.count >= 1 %}
-                  <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{fish.fish_name}} ({{fish.caughtfishinfo_set.count}})</p>
-                {% else %}
-                  <h4>"{{ query }}"에 대한 검색 결과가 없습니다.</h4>
-                {% endif %}
+                <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{ fish.fish_name }}</p>
               </div>
             </div>
           {% endfor %}
         {% else %}
-          <h4>검색어를 입력해주세요.</h4>
+          {% if result %}
+            <h4>도감에 저장하지 않은 물고기에요 ㅠ_ㅠ</h4>
+          {% elif no_result %}
+            <h4>올바른 물고기 이름을 입력해 주세요!</h4>
+          {% else %}
+            <h4>검색어를 입력해 주세요!</h4>
+          {% endif %}
         {% endif %}
       </div>
     </div>
