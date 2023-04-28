@@ -1,0 +1,250 @@
+<html lang="ko">
+
+<head>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+
+    <meta charset="UTF-8">
+    
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <style>
+        input {
+            display: inline-block;
+        }
+
+        #email{
+        width: 280px;
+        }
+        
+        
+        table {
+            display: table;
+            width: 100%;
+            border: 0;
+            border-spacing: 0;
+            border-collapse: collapse;
+            text-indent: initial;
+        }
+        .tbl_model tbody th {
+            border-top: 1px solid #ddd;
+            padding: 10px 0 10px 19px;
+            border-bottom: 1px solid #ddd;
+            color: #353535;
+            text-align: left;
+            font-weight: normal;
+            background: #f9f9f9;
+        }
+
+        .tbl_model td {
+            display: table-cell;
+            border-top: 1px solid #ddd;
+            padding: 10px 10px 10px;
+            border-bottom: 1px solid #ddd;
+            color: #353535;
+            vertical-align: middle;
+            word-break: break-all;
+            word-wrap: break-word;
+        }
+
+        .page-header2 {
+            margin: 20px 0 20px;
+            text-align: center;
+        }                        
+        .ec-base-button {
+            padding: 20px 0;
+            text-align: center;
+        }
+        .btn_left {
+            display: inline;
+            float: left;
+            width: 140px;
+            font-size: 13px;
+            margin: 2px;
+        }
+        .btn_left .modify {
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            background: #fff;
+            color: #222;
+            padding: 10px 0;
+            display: block;
+            text-align: center;
+        }
+        .btn_right {
+            float: right;
+            width: 140px;
+            font-size: 13px;
+            margin: 2px;
+        }
+        .btn_right .delete {
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            background: #fff;
+            color: #222;
+            padding: 10px 0;
+            display: block;
+            text-align: center;
+        }       
+        .btn_center {
+            display: inline;
+            float: center;
+            width: 140px;
+            font-size: 20px;
+            margin: 2px;
+        }
+        .btn_center .gologin {
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            background: #fff;
+            color: #222;
+            padding: 20px 0;
+            display: block;
+            text-align: center;
+        }       
+    </style>
+
+        <script>
+            function memberEditAction() {
+                // 폼 데이터를 FormData 객체로 생성
+                var formData = new FormData(document.getElementById('editForm'));
+            
+                // AJAX를 사용하여 서버로 데이터 전송
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            console.log(xhr.responseText);
+                            // 수정 완료 후 리다이렉트 등 필요한 작업 수행
+                        } else {
+                            console.log('Error: ' + xhr.status);
+                            // 에러 처리 등 필요한 작업 수행
+                        }
+                    }
+                };
+                xhr.open('POST', '{% url 'mypage:edit_profile' %}');
+                xhr.send(formData);
+            }
+            </script>
+
+    <title>To-Do</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+    <div class="container">
+        <div class="header">
+            <div class="page-header">
+                <h1><small><a href="{% url 'home' %}">FISHING</a></small></h1>
+            </div>
+            <div class="page-header2">
+                <h1>MY PAGE </h1>
+            </div>
+        </div>
+
+        <fieldset>
+            <form id="editForm" method="post">
+                {% csrf_token %}
+            <table border="0" class="tbl_model">
+                <caption>
+                    <span class="blind">내 정보</span>
+                </caption>
+                <colgroup>
+                    <col style="width:25%">
+                    <col style="width:auto">
+                </colgroup>
+                <tbody>    
+                  
+                      
+                    <tr>
+                        <th scope="row">
+                            <div class=""thcell">
+                                <label for="UserName">아이디</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="tdcell">
+                                <input id="username" name="username" class="inputTypeText" placeholder=""  value="{{ user.username }}" type="text">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <div class=""thcell">
+                                <label for="id_old_password">기존 비밀번호</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="tdcell">
+                                <input id="id_old_password" name="old_password" class="inputTypeText" placeholder="" autocomplete="off" maxlength="16" 0="disabled" value="" type="password">
+                                (영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자)
+                            </div>                      
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <div class=""thcell">
+                                <label for="id_new_password1">비밀번호</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="tdcell">
+                                <input id="id_new_password1" name="new_password1" class="inputTypeText" placeholder="" autocomplete="off" maxlength="16" 0="disabled" value="" type="password">
+                                (영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자)
+                            </div>                      
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <div class="thcell">
+                                <label for="id_new_password2">비밀번호 확인</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="tdcell">
+                                <input id="id_new_password2" name="new_password2" class="inputTypeText" placeholder="" autocomplete="off" maxlength="16" 0="disabled" value="" type="password">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <div class="thcell">
+                                <label for="email">이메일</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="tdcell">
+                                <input id="email" name="email" class="inputTypeText" placeholder=""  value="{{ user.email }}" type="email">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+            </form>
+
+        <div class="ec-base-button">
+
+            <div class="btn_left">
+                <a href="" class="modify" onclick="memberEditAction()">회원정보수정</a>
+            </div>
+             
+            <div class="btn_right">
+                <a href="#none" class="delete" onclick="memberDelAction(28590, -1, -1)">회원탈퇴</a>
+            </div>
+        </div>
+        
+        {% else %}
+        <div class="ec-base-button">
+            <div class="btn_center">
+                <a href="{% url 'accounts:login' %}" class="gologin" onclick="loginAction()">로그인 하러가기</a>
+            </div>     
+        </div>
+    </form>      
+    </fieldset>
+
+     
+</body>
+{% endif %}
+</html>

@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 
-# settings.py
+#settings.py
 import pymongo
 
 import random
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'accounts',
     'map',
+    'mypage'
 ]
 
 MIDDLEWARE = [
