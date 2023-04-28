@@ -1,0 +1,65 @@
+
+/* 미디어 쿼리 */
+@media (max-width: 768px) {
+  /* 모바일 화면일 경우 */
+  body {
+    font-size: 10px;
+  }
+
+  /* 도감 서식*/
+
+  #middle {
+    max-width: 768px;
+    margin-top : 10px;
+  }
+
+  .search_form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width : 90%;
+    margin-right : 20px;
+    margin-left : 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+  }
+
+  .search_form input[type="text"] {
+    flex: 1;
+    height: 20px;
+    margin-right : 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+  }
+
+  .search_form button[type="submit"] {
+    border: none;
+    height: 25px;
+    margin-right: 5px;
+    border-radius: 10px;
+    border: none;
+    background-color: transparent;
+  }
+
+  .result_area {
+    background-image: url("sea.jpeg");
+    background-size: cover;
+    width : 90%;
+    height : auto;
+  }
+
+  .card_area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width : 90%;
+    margin-top : 40px;
+  }
+
+  .card-img-top {
+    width : 50px;
+  }
+
+
+}
