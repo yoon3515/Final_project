@@ -31,9 +31,9 @@
         {% if fish_books %}
             {% for fish in fish_books %}
                 <div class="card" style="width: 200px;">
-                <!--        사진 경로 설정하기-->
+                    <!--        사진 경로 설정하기-->
                     <a href="{% url 'fish_info:fish_info' fish.id %}">
-                        <img class="card-img-top" src="{{fish.image}}" alt="{{ fish.image }} 이미지">
+                        <img class="card-img-top" src="{{ fish.image }}" alt="{{ fish.image }} 이미지">
                     </a>
                     <div class='card-body'>
                         <h4 class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{fish.fish_name}} {{ fish.count }}마리</h4>
@@ -42,6 +42,7 @@
             {% endfor %}
         {% else %}
             <h4>도감이 비어있습니다</h4>
+            <h4>새로운 물고기를 잡아 도감에 저장해 보세요!</h4>
         {% endif %}
       </div>
     </div>
