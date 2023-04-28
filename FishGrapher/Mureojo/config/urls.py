@@ -18,6 +18,7 @@ urlpatterns = [
 =======
     path('fishBook/', include('fishBook.urls')),
     path('fish_info/', include('fish_info.urls')),
+    path('analyze/', include('analyze.urls'))
     # path('search/', include('search.urls')),
 >>>>>>> a900f9077632c865eddbee140be0b83ec8c8963e
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
