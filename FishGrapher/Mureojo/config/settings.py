@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'accounts',
     'fishBook',
     'fish_info',
+    'analyze',
     'map',
     'pictures',
 ]
