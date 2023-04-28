@@ -11,6 +11,10 @@ urlpatterns = [
     path('accounts/', include('accounts.urls'), name='accounts'),
     path('map/', include('map.urls')),
     path('get_fishing_spots/', get_fishing_spots, name='get_fishing_spots'),
+<<<<<<< HEAD
     path('fishBook/', include('fishBook.urls')),
     path('fish_info/', include('fish_info.urls')),
+=======
+    path('search/', views.search_view, name='search'),
+>>>>>>> 74e3b867fb7fbf54919ce93adc9990453898c570
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
