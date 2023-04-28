@@ -1,8 +1,14 @@
+body {
+      background-color: #FFFFFF;
+      }
+
 a{ text-decoration: none; }
+
 button{
   cursor: pointer;
   border-radius: 5px;
 }
+
 li{ list-style-type: none; }
 
 /*login.html 로그인박스 서식*/
@@ -72,6 +78,8 @@ li{ list-style-type: none; }
   position: absolute;
   left: -999em;
 }
+
+/*내비게이션 서식*/
 
 .navbar {
   position: fixed;
