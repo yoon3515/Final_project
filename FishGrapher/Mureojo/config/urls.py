@@ -12,5 +12,5 @@ urlpatterns = [
     path('map/', include('map.urls')),
     path('get_fishing_spots/', get_fishing_spots, name='get_fishing_spots'),
     path('fishBook/', include('fishBook.urls')),
-    # path('fish_info/', include('fish_info.urls')),
+    path('fish_info/', include('fish_info.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

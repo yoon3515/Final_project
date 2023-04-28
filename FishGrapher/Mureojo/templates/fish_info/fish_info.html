@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+<html>
+<head>
+    <title>Fish Info</title>
+</head>
+{% block content%}
+<div id="header" role="banner">
+    <div class="logo_area">
+        <h1 id="logo" style="font-family: 'Lilita One', sans-serif;">
+            <a href="{% url 'fish_info:fish_info' fish_id=fish.id %}">
+                Fish Information
+            </a>
+        </h1>
+    </div>
+</div>
+<div id="middle">
+    <div class="fish_info_area">
+        <div class="fish-card" style="width: 200px;">
+            <img class="card-img-top" src="{{fish.image}}" alt="{{ fish.image }} 이미지">
+            <div class='card-body'>
+                <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">이름 : {{fish.fish_name}}</p>
+                <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">학명 : {{fish.scientific_name}}</p>
+                <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">영명 : {{fish.english_name}}</p>
+                <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">금지 체장 : {{fish.prohibition_size}}</p>
+                <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">서식지 : {{fish.habitat}}</p>
+                <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">분포 : {{fish.distribution}}</p>
+                <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">금어기 : {{fish.limit_start}} ~ {{fish.limit_end}}</p>
+                <a href="{{fish.description}}" class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">더 자세히 알아보기</a>
+            </div>
+        </div>
+    </div>
+    <div class="caught_fish_area">
+        {% if caught_fish.exists %}
+            <p>총 {{ total_caught }}마리의 {{ fish.fish_name }}을(를) 잡았습니다!</p>
+            {% for my_fish in caught_fish %}
+                <div class="card" style="width: 200px;">
+                    <img class="card-img-top" src="{{ my_fish.myfish_photo }}" alt="{{ fish.fish_name }} 이미지">
+                    <div class='card-body'>
+                        <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{ my_fish.fish_book.fish_name }}</p>
+                        <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{ my_fish.caught_date }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h4>아직 잡은 {{fish.fish_name}}가 없습니다 ㅠ_ㅠ</h4>
+            <h4>{{fish.fish_name}}를 잡아 도감에 등록해 보세요 :)</h4>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

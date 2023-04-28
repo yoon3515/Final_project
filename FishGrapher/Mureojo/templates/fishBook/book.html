@@ -12,14 +12,14 @@
   <div id="header" role="banner">
     <div class="logo_area">
       <h1 id="logo" style="font-family: 'Lilita One', sans-serif;">
-        <a href="{% url 'book' %}">
+        <a href="{% url 'fishBook:my_caught_fish_list' %}">
           Fish Book
         </a>
       </h1>
     </div>
     <div class="search_area">
-      <form method="get" action="{% url 'fishBook:search_fish' %}">
-        <input type="text" name="search" placeholder="물고기 이름 검색">
+      <form id="search_form" method="get" action="{% url 'fishBook:search_fish' %}">
+        <input type="text" name="search" placeholder="  물고기 이름 검색">
         <button type="submit">검색</button>
       </form>
     </div>
@@ -28,47 +28,22 @@
     <div class="result_area">
       <div class="card_area">
 <!--        도감에 등록된 물고기 보여주기-->
-        {% for fish_book in fish_books %}
-        <div class="card" style="width: 200px;">
-          <a href="{% url 'fish_info' %}">
-            <img class="card-img-top" src="{{fish_book.image_url}}">
-          </a>
-          <div class='card-body'>
-            <h4 class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{fish_book.fish_name}}</h4>
-            {% if fish_book.caughtfishinfo_set.count > 1 %}
-            <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{fish_book.fish_name}} ({{fish_book.caughtfishinfo_set.count}})</p>
-            {% else %}
-            <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{fish_book.fish_name}} 1 </p>
-            {% endif %}
-          </div>
-        </div>
-        {% empty %}
-        <h4>결과없음</h4>
-        {% endfor %}
-        {% if search_query %}
-          <h2>"{{ search_query }}" 검색 결과</h2>
+        {% if fish_books %}
+            {% for fish in fish_books %}
+                <div class="card" style="width: 200px;">
+                    <!--        사진 경로 설정하기-->
+                    <a href="{% url 'fish_info:fish_info' fish.id %}">
+                        <img class="card-img-top" src="{{ fish.image }}" alt="{{ fish.image }} 이미지">
+                    </a>
+                    <div class='card-body'>
+                        <h4 class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{fish.fish_name}} {{ fish.count }}마리</h4>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h4>도감이 비어있습니다</h4>
+            <h4>새로운 물고기를 잡아 도감에 저장해 보세요!</h4>
         {% endif %}
-        {% for fish_book in fish_books %}
-          <div class="fish-card" style="width: 200px;">
-            <a href="{% url 'fish_info' %}">
-            <img class="card-img-top" src="{{fish_book.image_url}}">
-          </a>
-          <div class='card-body'>
-            <h4 class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{result_fishes.fish_name}}</h4>
-            {% if result_fishes.caughtfishinfo_set.count > 1 %}
-            <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{result_fishes.fish_name}} ({{result_fishes.caughtfishinfo_set.count}})</p>
-            {% else %}
-            <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{result_fishes.fish_name}} 1 </p>
-            {% endif %}
-          </div>
-          </div>
-        {% empty %}
-          {% if search_query %}
-            <p>"{{ search_query }}"에 대한 검색 결과가 없습니다.</p>
-          {% else %}
-            <p>아직 등록된 물고기가 없습니다.</p>
-          {% endif %}
-        {% endfor %}
       </div>
     </div>
   </div>
