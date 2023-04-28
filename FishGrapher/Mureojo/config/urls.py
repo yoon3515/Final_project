@@ -13,5 +13,5 @@ urlpatterns = [
     path('get_fishing_spots/', get_fishing_spots, name='get_fishing_spots'),
     path('fishBook/', include('fishBook.urls')),
     path('fish_info/', include('fish_info.urls')),
-    path('search/', include('search.urls')),
+    # path('search/', include('search.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
