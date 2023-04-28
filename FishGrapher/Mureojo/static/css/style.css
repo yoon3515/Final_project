@@ -1,94 +1,167 @@
-body {
-      background-color: #FFFFFF;
-      }
 
-a{ text-decoration: none; }
+/* 미디어 쿼리 */
+@media (max-width: 768px) {
+  /* 모바일 화면일 경우 */
+  body {
+    font-size: 10px;
+  }
 
-button{
-  cursor: pointer;
-  border-radius: 5px;
-}
+  /*내비게이션 서식*/
 
-li{ list-style-type: none; }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 0;
+  }
 
-/*login.html 로그인박스 서식*/
-.loginbox{
-  width: 700px;
-  height: 550px;
-  margin: 0 auto;
-}
+  .navbar ul {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding: 0;
+  }
 
-.loginbox a{
-  color: #333;
-  font-size: 12px;
-  margin: 0 auto;
-}
+  .navbar .nav-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 85px;
+    margin-left: 0px;
+  }
 
-.loginbox button{
-  display: block;
-  width: 120px;
-  height: 40px;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  border: none;
-  background-color: #1673ea;
-  color: #fff;
-  font-size: 15px;
-  font-weight: bold;
-  border-radius: 5px;
-}
+  .navbar .nav-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 0px;
+    margin-left: 67px;
+  }
 
-.loginbox fieldset{
-  border: none;
-}
+  .navbar .nav-left a,
+  .navbar .nav-right a{
+    display: flex;
+    flex-direction: row;
+    margin-right: 8px;
+    color: #333;
+    font-size: 10px;
+    text-decoration: none;
+  }
 
-.loginbox form{
-  width: 100%;
-  height: 450px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 0px;
-  box-sizing: border-box;
-}
 
-.loginbox h2{
-  width: 100%;
-  height: 100px;
-  margin: 0 auto;
-  line-height: 50px;
-  text-align: center;
-  font-size: 40px;
-  font-weight: bold;
-}
+  .navbar-bottom {
+    position: fixed;
+    bottom: 20px;
+    right : 1px;
+    left : 15px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-right: 10px;
+    margin-left: 5px;
+  }
 
-.loginbox input{
-  display: block;
-  width: 180pt;
-  height: 40px;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  background-color: #ffffff;
-  border-color: #c5c5c5;
-  padding: 0 20px;
-  box-sizing: border-box;
-  border-radius: 5px;
-}
+  .navbar-bottom ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    display: inline-block;
+    padding: 0;
+  }
 
-.loginbox legend{
-  position: absolute;
-  left: -999em;
-}
+  .navbar-bottom li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 
-/*내비게이션 서식*/
 
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
+  .navbar-bottom li a{
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+    color: #333;
+    font-size: 10px;
+    text-decoration: none;
+  }
 
-.navbar-bottom {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+  #wrap {
+    width: 100%;
+    height: auto;
+    max-width: 768px;
+  }
+
+
+  .logo_area {
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+  }
+
+  .logo_area h2 {
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    height: 30px;
+    width: 90%; /* 폭 설정 */
+    max-width: 768px;
+    font-size: 10px;
+    background-color: yellow;
+  }
+
+  /로그인, 회원가입 박스 서식*/
+
+  .input_area {
+    max-width: 768px;
+    margin-top : 30px;
+  }
+
+  .input_area input {
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    width: 90%; /* 입력바가 차지하는 폭 설정 */
+    height: 25px;
+    max-width: 768px; /* 입력바 최대 폭 설정 */
+    margin: 15px auto; /* 화면 중앙에 위치하도록 margin 값 설정 */
+  }
+
+
+  .login_btn_area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top : 30px;
+  }
+
+  .login_btn_area button {
+    margin-right : 10px;
+    margin-left : 10px;
+  }
+
+  .signup_btn_area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top : 30px;
+  }
+
+  .signup_btn_area button {
+    margin-right : 10px;
+    margin-left : 10px;
+  }
+
+  /* 도감 서식*/
+  .search_area {
+    max-width: 768px;
+    margin-top : 10px;
+  }
+
+
+
+
 }
