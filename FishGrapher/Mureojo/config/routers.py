@@ -1,5 +1,6 @@
 class FishRouter:
-    route_app_labels = {'accounts', 'map', 'fishBook', 'fish_info','analyze'}
+    route_app_labels = {'map', 'fishBook', 'fish_info','analyze','pictures'}
+
     db_name = 'fish_db'
 
     def db_for_read(self, model, **hints):
