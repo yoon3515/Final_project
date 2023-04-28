@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'accounts',
+    'fishBook',
+    'fish_info',
     'map',
     'pictures',
 ]

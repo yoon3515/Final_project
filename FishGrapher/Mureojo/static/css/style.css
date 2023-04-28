@@ -72,3 +72,15 @@ li{ list-style-type: none; }
   position: absolute;
   left: -999em;
 }
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar-bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
