@@ -11,20 +11,20 @@
 <div id="wrap">
   <div id="header" role="banner">
     <div class="logo_area">
-      <h1 id="logo" style="font-family: 'Lilita One', sans-serif;">
+      <h2 class="logo" style="font-family: 'Lilita One', sans-serif;">
         <a href="{% url 'fishBook:my_caught_fish_list' %}">
           Fish Book
         </a>
-      </h1>
-    </div>
-    <div class="search_area">
-      <form id="search_form" method="get" action="{% url 'fishBook:search_fish' %}">
-        <input type="text" name="search" placeholder=" {{  query}}">
-        <button type="submit">검색</button>
-      </form>
+      </h2>
     </div>
   </div>
   <div id="middle">
+    <div class="search_area">
+      <form class="search_form" method="get" action="{% url 'fishBook:search_fish' %}">
+        <input type="text" name="search" placeholder="  물고기 이름을 입력해주세요">
+        <button type="submit">검색</button>
+      </form>
+    </div>
     <div class="result_area">
       <div class="card_area">
 <!--        검색결과 보여주기-->

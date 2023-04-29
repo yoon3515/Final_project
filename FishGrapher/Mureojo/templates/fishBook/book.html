@@ -2,6 +2,7 @@
 {% load static %}
 <head>
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<!--  <link rel="stylesheet" href="{% static 'css/fishBook_style.css' %}">-->
   {% block title %}
   Fish Book
   {% endblock %}
@@ -11,26 +12,26 @@
 <div id="wrap">
   <div id="header" role="banner">
     <div class="logo_area">
-      <h1 id="logo" style="font-family: 'Lilita One', sans-serif;">
+      <h2 class="logo" style="font-family: 'Lilita One', sans-serif;">
         <a href="{% url 'fishBook:my_caught_fish_list' %}">
           Fish Book
         </a>
-      </h1>
-    </div>
-    <div class="search_area">
-      <form id="search_form" method="get" action="{% url 'fishBook:search_fish' %}">
-        <input type="text" name="search" placeholder="  물고기 이름 검색">
-        <button type="submit">검색</button>
-      </form>
+      </h2>
     </div>
   </div>
   <div id="middle">
+    <div class="search_area">
+      <form class="search_form" method="get" action="{% url 'fishBook:search_fish' %}">
+        <input type="text" name="search" placeholder="  물고기 이름을 입력해주세요">
+        <button type="submit">검색</button>
+      </form>
+    </div>
     <div class="result_area">
       <div class="card_area">
 <!--        도감에 등록된 물고기 보여주기-->
         {% if fish_books %}
             {% for fish in fish_books %}
-                <div class="card" style="width: 200px;">
+                <div class="card">
                     <!--        사진 경로 설정하기-->
                     <a href="{% url 'fish_info:fish_info' fish.id %}">
                         <img class="card-img-top" src="{{ fish.image }}" alt="{{ fish.image }} 이미지">
