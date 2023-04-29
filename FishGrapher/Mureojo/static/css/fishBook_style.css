@@ -4,6 +4,7 @@
   /* 모바일 화면일 경우 */
   body {
     font-size: 10px;
+    height : 100%;
   }
 
   /* 도감 서식*/
@@ -45,8 +46,9 @@
   .result_area {
     background-image: url("sea.jpeg");
     background-size: cover;
+    max-width: 768px;
     width : 90%;
-    height : auto;
+    height : 100%;
   }
 
   .card_area {

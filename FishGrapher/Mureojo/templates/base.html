@@ -16,6 +16,7 @@
                     <img src="{% static 'logo_images/1.png' %}" alt="Home">
                 </a>
             </li>
+            <div class="container-box"></div>
             <li class="nav-right">
                 {% if user.is_authenticated %}
                     <a class="nav-link" href="{% url 'accounts:logout' %}">{{ user.username }} 로그아웃</a>

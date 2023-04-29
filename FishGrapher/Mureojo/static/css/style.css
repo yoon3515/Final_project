@@ -2,43 +2,54 @@
 /* 미디어 쿼리 */
 @media (max-width: 768px) {
   /* 모바일 화면일 경우 */
-  body {
+  html, body {
     font-size: 10px;
+    height : 100%;
+    width : 100%;
+    margin: 0;
   }
 
   /*내비게이션 서식*/
 
   .navbar {
+    position: fixed;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-right: 5px;
-    margin-left: 5px;
-    padding: 0;
+    justify-content: space-between;
+    width : 100%;
+    top: 0;
+    left: 0px;
+    right: 0px;
+    background-color: #FFFFFF;
   }
 
   .navbar ul {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    margin-right: 10px;
-    margin-left: 10px;
-    padding: 0;
+    width: 100%;
+    padding : 0px;
+  }
+
+  .container-box{
+    width : 70%;
+    margin: 0 auto;
   }
 
   .navbar .nav-left {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-right: 85px;
-    margin-left: 0px;
+    justify-content: center;
+    width: 50%;
   }
 
   .navbar .nav-right {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-right: 0px;
-    margin-left: 67px;
+    justify-content: center;
+    width: 50%;
   }
 
   .navbar .nav-left a,
@@ -54,47 +65,54 @@
 
   .navbar-bottom {
     position: fixed;
-    bottom: 5px;
-    right : 1px;
-    left : 15px;
     display: flex;
+    align-items: center;
     justify-content: center;
-    text-align: center;
-    margin-right: 13px;
-    margin-left: 8px;
+    width : 100%;
+    height : 55px;
+    bottom: 0px;
+    background-color: #FFFFFF;
   }
 
   .navbar-bottom ul {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    display: inline-block;
-    padding: 0;
+    padding : 0px;
+    width : 100%
+    height: 70%; /* 요소들의 높이를 100%로 조절합니다. */
   }
 
   .navbar-bottom li {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+    width : 100%;
   }
 
 
-  .navbar-bottom li a{
-    display: flex;
-    flex-direction: row;
-    margin-right: 10px;
-    color: #333;
-    font-size: 10px;
-    text-decoration: none;
+  .navbar-bottom li a {
+    margin-right : 15px;
+    margin-left : 15px;
+    width : 50%;
   }
+
 
   #wrap {
     width: 100%;
-    height: auto;
-    max-width: 768px;
+    height: 100%;
+    padding-top: 40px;
   }
 
+  #header {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 50px; /* 로고 영역의 높이 설정 */
+    width: 100%;
+  }
 
   .logo_area {
     display: flex;
@@ -107,27 +125,81 @@
     justify-content: center; /* 수평 가운데 정렬 */
     align-items: center; /* 수직 가운데 정렬 */
     height: 30px;
-    width: 90%; /* 폭 설정 */
-    max-width: 768px;
+    width: 100%; /* 폭 설정 */
     font-size: 10px;
     background-color: yellow;
+    text-decoration: none;
+
+  }
+
+  .logo_area h2 a:link, .logo_area h2 a:hover {
+    text-decoration: none; /* 밑줄 제거 */
   }
 
   /로그인, 회원가입 박스 서식*/
 
-  .input_area {
-    max-width: 768px;
-    margin-top : 30px;
+  #token-error {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
   }
 
-  .input_area input {
+  .token {
+    margin-right: 10px;
+  }
+
+  .error {
+    font-size: 10px;
+    color: red;
+  }
+
+  .alert-danger {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .alert-danger strong {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 15px;
+  }
+
+  .alert-danger ul {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+
+
+  .input_area {
     display: flex;
     justify-content: center; /* 수평 가운데 정렬 */
     align-items: center; /* 수직 가운데 정렬 */
-    width: 90%; /* 입력바가 차지하는 폭 설정 */
+    max-width: 768px;
+    margin-top : 60px;
+  }
+
+  .input-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    width: 60%;
+  }
+
+
+  .input_area p {
+    width: 80%; /* 입력바가 차지하는 폭 설정 */
+    margin: 20px 0px; /* 화면 중앙에 위치하도록 margin 값 설정 */
+  }
+
+  .input_area input  {
+    width: 100%; /* 입력바가 차지하는 폭 설정 */
     height: 25px;
-    max-width: 768px; /* 입력바 최대 폭 설정 */
-    margin: 15px auto; /* 화면 중앙에 위치하도록 margin 값 설정 */
   }
 
 
@@ -135,45 +207,65 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top : 30px;
+    margin-top : 20px;
   }
 
   .login_btn_area button {
     margin-right : 10px;
     margin-left : 10px;
     border: none;
+    height: 25px;
+    background-color: #000000;
+    border-radius: 6px;
+    border: none;
+    color: white; /* 버튼 글자색 */
+}
   }
 
   .signup_btn_area {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top : 30px;
+    margin-top : 60px;
   }
 
   .signup_btn_area button {
     margin-right : 10px;
     margin-left : 10px;
     border: none;
+    height: 25px;
+    background-color: #000000;
+    border-radius: 6px;
+    border: none;
+    color: white; /* 버튼 글자색 */
+}
   }
 
   /* 도감 서식*/
 
-
   #middle {
-    max-width: 768px;
-    margin-top : 10px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height : 100%;
+    width: 100%;
   }
 
   .search_form {
+    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
-    width : 90%;
-    margin-right : 20px;
-    margin-left : 20px;
+    top: 85px; /* 검색창이 화면의 상단에서 60px 떨어지게 설정 */
+    left: 0;
+    right: 0;
+    width : 80%;
+    margin: 10px auto;
     border: 2px solid black;
     border-radius: 10px;
+    background-color: #FFFFFF;
   }
 
   .search_form input[type="text"] {
@@ -195,18 +287,24 @@
   }
 
   .result_area {
-    background-image: url("sea.jpeg");
-    background-size: cover;
-    width : 90%;
-    height : auto;
+    background-color: #7983C8;
+    width : 100%;
+    height : 100%;
+    margin-top: 95px; /* 검색창 밑에 여백을 둠 */
   }
 
   .card_area {
     display: flex;
     justify-content: center;
     align-items: center;
-    width : 90%;
+    flex-wrap: wrap; /* card 요소들을 자동으로 한 줄에 표시할 수 있도록 함 */
+    width : 100%;
     margin-top : 40px;
+  }
+
+  .card {
+    margin: 10px;
+    max-width: 18rem;
   }
 
   .card-img-top {
