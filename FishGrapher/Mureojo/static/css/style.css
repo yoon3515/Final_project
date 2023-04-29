@@ -311,5 +311,10 @@
     width : 50px;
   }
 
+  .card_area h4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
 }
