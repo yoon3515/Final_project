@@ -1,0 +1,193 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        html, body {
+            font-size: 10px;
+            height : 100%;
+            width : 100%;
+            margin : 0px;
+            overflow : visible;
+<!--            background: linear-gradient(to top, #002B66, #E7787C);-->
+<!--            background-color: #E7787C;-->
+            background-color: #002B66;
+            animation: changeBackgroundColor 15s ease-in-out infinite;
+        }
+
+
+        @keyframes changeBackgroundColor {
+            0% {
+                background-color: #89BEE3;
+            }
+            10% {
+                background-color: #ADC7D6;
+            }
+            20% {
+                background-color: #ADD6C6;
+            }
+            30% {
+                background-color: #BED6AD;
+            }
+            40% {
+                background-color: #D3D6AD;
+            }
+            50% {
+                background-color: #D6BBAD;
+            }
+            60% {
+                background-color: #D3D6AD;
+            }
+            70% {
+                background-color: #BED6AD;
+            }
+             80% {
+                background-color: #ADD6C6;
+            }
+             90% {
+                background-color: #ADC7D6;
+            }
+             100% {
+                background-color: #89BEE3;
+            }
+        }
+
+
+        #wrap {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 수평 가운데 정렬 */
+            align-items: center; /* 수직 가운데 정렬 */
+            width: 100%;
+            height: 100%;
+        }
+
+        .login_area {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 수평 가운데 정렬 */
+            align-items: center; /* 수직 가운데 정렬 */
+        }
+
+        .login_btn_area {
+            display: flex;
+            flex-direction: row;
+            justify-content: center; /* 수평 가운데 정렬 */
+            align-items: center; /* 수직 가운데 정렬 */
+            margin : 10px;
+        }
+
+        .login_btn_area a{
+            margin : 5px;
+            color : black;
+            font-size : 14px;
+            /*font-weight : bold;*/
+        }
+
+        .login_btn_area a:link, .login_btn_area a:hover {
+            text-decoration: none; /* 밑줄 제거 */
+        }
+
+        .after_login {
+            display: flex;
+            flex-direction: row;
+            justify-content: center; /* 수평 가운데 정렬 */
+            align-items: center; /* 수직 가운데 정렬 */
+            margin : 10px;
+        }
+
+        .after_login p {
+            margin-right : 6px;
+            color : black;
+            font : 20px;
+            font-weight : bold
+        }
+
+        .after_login a {
+            color : black;
+            font : 20px;
+            font-weight : bold
+        }
+
+        .after_login a:link, .after_login a:hover {
+            text-decoration: none; /* 밑줄 제거 */
+        }
+
+
+        .inform_text_area {
+            display: flex;
+            flex-direction: row;
+            justify-content: center; /* 수평 가운데 정렬 */
+            align-items: center; /* 수직 가운데 정렬 */
+            margin : 10px;
+            /* text-align: right; */
+        }
+
+        .inform_text {
+            margin : 10px;
+        }
+
+
+        .function_area a {
+            text-decoration: none; /* 밑줄 제거 */
+        }
+
+    </style>
+    <title>FISHING</title>
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">
+        </div>
+        <div id="middle">
+            <div class="login_area">
+                {% if user.is_authenticated %}
+                    <div class="after_login">
+                        <p>환영합니다 {{ user.username }}님!   ㅣ </p>
+                        <a class="nav-link" href="{% url 'accounts:logout' %}">로그아웃</a>
+                    </div>
+                    <div class="logo_area">
+                        <div class="logo">
+                            <a class="go_home" href="/">
+                                <img src="{% static 'logo_images/main_logo.png' %}" alt="Home">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="inform_text_area">
+                        <p class="inform_text">WELCOME !</p>
+                        <p class="inform_text">You can use any function you want</p>
+                    </div>
+                    <div class="function_area">
+                        <a href="#">
+                            <img src="{% static 'logo_images/2.png' %}" alt="Map">
+                        </a>
+                        <a href="#">
+                            <img src="{% static 'logo_images/3.png' %}" alt="search">
+                        </a>
+                        <a href="#">
+                            <img src="{% static 'logo_images/4.png' %}" alt="camera">
+                        </a>
+                        <a href="{% url 'fishBook:my_caught_fish_list' %}">
+                            <img src="{% static 'logo_images/5.png' %}" alt="Fishbook">
+                        </a>
+                        <a href="#">
+                            <img src="{% static 'logo_images/6.png' %}" alt="Mypage">
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="logo_area">
+                        <div class="logo">
+                            <a class="go_home" href="/">
+                                <img src="{% static 'logo_images/main_logo.png' %}" alt="Home">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="login_btn_area">
+                        <a class="nav-link login" href="{% url 'accounts:login' %}">로그인  ㅣ</a>
+                        <a class="nav-link sign" href="{% url 'accounts:signup' %}">  회원가입</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
