@@ -8,7 +8,8 @@
     width : 100%;
     margin : 0px;
     overflow : auto;
-    background: linear-gradient(to top, #304454, #285f82, #eca0a6);
+    /*background: linear-gradient(to top, #304454, #285f82, #eca0a6);*/
+    background: linear-gradient(to top, #41657F, #91B0C0, #D6ADAD)
   }
 
   /*내비게이션 서식*/
