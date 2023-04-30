@@ -7,7 +7,7 @@
   /* 도감 서식*/
 
   #middle {
-    position: fixed;
+    position : fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,14 +16,22 @@
     width: 100%;
   }
 
+  .search_area {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width : 100%;
+    height: 10%;
+    top: 85px;
+  }
+
   .search_form {
     position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 85px; /* 검색창이 화면의 상단에서 60px 떨어지게 설정 */
-    left: 0;
-    right: 0;
     width : 80%;
     margin: 10px auto;
     border: 2px solid black;
@@ -54,17 +62,17 @@
     justify-content: center;
     align-items: center;
     width : 100%;
-    height : 100%;
-    height: 200px;
+    height : 77%;
   }
 
   .card_area {
     display: flex;
+    flex-direction : row;
     justify-content: center;
-    align-items: center;
-    flex-wrap: wrap; /* card 요소들을 자동으로 한 줄에 표시할 수 있도록 함 */
+    flex-basis: calc(33.33% - 20px)
+    flex-wrap: wrap;  /* card 요소들을 자동으로 한 줄에 표시할 수 있도록 함 */
     width : 80%;
-    margin-top: 100px; /* 검색창 밑에 여백을 둠 */
+    height : 100%;
   }
 
   .card {
@@ -72,8 +80,8 @@
     flex-direction : column;
     justify-content: center;
     align-items: center;
-    margin: 10px;
-    max-width: 18rem;
+    /* margin: 10px; */
+    height : 60px;
   }
 
   .card-img-top {
@@ -82,6 +90,7 @@
 
   .card-body h4 {
     color : white;
+    margin : 0px;
   }
 
   .error-area {

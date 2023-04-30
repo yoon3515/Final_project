@@ -17,7 +17,7 @@
     </div>
   </div>
   <div id="middle">
-    <form method="post" action="{% url 'accounts:login' %}">
+    <form class="login-form" method="post" action="{% url 'accounts:login' %}">
       <div class="input_area">
         <div id="token-error" style="display: flex; justify-content: center; align-items: center;">
           <div class="token">{% csrf_token %}</div>

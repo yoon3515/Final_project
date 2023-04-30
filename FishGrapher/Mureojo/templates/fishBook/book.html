@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 <head>
-  <link rel="stylesheet" href="{% static 'static/css/style.css' %}">
-  <link rel="stylesheet" href="{% static 'static/css/fishBook_style.css' %}">
+  <link rel="stylesheet" href="{% static '/css/style.css' %}">
+  <link rel="stylesheet" href="{% static '/css/book_style.css' %}">
   {% block title %}
   Fish Book
   {% endblock %}
@@ -12,7 +12,7 @@
 <div id="wrap">
   <div id="header" role="banner">
     <div class="logo_area">
-      <h2 class="logo" style="font-family: 'Lilita One', sans-serif;">
+      <h2 class="logo">
         <a href="{% url 'fishBook:my_caught_fish_list' %}">
           Fish Book
         </a>
