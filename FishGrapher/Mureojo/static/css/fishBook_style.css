@@ -2,27 +2,33 @@
 /* 미디어 쿼리 */
 @media (max-width: 768px) {
   /* 모바일 화면일 경우 */
-  body {
-    font-size: 10px;
-    height : 100%;
-  }
+
 
   /* 도감 서식*/
 
   #middle {
-    max-width: 768px;
-    margin-top : 10px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height : 100%;
+    width: 100%;
   }
 
   .search_form {
+    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
-    width : 90%;
-    margin-right : 20px;
-    margin-left : 20px;
+    top: 85px; /* 검색창이 화면의 상단에서 60px 떨어지게 설정 */
+    left: 0;
+    right: 0;
+    width : 80%;
+    margin: 10px auto;
     border: 2px solid black;
     border-radius: 10px;
+    background-color: #FFFFFF;
   }
 
   .search_form input[type="text"] {
@@ -44,24 +50,47 @@
   }
 
   .result_area {
-    background-image: url("sea.jpeg");
-    background-size: cover;
-    max-width: 768px;
-    width : 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width : 100%;
     height : 100%;
+    height: 200px;
   }
 
   .card_area {
     display: flex;
     justify-content: center;
     align-items: center;
-    width : 90%;
-    margin-top : 40px;
+    flex-wrap: wrap; /* card 요소들을 자동으로 한 줄에 표시할 수 있도록 함 */
+    width : 80%;
+    margin-top: 100px; /* 검색창 밑에 여백을 둠 */
+  }
+
+  .card {
+    display: flex;
+    flex-direction : column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    max-width: 18rem;
   }
 
   .card-img-top {
     width : 50px;
   }
 
+  .card-body h4 {
+    color : white;
+  }
+
+  .error-area {
+    margin-top: 100px;
+  }
+
+  .error-area h4 {
+    text-align: center;
+    color : #FFFFFF;
+  }
 
 }
