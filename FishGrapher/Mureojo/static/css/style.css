@@ -6,7 +6,10 @@
     font-size: 10px;
     height : 100%;
     width : 100%;
-    margin: 0;
+    margin : 0px;
+    overflow : auto;
+    /*background: linear-gradient(to top, #304454, #285f82, #eca0a6);*/
+    background: linear-gradient(to top, #41657F, #91B0C0, #D6ADAD)
   }
 
   /*내비게이션 서식*/
@@ -20,7 +23,7 @@
     top: 0;
     left: 0px;
     right: 0px;
-    background-color: #FFFFFF;
+    background-color: white;
   }
 
   .navbar ul {
@@ -57,8 +60,9 @@
     display: flex;
     flex-direction: row;
     margin-right: 8px;
-    color: #333;
+    color: #000000;
     font-size: 10px;
+    font-weight : bold;
     text-decoration: none;
   }
 
@@ -71,7 +75,7 @@
     width : 100%;
     height : 55px;
     bottom: 0px;
-    background-color: #FFFFFF;
+    background-color: white;
   }
 
   .navbar-bottom ul {
@@ -100,9 +104,13 @@
 
 
   #wrap {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
-    padding-top: 40px;
+    /*background: linear-gradient(to top, #304454, #285f82, #eca0a6);
+    overflow: visible; /* 스크롤 생성 */
+    margin-top : 50px;
   }
 
   #header {
@@ -110,26 +118,37 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 50px; /* 로고 영역의 높이 설정 */
+    align-items: center;
     width: 100%;
+    height: 5%;
   }
 
   .logo_area {
     display: flex;
     justify-content: center; /* 수평 가운데 정렬 */
     align-items: center; /* 수직 가운데 정렬 */
+    background-color: rgba(236, 160, 166, 0.45);
+    height : 100%;
+    width: 100%;
   }
 
   .logo_area h2 {
     display: flex;
     justify-content: center; /* 수평 가운데 정렬 */
     align-items: center; /* 수직 가운데 정렬 */
-    height: 30px;
     width: 100%; /* 폭 설정 */
-    font-size: 10px;
-    background-color: yellow;
-    text-decoration: none;
+    height : 100%;
+    margin : 0px;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+  }
 
+
+  .logo_area h2 a {
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
   }
 
   .logo_area h2 a:link, .logo_area h2 a:hover {
@@ -145,12 +164,18 @@
   }
 
   .token {
-    margin-right: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
   }
 
   .error {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     font-size: 10px;
-    color: red;
+    color: #ffffff;
+    margin-right : 20px;
   }
 
   .alert-danger {
@@ -170,16 +195,24 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
 
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 수직 가운데 정렬 */
+    width : 100%;
+    height: 100%;
+  }
 
 
   .input_area {
     display: flex;
     justify-content: center; /* 수평 가운데 정렬 */
     align-items: center; /* 수직 가운데 정렬 */
-    max-width: 768px;
+    width: 90%;
     margin-top : 60px;
   }
 
@@ -193,13 +226,20 @@
 
 
   .input_area p {
-    width: 80%; /* 입력바가 차지하는 폭 설정 */
-    margin: 20px 0px; /* 화면 중앙에 위치하도록 margin 값 설정 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    width: 100%; /* 입력바가 차지하는 폭 설정 */
+    margin: 15px 0px; /* 화면 중앙에 위치하도록 margin 값 설정 */
   }
 
   .input_area input  {
     width: 100%; /* 입력바가 차지하는 폭 설정 */
     height: 25px;
+    background-color: rgba(255, 255, 255, 0.55);
+    border: none;
+    border-radius: 10px;
   }
 
 
@@ -213,20 +253,19 @@
   .login_btn_area button {
     margin-right : 10px;
     margin-left : 10px;
-    border: none;
     height: 25px;
-    background-color: #000000;
+    background-color: #eca0a6;
     border-radius: 6px;
     border: none;
-    color: white; /* 버튼 글자색 */
-}
+    color: white; /* 버튼 글자색 #191654;*/
+    font-weight : bold;
   }
 
   .signup_btn_area {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top : 60px;
+    margin-top : 20px;
   }
 
   .signup_btn_area button {
@@ -234,87 +273,24 @@
     margin-left : 10px;
     border: none;
     height: 25px;
-    background-color: #000000;
+    background-color: #eca0a6;
     border-radius: 6px;
     border: none;
-    color: white; /* 버튼 글자색 */
-}
+    color: white; /* 버튼 글자색 #191654;*/
+    font-weight : bold;
   }
 
-  /* 도감 서식*/
-
   #middle {
-    position: fixed;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height : 100%;
     width: 100%;
+    margin-top : 30px;
   }
 
-  .search_form {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 85px; /* 검색창이 화면의 상단에서 60px 떨어지게 설정 */
-    left: 0;
-    right: 0;
-    width : 80%;
-    margin: 10px auto;
-    border: 2px solid black;
-    border-radius: 10px;
-    background-color: #FFFFFF;
-  }
 
-  .search_form input[type="text"] {
-    flex: 1;
-    height: 20px;
-    margin-right : 10px;
-    border: none;
-    border-radius: 10px;
-    background-color: transparent;
-  }
-
-  .search_form button[type="submit"] {
-    border: none;
-    height: 25px;
-    margin-right: 5px;
-    border-radius: 10px;
-    border: none;
-    background-color: transparent;
-  }
-
-  .result_area {
-    background-color: #7983C8;
-    width : 100%;
-    height : 100%;
-    margin-top: 95px; /* 검색창 밑에 여백을 둠 */
-  }
-
-  .card_area {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap; /* card 요소들을 자동으로 한 줄에 표시할 수 있도록 함 */
-    width : 100%;
-    margin-top : 40px;
-  }
-
-  .card {
-    margin: 10px;
-    max-width: 18rem;
-  }
-
-  .card-img-top {
-    width : 50px;
-  }
-
-  .card_area h4 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 
 }
