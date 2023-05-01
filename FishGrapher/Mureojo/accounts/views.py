@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login
+from django.core.mail.message import EmailMessage
 from django.shortcuts import render, redirect
 from accounts.forms import UserForm
 
