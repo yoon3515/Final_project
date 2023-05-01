@@ -43,9 +43,9 @@ INSTALLED_APPS = [
     'accounts',
     'fishBook',
     'fish_info',
-    'analyze',
+    # 'analyze',
     'map',
-    'todayfish',
+    # 'todayfish',
 ]
 
 MIDDLEWARE = [
