@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # 'analyze',
     'map',
     # 'todayfish',
+    'pictures',
 ]
 
 MIDDLEWARE = [

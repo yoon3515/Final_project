@@ -1,29 +1,42 @@
 {% extends "base.html" %}
 {% load static %}
 <head>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static '/css/style.css' %}">
   {% block title %}
   아이디 / 비밀번호 찾기
   {% endblock %}
 </head>
 
 {% block content %}
-<div class="loginbox">
-  <h2>아이디 / 비밀번호 찾기</h2>
-  <form method="post">
-    {% csrf_token %}
-    <p>
-      <label>아이디 찾기</label>
-      <input type="email" class="form-control" name="email" placeholder="이메일" id="email">
-      <button type="submit" class="btn btn-primary">이메일 보내기</button>
-    </p>
-    <p>
-      <label>비밀번호 찾기</label>
-      <input type="text" class="form-control" name="username" placeholder="아이디" id="username">
-      <input type="email" class="form-control" na me="email" placeholder="이메일" id="email">
-      <button type="submit" class="btn btn-primary">이메일 보내기</button>
-    </p>
-    <button type="button" onclick="location.href='/accounts/login/'">돌아가기</button>
-  </form>
+<div id="wrap">
+  <div id="header" role="banner">
+    <div class="logo_area">
+      <h2 class="logo">
+        아이디 / 비밀번호 찾기
+      </h2>
+    </div>
+  </div>
+  <div id="middle">
+    <div class="result_area">
+      <div class="loginbox">
+        <h2>아이디 / 비밀번호 찾기</h2>
+        <form method="post">
+          {% csrf_token %}
+          <p>
+            <label>아이디 찾기</label>
+            <input type="email" class="form-control" name="email" placeholder="이메일" id="email">
+            <button type="submit" class="btn btn-primary">이메일 보내기</button>
+          </p>
+          <p>
+            <label>비밀번호 찾기</label>
+            <input type="text" class="form-control" name="username" placeholder="아이디" id="username">
+            <input type="email" class="form-control" na me="email" placeholder="이메일" id="email">
+            <button type="submit" class="btn btn-primary">이메일 보내기</button>
+          </p>
+          <button type="button" onclick="location.href='/accounts/login/'">돌아가기</button>
+        </form>
+      </div>
+    </div>	
+  </div>
 </div>
 {% endblock %}

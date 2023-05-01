@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+<head>
+  <link rel="stylesheet" href="{% static '/css/style.css' %}">
+  {% block title %}
+  Today's Fish
+  {% endblock %}
+</head>
+
+{% block content %}
+<div id="wrap">
+  <div id="header" role="banner">
+    <div class="logo_area">
+      <h2 class="logo">
+        <a href="{% url 'fish_info:fish_info' fish_id=fish.id' %}">
+          Fish Information
+        </a>
+      </h2>
+    </div>
+  </div>
+  <div id="middle">
+    <div class="result_area">
+      <div id="middle">
+        <div class="fish_info_area">
+          <div class="fish-card" style="width: 200px;">
+            <img class="card-img-top" src="{{ fish.image }}" alt="{{ fish.image }} 이미지">
+            <div class='card-body'>
+              <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">이름 : {{ fish.fish_name }}</p>
+              <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">금지 체장 : {{ fish.prohibition_size }}</p>
+              <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">서식지 : {{ fish.habitat }}</p>
+              <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">분포 : {{ fish.distribution }}</p>
+              <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">금어기 : {{ fish.limit_start }} ~ {{ fish.limit_end }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>	
+  </div>
+</div>
+{% endblock %}
