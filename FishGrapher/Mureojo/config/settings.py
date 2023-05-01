@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'fish_info',
     'analyze',
     'map',
-    'todayfish',
+    'pictures',
 ]
 
 MIDDLEWARE = [
