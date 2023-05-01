@@ -1,9 +1,6 @@
 from django.shortcuts import render
 from .models import FishBook, CaughtFishInfo
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count, Q
-from django.shortcuts import redirect
-from django.shortcuts import get_object_or_404
 
 # Create your views here.
 # fishBook/views.py
@@ -51,6 +48,9 @@ def search_fish(request):
         for fish in result_fishes:
             fish_book = FishBook.objects.filter(fish_name=fish.fish_book.fish_name).first()
             if fish_book:
+                count = CaughtFishInfo.objects.filter(member=request.user,
+                                                      fish_book__fish_name=fish.fish_book.fish_name).count()
+                fish_book.count = count
                 result_fish_books.append(fish_book)
 
     all_fishes = FishBook.objects.values_list('fish_name', flat=True)
@@ -62,25 +62,6 @@ def search_fish(request):
 
 
 
-# def search_fish(request):
-#     query = request.GET.get('search')
-#     result_fishes = CaughtFishInfo.objects.none()
-#     if query:
-#         result_fishes = CaughtFishInfo.objects.filter(fish_book__fish_name__icontains=query)
-#     return render(request, 'fishBook/book_result.html', {'query': query, 'result': result_fishes, 'no_result': query and not result_fishes})
 
-
-# def search_fish(request):
-#     query = request.GET.get('search')
-#     result_fishes = CaughtFishInfo.objects.none()
-#     if query:
-#         result_fishes = CaughtFishInfo.objects.filter(fish_book__fish_name__icontains=query)
-#     return render(request, 'fishBook/book_result.html', {'query': query, 'result': result_fishes})
-#
-#
-# def fish_info(request, fish_id):
-#     fish = get_object_or_404(FishBook, pk=fish_id)
-#     caught_fish = CaughtFishInfo.objects.filter(fish=fish_id)
-#     return render(request, 'fish_info/fish_info.html', {'fish': fish, 'caught_fish': caught_fish})
 
 

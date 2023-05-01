@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 <head>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static '/css/style.css' %}">
+  <link rel="stylesheet" href="{% static '/css/book_style.css' %}">
   {% block title %}
   Fish Book
   {% endblock %}
@@ -11,35 +12,38 @@
 <div id="wrap">
   <div id="header" role="banner">
     <div class="logo_area">
-      <h1 id="logo" style="font-family: 'Lilita One', sans-serif;">
+      <h2 class="logo">
         <a href="{% url 'fishBook:my_caught_fish_list' %}">
           Fish Book
         </a>
-      </h1>
-    </div>
-    <div class="search_area">
-      <form id="search_form" method="get" action="{% url 'fishBook:search_fish' %}">
-        <input type="text" name="search" placeholder=" {{  query}}">
-        <button type="submit">검색</button>
-      </form>
+      </h2>
     </div>
   </div>
   <div id="middle">
+    <div class="search_area">
+      <form class="search_form" method="get" action="{% url 'fishBook:search_fish' %}">
+        <input type="text" name="search" placeholder="  물고기 이름을 입력해주세요">
+        <button type="submit">검색</button>
+      </form>
+    </div>
     <div class="result_area">
-      <div class="card_area">
 <!--        검색결과 보여주기-->
-        {% if result_fish_books %}
+      {% if result_fish_books %}
+        <div class="card_area">
           {% for fish in result_fish_books %}
-            <div class="fish-card" style="width: 200px;">
+            <div class="fish-card">
               <a href="{% url 'fish_info:fish_info' fish.id %}">
                 <img class="card-img-top" src="{{ fish.image }}" alt="{{ fish.image }} 이미지">
+<!--                  <img class="card-img-top" src="{% static 'logo_images/croaker.png' %}" alt="이미지가 로드되지 않습니다.">-->
               </a>
               <div class='card-body'>
-                <p class="card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{ fish.fish_name }}</p>
+                <p class="card-text">{{ fish.fish_name }} {{ fish.count }}마리</p>
               </div>
             </div>
           {% endfor %}
-        {% else %}
+        </div>
+      {% else %}
+        <div class="error-area">
           {% if query not in result_fish_books %}
             {% if query in all_fishes %}
               <h4>도감에 저장하지 않은 물고기에요 ㅠ_ㅠ</h4>
@@ -50,8 +54,8 @@
               <h4>검색어를 입력해 주세요!</h4>
             {% endif %}
           {% endif %}
-        {% endif %}
-      </div>
+        </div>
+      {% endif %}
     </div>
   </div>
 </div>
