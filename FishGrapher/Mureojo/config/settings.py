@@ -41,9 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'accounts',
-    'map',
     'fishBook',
     'fish_info',
+    'analyze',
+    'map',
+    'todayfish',
 ]
 
 MIDDLEWARE = [

@@ -22,8 +22,8 @@
             <div class="fish_info_space">
                 <div class="fish-card" style="width: 200px;">
                     <div class="card-img">
-<!--                    <img class="card-img-top" src="{{fish.image}}" alt="{{ fish.image }} 이미지">-->
-                        <img class="card-img-top" src="{% static 'logo_images/test.png' %}" alt="이미지가 로드되지 않습니다.">
+                        <img class="card-img-top" src="{{fish.image}}" alt="{{ fish.image }} 이미지">
+<!--                        <img class="card-img-top" src="{% static 'logo_images/test.png' %}" alt="이미지가 로드되지 않습니다.">-->
                     </div>
                     <div class='card-body'>
                         <table>
@@ -72,8 +72,8 @@
                     </div>
                     {% for my_fish in caught_fish %}
                         <div class="caught_card">
-<!--                        <img class="card-img-top" src="{{ my_fish.myfish_photo }}" alt="{{ fish.fish_name }} 이미지">-->
-                            <img class="card-img-top" src="{% static 'logo_images/test.png' %}" alt="이미지가 로드되지 않습니다.">
+                            <img class="card-img-top" src="{{ my_fish.myfish_photo }}" alt="{{ fish.fish_name }} 이미지">
+<!--                            <img class="card-img-top" src="{% static 'logo_images/test.png' %}" alt="이미지가 로드되지 않습니다.">-->
                             <div class='caught_card-body'>
                                 <p class="caught_card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{ my_fish.fish_book.fish_name }}</p>
                                 <p class="caught_card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{ my_fish.caught_date }}</p>

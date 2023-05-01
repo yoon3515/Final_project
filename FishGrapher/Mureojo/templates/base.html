@@ -8,6 +8,57 @@
     <link rel="stylesheet" href="{% static '/css/info_style.css' %}">
     <!-- 제목 자리 -->
     <title>{% block title %} FISHING {% endblock %}</title>
+    <!-- JavaScript 코드 추가-->
+    <script type="text/javascript">
+        function openCamera() {
+            // 카메라에 접근
+            navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+                .then(function(stream) {
+                    var video = document.querySelector('video');
+                    video.srcObject = stream;
+                    video.onloadedmetadata = function(e) {
+                        video.play();
+                    };
+
+                    // 촬영 버튼 추가
+                    var canvas = document.querySelector('canvas');
+                    var button = document.createElement('button');
+                    var alertBox = document.createElement('div');
+                    alertBox.classList.add('alert-box');
+                    alertBox.innerHTML = "<strong>촬영시 유의사항</strong><br>- 바닥에 놓고 촬영해 주세요!<br>- 물고기 전체가 잘 나오도록 촬영해 주세요!<br>- 빛 반사에 주의하세요!<br>- 어류 외의 사진은 인식이 불가합니다!";
+                    var closeButton = document.createElement('button');
+                    closeButton.innerText = "확인";
+                    closeButton.addEventListener('click', function() {
+                        alertBox.style.display = "none";
+                    });
+                    alertBox.appendChild(closeButton);
+                    document.querySelector('.navbar').appendChild(alertBox);
+
+                    button.innerText = "사진 촬영";
+                    button.addEventListener('click', function() {
+                        // 촬영된 이미지를 데이터 URL로 변환
+                        var dataURL = canvas.toDataURL('image/png');
+                        // 서버로 이미지 전송
+                        $.ajax({
+                            type: "POST",
+                            url: "/analyze/",
+                            data: {'image': dataURL},
+                            success: function(response){
+                                // 결과를 TodayFish.html로 보여주기
+                                window.location.href = "/todayfish/?result=" + response;
+                            },
+                            error: function(request, status, error){
+                                console.log("error: " + error);
+                            }
+                        });
+                    });
+                    document.querySelector('.navbar').appendChild(button);
+                })
+                .catch(function(err) {
+                    console.log("액세스 권한이 필요합니다: " + err);
+                });
+        }
+    </script>
 </head>
 <body>
     <!-- 내비게이션 바 상단에 고정 -->
@@ -29,11 +80,11 @@
             </li>
         </ul>
     </nav>
-
+    
     <!-- 내용 자리 -->
     {% block content %}
     {% endblock %}
-
+    
     <!-- 내비게이션 바 하단에 고정 -->
     <nav class="navbar-bottom">
         <ul class="navbar-nav">

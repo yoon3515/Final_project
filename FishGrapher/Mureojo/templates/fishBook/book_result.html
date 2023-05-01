@@ -33,8 +33,8 @@
           {% for fish in result_fish_books %}
             <div class="fish-card">
               <a href="{% url 'fish_info:fish_info' fish.id %}">
-<!--                <img class="card-img-top" src="{{ fish.image }}" alt="{{ fish.image }} 이미지">-->
-                    <img class="card-img-top" src="{% static 'logo_images/croaker.png' %}" alt="이미지가 로드되지 않습니다.">
+                <img class="card-img-top" src="{{ fish.image }}" alt="{{ fish.image }} 이미지">
+<!--                  <img class="card-img-top" src="{% static 'logo_images/croaker.png' %}" alt="이미지가 로드되지 않습니다.">-->
               </a>
               <div class='card-body'>
                 <p class="card-text">{{ fish.fish_name }} {{ fish.count }}마리</p>
