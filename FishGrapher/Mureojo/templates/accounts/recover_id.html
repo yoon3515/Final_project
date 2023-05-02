@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+<head>
+  <link rel="stylesheet" href="{% static '/css/style.css' %}">
+  {% block title %}
+  아이디 찾기
+  {% endblock %}
+</head>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{% block content %}
+<div id="wrap">
+  <div id="header" role="banner">
+    <div class="logo_area">
+      <h2 class="logo">
+        아이디 찾기
+      </h2>
+    </div>
+  </div>
+  <div id="middle">
+    <div class="result_area">
+      <div>
+        {% csrf_token %}
+        <label name="label_email" for="{{ form_id.email.id_for_label }}">{{ form.email.label }}</label>
+        {{ form.email }}
+        <small>
+          등록하신 이메일이 아이디와 일치해야 합니다.
+        </small>
+        <div>
+          <button id="find_id" name="find_id">아이디 찾기</button>
+          <button type="button" onclick="location.href='/accounts/login/'">돌아가기</button>
+        </div>
+        <div id="result_id"></div>
+        <script type="text/javascript">
+          $(document).ready(function () {
+            $('#find_id').click(function () {
+              var email = $("#form_email").val();
+              $.ajax({
+                type: "POST",
+                url: "/accounts/id/find/",
+                dataType: "json",
+                data: {
+                  'email': email,
+                  'csrfmiddlewaretoken': '{{csrf_token}}',
+                },
+                success: function (response) {
+                  $('#result_id').replaceWith(
+                    '<div id="result_id"><hr><div><span>입력된 정보로 가입된 아이디는 </span><span id="result_id">' +
+                      response.result_id +'</span><span> 입니다.</span></div><hr></div>')
+                },
+                error: function () {
+                  if (email == "") {
+                    alert('이메일을 입력해 주세요.');
+                  } else {
+                     alert('입력하신 이메일이 일치하지 않거나 존재하지 않습니다.');
+                  }
+                },
+              });
+            })
+          });
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

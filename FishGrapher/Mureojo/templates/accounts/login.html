@@ -35,6 +35,10 @@
       <div class="login_btn_area">
         <button type="submit" class="btn btn-primary">로그인</button>
         <button type="button" onclick="location.href='/accounts/signup/'">회원가입</button>
+        <p>
+          <a class="nav-link" href="{% url 'accounts:id' %}">아이디 찾기</a>
+          <a class="nav-link" href="#">비밀번호 찾기</a>
+        </p>
       </div>
     </form>
   </div>
