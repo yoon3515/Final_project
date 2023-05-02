@@ -5,6 +5,7 @@
     {% block head %}
     {{ block.super }}
     <link rel="stylesheet" href="{% static '/css/info_style.css' %}">
+    <script src="{% static 'js/CaughtFishImage.js' %}"></script>
     {% endblock %}
     {% block title%}Fish Info{% endblock %}
 </head>
@@ -76,13 +77,20 @@
                         <div class="caught_card_area">
                             <div class="caught_card">
                                 <div class="caught_card_img">
-                                    <img class="caught_card-img-top" src="{{ my_fish.image_path }}?v=1" alt="{{ fish.fish_name }} 이미지">
+                                    <img class="caught_card-img-top" src="{{ my_fish.myfish_photo }}" alt="{{ fish.fish_name }} 이미지" onclick="openModal('{{ my_fish.myfish_photo }}', '{{ my_fish.fish_book.fish_name }}', '{{ my_fish.caught_date }}')">
 <!--                                <img class="card-img-top" src="{% static 'logo_images/test.png' %}" alt="이미지가 로드되지 않습니다.">-->
                                 </div>
                                 <div class='caught_card-body'>
-                                    <p class="caught_card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{ my_fish.fish_book.fish_name }}</p>
-                                    <p class="caught_card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{ my_fish.caught_date }}</p>
+                                    <p class="caught_card-text">{{ my_fish.fish_book.fish_name }}</p>
+                                    <p class="caught_card-text">{{ my_fish.caught_date }}</p>
                                 </div>
+                            </div>
+                        </div>
+                        <div id="myModal" class="modal">
+                            <div id="modal-content">
+                                <img id="modal-image" src="{{ my_fish.image_path }}" alt="이미지가 로드되지 않았습니다." onclick="openModal('{{ my_fish.myfish_photo }}', '{{ my_fish.fish_book.fish_name }}', '{{ my_fish.caught_date }}')">
+                                <p id="modal-text">{{ my_fish.fish_book.fish_name }}</p>
+                                <p id="modal-text2">{{ my_fish.caught_date }}</p>
                             </div>
                         </div>
                     {% endfor %}
