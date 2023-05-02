@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="{% static '/css/style.css' %}">
-    <link rel="stylesheet" href="{% static '/css/book_style.css' %}">
-    <link rel="stylesheet" href="{% static '/css/info_style.css' %}">
+    {% block head %}
+    {% endblock %}
     <!-- 제목 자리 -->
-    <title>{% block title %} FISHING {% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
     <!-- JavaScript 코드 추가-->
     <script type="text/javascript">
         function openCamera() {
@@ -80,11 +80,11 @@
             </li>
         </ul>
     </nav>
-    
+
     <!-- 내용 자리 -->
     {% block content %}
     {% endblock %}
-    
+
     <!-- 내비게이션 바 하단에 고정 -->
     <nav class="navbar-bottom">
         <ul class="navbar-nav">

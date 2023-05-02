@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 <head>
-  <link rel="stylesheet" href="{% static '/css/style.css' %}">
+  {% block head %}
+  {{ block.super }}
   <link rel="stylesheet" href="{% static '/css/book_style.css' %}">
+  {% endblock %}
   {% block title %}
   Fish Book
   {% endblock %}
@@ -37,7 +39,7 @@
 <!--                  <img class="card-img-top" src="{% static 'logo_images/croaker.png' %}" alt="이미지가 로드되지 않습니다.">-->
               </a>
               <div class='card-body'>
-                <p class="card-text">{{ fish.fish_name }} {{ fish.count }}마리</p>
+                <h4 class="card-text">{{ fish.fish_name }} {{ fish.count }}마리</h4>
               </div>
             </div>
           {% endfor %}

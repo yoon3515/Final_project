@@ -2,9 +2,11 @@
 {% load static %}
 <html>
 <head>
-    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    {% block head %}
+    {{ block.super }}
     <link rel="stylesheet" href="{% static '/css/info_style.css' %}">
-    <title>Fish Info</title>
+    {% endblock %}
+    {% block title%}Fish Info{% endblock %}
 </head>
 {% block content%}
 <div id="wrap">
@@ -22,45 +24,45 @@
             <div class="fish_info_space">
                 <div class="fish-card" style="width: 200px;">
                     <div class="card-img">
-                        <img class="card-img-top" src="{{fish.image}}" alt="{{ fish.image }} 이미지">
+                        <img class="card-img-top" src="{{ fish.image_path }}?v=1" alt="{{ fish.image_path }} 이미지">
 <!--                        <img class="card-img-top" src="{% static 'logo_images/test.png' %}" alt="이미지가 로드되지 않습니다.">-->
                     </div>
-                    <div class='card-body'>
-                        <table>
-                            <tr>
-                                <th>이름</th>
-                                <td>{{fish.fish_name}}</td>
-                            </tr>
-                            <tr>
-                                <th>학명</th>
-                                <td>{{fish.scientific_name}}</td>
-                            </tr>
-                            <tr>
-                                <th>영명</th>
-                                <td>{{fish.english_name}}</td>
-                            </tr>
-                            <tr>
-                                <th>금지 체장</th>
-                                <td>{{fish.prohibition_size}}</td>
-                            </tr>
-                            <tr>
-                                <th>서식지</th>
-                                <td>{{fish.habitat}}</td>
-                            </tr>
-                            <tr>
-                                <th>분포</th>
-                                <td>{{fish.distribution}}</td>
-                            </tr>
-                            <tr>
-                                <th>금어기</th>
-                                <td>{{fish.limit_start}} ~ {{fish.limit_end}}</td>
-                            </tr>
-                            <tr>
-                                <th>자세히 알아보기</th>
-                                <td><a href="{{fish.description}}">더 자세히 알아보기</a></td>
-                            </tr>
-                        </table>
-                    </div>
+                </div>
+                <div class='card-body'>
+                    <table>
+                        <tr>
+                            <th>이름</th>
+                            <td>{{fish.fish_name}}</td>
+                        </tr>
+                        <tr>
+                            <th>학명</th>
+                            <td>{{fish.scientific_name}}</td>
+                        </tr>
+                        <tr>
+                            <th>영명</th>
+                            <td>{{fish.english_name}}</td>
+                        </tr>
+                        <tr>
+                            <th>금지 체장</th>
+                            <td>{{fish.prohibition_size}}</td>
+                        </tr>
+                        <tr>
+                            <th>서식지</th>
+                            <td>{{fish.habitat}}</td>
+                        </tr>
+                        <tr>
+                            <th>분포</th>
+                            <td>{{fish.distribution}}</td>
+                        </tr>
+                        <tr>
+                            <th>금어기</th>
+                            <td>{{fish.limit_start}} ~ {{fish.limit_end}}</td>
+                        </tr>
+                        <tr>
+                            <th>자세히 알아보기</th>
+                            <td><a href="{{fish.description}}">더 자세히 알아보기</a></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -71,12 +73,16 @@
                         <p>총 {{ total_caught }}마리의 {{ fish.fish_name }}을(를) 잡았습니다!</p>
                     </div>
                     {% for my_fish in caught_fish %}
-                        <div class="caught_card">
-                            <img class="card-img-top" src="{{ my_fish.myfish_photo }}" alt="{{ fish.fish_name }} 이미지">
-<!--                            <img class="card-img-top" src="{% static 'logo_images/test.png' %}" alt="이미지가 로드되지 않습니다.">-->
-                            <div class='caught_card-body'>
-                                <p class="caught_card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{ my_fish.fish_book.fish_name }}</p>
-                                <p class="caught_card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{ my_fish.caught_date }}</p>
+                        <div class="caught_card_area">
+                            <div class="caught_card">
+                                <div class="caught_card_img">
+                                    <img class="caught_card-img-top" src="{{ my_fish.image_path }}?v=1" alt="{{ fish.fish_name }} 이미지">
+<!--                                <img class="card-img-top" src="{% static 'logo_images/test.png' %}" alt="이미지가 로드되지 않습니다.">-->
+                                </div>
+                                <div class='caught_card-body'>
+                                    <p class="caught_card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{ my_fish.fish_book.fish_name }}</p>
+                                    <p class="caught_card-text" style="font-family: 'IBM Plex Sans KR', sans-serif;">{{ my_fish.caught_date }}</p>
+                                </div>
                             </div>
                         </div>
                     {% endfor %}
