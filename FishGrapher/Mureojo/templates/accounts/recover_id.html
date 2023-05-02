@@ -6,7 +6,6 @@
   아이디 찾기
   {% endblock %}
 </head>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 {% block content %}
 <div id="wrap">
   <div id="header" role="banner">
@@ -18,25 +17,28 @@
   </div>
   <div id="middle">
     <div class="result_area">
-      <div>
+      <div class="col">
         {% csrf_token %}
-        <label name="label_email" for="{{ form_id.email.id_for_label }}">{{ form.email.label }}</label>
-        {{ form.email }}
-        <small>
-          등록하신 이메일이 아이디와 일치해야 합니다.
-        </small>
+        <div class="mb">
+          <!--이메일-->
+          <label name="label_email" for="{{ form_id.email.id_for_label }}">{{ form_id.email.label }}</label>
+          <div>{{ form_id.email }}</div>
+          <small class="text-muted">등록하신 아이디와 이메일 주소가 일치해야 합니다.</small>
+        </div>
         <div>
-          <button id="find_id" name="find_id">아이디 찾기</button>
+          <button id="find_id" name="recover_id">아이디 찾기</button>
           <button type="button" onclick="location.href='/accounts/login/'">돌아가기</button>
         </div>
         <div id="result_id"></div>
+
         <script type="text/javascript">
           $(document).ready(function () {
             $('#find_id').click(function () {
               var email = $("#form_email").val();
+
               $.ajax({
                 type: "POST",
-                url: "/accounts/id/find/",
+                url: "/accounts/recover/id/find/",
                 dataType: "json",
                 data: {
                   'email': email,
@@ -44,7 +46,7 @@
                 },
                 success: function (response) {
                   $('#result_id').replaceWith(
-                    '<div id="result_id"><hr><div><span>입력된 정보로 가입된 아이디는 </span><span id="result_id">' +
+                    '<div id="result_id"><hr><div><span>입력하신 이메일로 가입된 아이디는 </span><span id="result_id">' +
                       response.result_id +'</span><span> 입니다.</span></div><hr></div>')
                 },
                 error: function () {

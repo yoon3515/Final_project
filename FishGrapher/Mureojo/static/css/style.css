@@ -155,7 +155,7 @@
     text-decoration: none; /* 밑줄 제거 */
   }
 
-  /로그인, 회원가입 박스 서식*/
+  /*로그인, 회원가입 박스 서식*/
 
   #token-error {
     display: flex;
@@ -198,6 +198,17 @@
     margin-bottom: 10px;
   }
 
+  .col {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .form-text {
+    display: block;
+    margin-top: 0.25rem;
+  }
 
   .login-form {
     display: flex;
@@ -247,7 +258,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top : 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
   }
 
   .login_btn_area button {
@@ -261,23 +273,28 @@
     font-weight : bold;
   }
 
+  .mb {
+  margin-bottom: 1.5rem !important;
+  position: relative;
+  }
+
   .signup_btn_area {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top : 20px;
+    margin-top: 20px;
   }
 
   .signup_btn_area button {
-    margin-right : 10px;
-    margin-left : 10px;
+    margin-right: 10px;
+    margin-left: 10px;
     border: none;
     height: 25px;
     background-color: #eca0a6;
     border-radius: 6px;
     border: none;
     color: white; /* 버튼 글자색 #191654;*/
-    font-weight : bold;
+    font-weight: bold;
   }
 
   #middle {
@@ -286,11 +303,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height : 100%;
+    height: 100%;
     width: 100%;
-    margin-top : 30px;
+    margin-top: 30px;
   }
 
-
+  .text-muted {
+    color: #37393a !important;
+  }
 
 }
