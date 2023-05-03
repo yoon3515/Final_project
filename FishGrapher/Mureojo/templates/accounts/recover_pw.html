@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 <head>
-  <link rel="stylesheet" href="{% static '/css/style.css' %}">
+  {% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static '/css/recover_pw_style.css' %}">
+  {% endblock %}
   {% block title %}
   비밀번호 찾기
   {% endblock %}
@@ -11,7 +14,9 @@
   <div id="header" role="banner">
     <div class="logo_area">
       <h2 class="logo">
-        비밀번호 찾기
+        <a class="nav-link" href="{% url 'accounts:recover_pw' %}">
+          비밀번호 찾기
+        </a>
       </h2>
     </div>
   </div>
@@ -21,22 +26,28 @@
         {% csrf_token %}
         <!--아이디-->
         <div class="mb">
-          <label name="label_username" for="{{ form_pw.username.id_for_label }}">{{ form_pw.username.label }}</label>
-          <div>{{ form_pw.username }}</div>
+          <div class="label_space">
+            <label name="label_username" for="{{ form_pw.username.id_for_label }}">{{ form_pw.username.label }}</label>
+          </div>
+          <div class="id_form">{{ form_pw.username }}</div>
         </div>
         <!--이메일-->
         <div class="mb">
-          <label name="label_email" for="{{ form_pw.email.id_for_label }}">{{ form_pw.email.label }}</label>
+          <div class="label_space">
+            <label name="label_email" for="{{ form_pw.email.id_for_label }}">{{ form_pw.email.label }}</label>
+          </div>
           <div>{{ form_pw.email }}</div>
+        </div>
+        <div class="email_inform">
           <small class="text-muted">등록하신 메일로 인증번호가 발송됩니다.</small>
         </div>
         <!--비밀번호 찾기, 돌아가기 버튼-->
-        <div id="div_find_pw" style="padding-top:10px;">
-          <button type = "submit" id="find_pw" name="recover_pw">비밀번호 찾기</button>
-          <button type="button" onclick="location.href='/accounts/login/'">돌아가기</button>
+        <div class="find_pw_btn_space" style="padding-top:10px;">
+          <button class="find_pw_btn" type = "submit" id="find_pw" name="recover_pw">비밀번호 찾기</button>
+          <button class="goback_btn" type="button" onclick="location.href='/accounts/login/'">돌아가기</button>
         </div>
 
-        <div style="text-align: center; margin-top: 10px; margin-bottom: -10px;">
+        <div class="loading_space">
           <div id="loading"></div>
         </div>
 
@@ -63,8 +74,8 @@
                   alert('회원님의 이메일로 인증코드를 발송하였습니다.');
                   $('#div_find_pw').remove()
                   $('#result_pw').replaceWith(
-                    '<hr><div><form class="form-inline" style="margin-bottom:-15px; margin-top:-10px;"><div class="md-form md-outline"><label for="input_auth_num">인증번호 입력 (<span id="timeset"></span>)</label><input type="text" id="input_auth_num" class="form-control" autofocus/></div></form>'+
-                    '<button type="submit" name="auth_confirm" id="id_auth_confirm" class="btn" style="opacity: 90%; height:30%; margin-top:10px; font-size: 12px;">인증 확인</button></div><hr>'
+                    '<hr><div class="confirm_space"><form class="form-inline"><div class="md-form md-outline"><label for="input_auth_num">인증번호 입력 (<span id="timeset"></span>)</label><input type="text" id="input_auth_num" class="form-control" autofocus/></div></form>'+
+                    '<button type="submit" name="auth_confirm" id="id_auth_confirm" class="btn">인증 확인</button></div><hr>'
                   )
                   function countdown( elementName, minutes, seconds ) {
                     var elementName, endTime, hours, mins, msLeft, time;

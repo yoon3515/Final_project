@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 <head>
-  <link rel="stylesheet" href="{% static '/css/style.css' %}">
+  {% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static '/css/recover_id_style.css' %}">
+  {% endblock %}
   {% block title %}
   아이디 찾기
   {% endblock %}
@@ -11,7 +14,9 @@
   <div id="header" role="banner">
     <div class="logo_area">
       <h2 class="logo">
-        아이디 찾기
+        <a class="nav-link" href="{% url 'accounts:recover_id' %}">
+          아이디 찾기
+        </a>
       </h2>
     </div>
   </div>
@@ -21,17 +26,20 @@
         {% csrf_token %}
         <div class="mb">
           <!--이메일-->
-          <label name="label_email" for="{{ form_id.email.id_for_label }}">{{ form_id.email.label }}</label>
-          <div>{{ form_id.email }}</div>
+          <!-- <label name="label_email" for="{{ form_id.email.id_for_label }}">{{ form_id.email.label }}</label> -->
+          <div class="email_form">{{ form_id.email }}</div>
+        </div>
+        <div class="email_inform">
           <small class="text-muted">등록하신 아이디와 이메일 주소가 일치해야 합니다.</small>
         </div>
-        <div>
+        <div class="find_id_btn">
           <button id="find_id" name="recover_id">아이디 찾기</button>
-          <button type="button" onclick="location.href='/accounts/login/'">돌아가기</button>
         </div>
         <div id="result_id"></div>
-        <div>
+        <div class="other_action_btn">
           <a class="nav-link" href="{% url 'accounts:recover_pw' %}">비밀번호 찾기</a>
+          <p>ㅣ</p>
+          <a class="nav-link" href="{% url 'accounts:login' %}">돌아가기</a>
         </div>
 
         <script type="text/javascript">
