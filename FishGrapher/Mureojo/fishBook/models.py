@@ -13,7 +13,7 @@ class FishBook(models.Model):
     limit_start = models.CharField(max_length=50)
     limit_end = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
-    image = models.CharField(max_length=200)
+    image = models.ImageField()
 
     objects = models.Manager()  # 'objects' 속성 정의
 
@@ -28,7 +28,7 @@ class CaughtFishInfo(models.Model):
     member = models.ForeignKey(User, models.DO_NOTHING, related_name='caught_fish_info_set')
     fish_book = models.ForeignKey('FishBook', models.DO_NOTHING, related_name='caught_fish_infos')
     caught_date = models.DateField()
-    myfish_photo = models.CharField(db_column='myFish_photo', max_length=200)  # Field name made lowercase.
+    myfish_photo = models.ImageField(upload_to='caughtFish_image/')
 
     objects = models.Manager()  # 'objects' 속성 정의
 

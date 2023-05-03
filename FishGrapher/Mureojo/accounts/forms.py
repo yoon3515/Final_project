@@ -1,9 +1,8 @@
 from django import forms
-from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import AuthenticationForm, UserChangeForm, SetPasswordForm, UserCreationForm, PasswordChangeForm
-from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import SetPasswordForm, UserCreationForm
 
+# Create your forms here.
 
 class UserForm(UserCreationForm):
     email = forms.EmailField(label='email')

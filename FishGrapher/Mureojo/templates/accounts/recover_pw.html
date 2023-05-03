@@ -32,7 +32,7 @@
         </div>
         <!--비밀번호 찾기, 돌아가기 버튼-->
         <div id="div_find_pw" style="padding-top:10px;">
-          <button id="find_pw" name="recover_pw">비밀번호 찾기</button>
+          <button type = "submit" id="find_pw" name="recover_pw">비밀번호 찾기</button>
           <button type="button" onclick="location.href='/accounts/login/'">돌아가기</button>
         </div>
 
@@ -63,8 +63,8 @@
                   alert('회원님의 이메일로 인증코드를 발송하였습니다.');
                   $('#div_find_pw').remove()
                   $('#result_pw').replaceWith(
-                    '<hr><div class="row justify-content-md-center"><form class="form-inline" style="margin-bottom:-15px; margin-top:-10px;"><div class="md-form md-outline"><label for="input_auth_num">인증번호 입력 (<span id="timeset"></span>)</label><input type="text" id="input_auth_num" class="form-control mx-sm-2" autofocus/></div></form>'+
-                    '<button type="submit" name="auth_confirm" id="id_auth_confirm" class="btn btn-red" style="opacity: 90%; height:30%; margin-top:10px; font-size: 12px;"><i class="fas fa-check"></i>&nbsp;&nbsp;인증확인</button></div><hr>'
+                    '<hr><div><form class="form-inline" style="margin-bottom:-15px; margin-top:-10px;"><div class="md-form md-outline"><label for="input_auth_num">인증번호 입력 (<span id="timeset"></span>)</label><input type="text" id="input_auth_num" class="form-control" autofocus/></div></form>'+
+                    '<button type="submit" name="auth_confirm" id="id_auth_confirm" class="btn" style="opacity: 90%; height:30%; margin-top:10px; font-size: 12px;">인증 확인</button></div><hr>'
                   )
                   function countdown( elementName, minutes, seconds ) {
                     var elementName, endTime, hours, mins, msLeft, time;
@@ -79,60 +79,59 @@
                         cert_ok = false;
                         certificationNum = false;
                         location.href = "{% url 'accounts:recover_pw' %}"
-                    } else {
+                      } else {
                        time = new Date( msLeft );
                         hours = time.getUTCHours();
                         mins = time.getUTCMinutes();
                         $("" + elementName).html((hours ? hours + ':' + twoDigits( mins ) : twoDigits(mins))
                         + ':' + twoDigits( time.getUTCSeconds()));
                         setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+                      }
                     }
+                    endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
+                    updateTimer();
                   }
-                  endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
-                  updateTimer();
-                }
-                countdown("#timeset", 5, 0);
+                  countdown("#timeset", 5, 0);
 
-                var user = response.result
+                  var user = response.result
 
-                $(document).ready(function () {
-                  $('#id_auth_confirm').click(function () {
-                    var input_auth_num = $("#input_auth_num").val();
-
-                     $.ajax({
-                      type: "POST",
-                      url: "/accounts/recover/pw/auth/",
-                      dataType: "json",
-                      data: {
-                        'username': user,
-                        'input_auth_num': input_auth_num,
-                        'csrfmiddlewaretoken': '{{csrf_token}}',
-                      },
-                      success: function (response) {
-                        location.href = "{% url 'accounts:recover_pw_reset' %}";
-                      },
-                      error: function () {
-                        if ($('#input_auth_num').val()=="") {
-                           alert('회원님의 이메일로 전송된 인증번호를 입력해주세요.');
-                        } else {
-                          alert('인증번호가 일치하지 않습니다.');
-                        }
-                      },
-                    });
+                  $(document).ready(function () {
+                    $('#id_auth_confirm').click(function () {
+                      var input_auth_num = $("#input_auth_num").val();
+                      $.ajax({
+                        type: "POST",
+                        url: "/accounts/recover/pw/auth/",
+                        dataType: "json",
+                        data: {
+                          'username': user,
+                          'input_auth_num': input_auth_num,
+                          'csrfmiddlewaretoken': '{{csrf_token}}',
+                        },
+                        success: function (response) {
+                          location.href = "{% url 'accounts:recover_pw_reset' %}";
+                        },
+                        error: function () {
+                          if ($('#input_auth_num').val()=="") {
+                            alert('회원님의 이메일로 전송된 인증번호를 입력해주세요.');
+                          } else {
+                            alert('인증번호가 일치하지 않습니다.');
+                          }
+                        },
+                      });
+                    })
                   })
-                })
-              },
-              error: function () {
-                $('#loading_end').remove()
-                if (username == "" || email == "") {
-                  alert('아이디, 이메일을 모두 입력해주세요.');
-                } else {
-                  alert('입력하신 정보가 일치하지 않거나 존재하지 않습니다.');
-                }
-              },
-            });
-          })
-        });
+                },
+                error: function () {
+                  $('#loading_end').remove()
+                  if (username == "" || email == "") {
+                    alert('아이디, 이메일을 모두 입력해 주세요.');
+                  } else {
+                    alert('입력하신 아이디, 이메일이 틀렸거나 존재하지 않습니다.');
+                  }
+                },
+              });
+            })
+          });
         </script>
       </div>
     </div>
