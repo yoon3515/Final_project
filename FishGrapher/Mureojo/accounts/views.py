@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
-from .models import CustomUser
+from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.core.exceptions import PermissionDenied
 from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponse
@@ -12,7 +11,10 @@ from django.views.generic import View
 from .decorators import logout_message_required
 from .forms import CustomSetPasswordForm, RecoverIdForm, RecoverPwForm, UserForm
 from .helper import email_auth_num, send_mail
+from .models import AuthKey
 import json
+
+User = get_user_model()
 
 # Create your views here.
 
@@ -44,7 +46,7 @@ class RecoverIdView(View):
 
 def ajax_find_id_view(request):
     email = request.POST.get('email')
-    result_id = CustomUser.objects.get(email=email)
+    result_id = User.objects.get(email=email)
 
     return HttpResponse(json.dumps({"result_id": result_id.username}, cls=DjangoJSONEncoder), content_type = "application/json")
 
@@ -63,12 +65,13 @@ class RecoverPwView(View):
 def ajax_find_pw_view(request):
     username = request.POST.get('username')
     email = request.POST.get('email')
-    result_pw = CustomUser.objects.get(username=username, email=email)
+    result_pw = User.objects.get(username=username, email=email)
 
     if result_pw:
         auth_num = email_auth_num()
-        result_pw.auth = auth_num
-        result_pw.save()
+        AuthKey
+        code = AuthKey(user=result_pw, auth=auth_num)
+        code.save()
 
         send_mail(
             '[물어조 FISHING] 비밀번호 찾기 인증메일입니다.',
@@ -83,10 +86,10 @@ def ajax_find_pw_view(request):
 def auth_confirm_view(request):
     username = request.POST.get('username')
     input_auth_num = request.POST.get('input_auth_num')
-    user = CustomUser.objects.get(username=username, auth=input_auth_num)
-    user.auth = ""
-    user.save()
-    request.session['auth'] = user.username 
+    user = User.objects.get(username=username)
+    code = AuthKey.objects.filter(user=user, code=input_auth_num).first()
+    code.delete()
+    request.session['auth'] = user.username
     
     return HttpResponse(json.dumps({"result": user.username}, cls=DjangoJSONEncoder), content_type = "application/json")
 
@@ -99,7 +102,7 @@ def auth_pw_reset_view(request):
 
     if request.method == 'POST':
         session_user = request.session['auth']
-        current_user = CustomUser.objects.get(username=session_user)
+        current_user = User.objects.get(username=session_user)
         login(request, current_user)
 
         reset_password_form = CustomSetPasswordForm(request.user, request.POST)
