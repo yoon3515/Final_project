@@ -98,7 +98,6 @@
                   $(document).ready(function () {
                     $('#id_auth_confirm').click(function () {
                       var input_auth_num = $("#input_auth_num").val();
-
                       $.ajax({
                         type: "POST",
                         url: "/accounts/recover/pw/auth/",

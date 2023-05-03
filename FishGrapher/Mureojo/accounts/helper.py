@@ -4,7 +4,6 @@ import string
 import random
 
 
-
 class EmailThread(threading.Thread):
     def __init__(self, subject, body, from_email, recipient_list, fail_silently, html):
         self.subject = subject
