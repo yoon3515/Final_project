@@ -7,35 +7,32 @@
 
 
   #middle {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     height : 100%;
     width: 100%;
-    margin-top : 30px;
+    padding-top : 30px;
   }
 
   .fish_info_area{
     display : flex;
-    flex-direction : column;
     justify-content: center;
-    align-items: center;
     width : 100%;
-    height : 100%;
-    margin-top : 160px;
-    margin-bottom : 30px;
+    padding-top : 30px;
+    padding-bottom : 30px;
   }
 
   .fish_info_space {
     display: flex;
-    justify-content: center;
+    flex-direction : column;
     align-items: center;
     width : 85%;
     height : 100%;
     background-color: rgba(255, 255, 255, 0.35);
     border-radius: 10px;
-    margin-top : 10px;
+  }
+
+  .card_area {
+    width : 100%;
+    height : 100%;
   }
 
 
@@ -44,9 +41,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  /* flex-wrap: wrap;  card 요소들을 자동으로 한 줄에 표시할 수 있도록 함 */
+    max-width : 400px;
     width : 80%;
-    height : 100%;
+    height : 40%;
+    padding : 10px;
   }
 
 
@@ -55,13 +53,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width : 60%;
-    height : 60%;
-  }
-
-  .card-img img {
     width : 100%;
     height : 100%;
+  }
+
+  .card-img-top {
+    max-width: 400px;
+    max-height: 400px;
   }
 
   .card-body {
@@ -69,7 +67,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width : 200%;
+    width : 80%;
+    height : 60%;
+    padding : 20px;
   }
 
 
@@ -78,7 +78,8 @@
     border : 2px solid rgba(0,0,0,0.2);
     border-radius: 10px;
     border-collapse: separate;
-    margin-bottom : 30px;
+    width : 100%;
+    height : 100%;
   }
 
   th,
@@ -106,20 +107,15 @@
 
   .caught_fish_area{
     display: flex;
-    flex-direction : column;
     justify-content: center;
-    align-items: center;
     width : 100%;
-    height : 100%;
-    padding-bottom : 60px;
+    padding-bottom : 20px;
   }
 
   .caught_card-space {
     display: flex;
     flex-direction : column;
-    align-items: center;
     width : 85%;
-    height : 100%;
     background-color: rgba(255, 255, 255, 0.35);
     border-radius: 10px;
   }
@@ -136,6 +132,12 @@
     font : 20px;
   }
 
+  .caught_card_area {
+    display: flex;
+    flex-direction : column;
+    justify-content: center;
+  }
+
   .caught_card {
     display: flex;
     flex-direction : column;
@@ -149,6 +151,7 @@
   .caught_card img {
     width : 50px;
     height : 50px;
+    margin-bottom : 10px;
   }
 
   .caught_card-body {
@@ -161,6 +164,14 @@
 
   .caught_card-body p {
     margin : 0px;
+  }
+
+
+  .didnt_caught-space {
+    display: flex;
+    flex-direction : column;
+    justify-content: center;
+    align-items: center;
   }
 
 

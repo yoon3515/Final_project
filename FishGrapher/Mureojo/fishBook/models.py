@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from PIL import Image
+from django.core.files.uploadedfile import InMemoryUploadedFile
+import io 
 
 # Create your models here.
 
@@ -13,12 +16,12 @@ class FishBook(models.Model):
     limit_start = models.CharField(max_length=50)
     limit_end = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
-    image = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='fishBook_image/')
 
     objects = models.Manager()  # 'objects' 속성 정의
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'fish_book'
 
 
@@ -28,24 +31,14 @@ class CaughtFishInfo(models.Model):
     member = models.ForeignKey(User, models.DO_NOTHING, related_name='caught_fish_info_set')
     fish_book = models.ForeignKey('FishBook', models.DO_NOTHING, related_name='caught_fish_infos')
     caught_date = models.DateField()
-    myfish_photo = models.CharField(db_column='myFish_photo', max_length=200)  # Field name made lowercase.
+    myfish_photo = models.ImageField(upload_to='caughtFish_image/')  # Field name made lowercase.
 
     objects = models.Manager()  # 'objects' 속성 정의
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'caught_fish_info'
 
 
 
-# class AccountsUser(models.Model):
-#     username = models.CharField(max_length=255, blank=True, null=True)
-#     email = models.CharField(unique=True, max_length=50)
-#     password = models.CharField(max_length=50)
-#
-#     objects = models.Manager()  # 'objects' 속성 정의
-#
-#     class Meta:
-#         managed = False
-#         db_table = 'accounts_user'
 

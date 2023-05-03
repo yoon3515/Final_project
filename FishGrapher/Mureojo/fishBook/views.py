@@ -28,6 +28,7 @@ def my_caught_fish_list(request):
         if fish_book:
             count = CaughtFishInfo.objects.filter(member=user, fish_book__fish_name=fish_name).count()
             fish_book.count = count
+            fish_book.image_url = fish_book.image.url
             fish_books.append(fish_book)
 
     if not fish_books:  # fish_books가 빈 리스트인 경우
@@ -51,6 +52,7 @@ def search_fish(request):
                 count = CaughtFishInfo.objects.filter(member=request.user,
                                                       fish_book__fish_name=fish.fish_book.fish_name).count()
                 fish_book.count = count
+                fish_book.image_url = fish_book.image.url
                 result_fish_books.append(fish_book)
 
     all_fishes = FishBook.objects.values_list('fish_name', flat=True)

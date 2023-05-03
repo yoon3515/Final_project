@@ -144,6 +144,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
+    BASE_DIR / 'static/js',
 ]
 
 
@@ -156,3 +157,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # 로그인 설정
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+# 이미지 띄우기 위한 설정
+MEDIA_ROOT = '/var/lib/mysql-files/' # 저장된 이미지 파일의 경로
+MEDIA_URL = '/media/' # URL 패턴
