@@ -150,11 +150,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-<<<<<<< HEAD
+
 # 이미지 띄우기 위한 설정
 MEDIA_ROOT = '/var/lib/mysql-files/' # 저장된 이미지 파일의 경로
 MEDIA_URL = '/media/' # URL 패턴
-=======
+
 # 회원 이메일 관련 설정
 EMAIL_CONFIG = get_secret("EMAIL_CONFIG")
 
@@ -165,4 +165,4 @@ EMAIL_HOST_USER = EMAIL_CONFIG["EMAIL_HOST_USER"]
 EMAIL_HOST_PASSWORD = EMAIL_CONFIG["EMAIL_HOST_PASSWORD"]
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
->>>>>>> 1b26a920afd9d8d6a9c7068413d5c2079613a71d
+
