@@ -6,18 +6,13 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-import os
+import os, json
 from pathlib import Path
+from django.core.exceptions import ImproperlyConfigured
+
 
 # settings.py
 import pymongo
-
-import random
-import string
-
-SECRET_KEY = ''.join(random.choices(string.ascii_letters + string.digits, k=50))
-
-
 client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client["mul_db"]
 
@@ -28,6 +23,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
+secret_file = os.path.join(BASE_DIR, 'secrets.json')
+
+with open(secret_file) as f:
+    secrets = json.loads(f.read())
+
+def get_secret(setting, secrets=secrets):
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = "Set the {} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+
+SECRET_KEY = get_secret("SECRET_KEY")
 
 
 # Application definition
@@ -77,37 +90,17 @@ TEMPLATES = [
     },
 ]
 
-
-
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-    'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'log_db',
-        'HOST': '15.152.232.36',
-        'PORT': '3306',
-        'USER': 'rhkdgus',
-        'PASSWORD': 'Asdf!234',
-    },
-    'fish_db': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'fish_db',
-        'HOST': '15.152.232.36',
-        'PORT': '3306',
-        'USER': 'rhkdgus',
-        'PASSWORD': 'Asdf!234',
-    }
-}
+DATABASES = get_secret("DATABASES")
 
 DATABASE_ROUTERS = ['config.routers.FishRouter']
-# AUTH_USER_MODEL = 'accounts.User'
-
 SITE_ID = 1
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -148,7 +141,6 @@ STATICFILES_DIRS = [
 ]
 
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -158,6 +150,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+<<<<<<< HEAD
 # 이미지 띄우기 위한 설정
 MEDIA_ROOT = '/var/lib/mysql-files/' # 저장된 이미지 파일의 경로
 MEDIA_URL = '/media/' # URL 패턴
+=======
+# 회원 이메일 관련 설정
+EMAIL_CONFIG = get_secret("EMAIL_CONFIG")
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.naver.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = EMAIL_CONFIG["EMAIL_HOST_USER"]
+EMAIL_HOST_PASSWORD = EMAIL_CONFIG["EMAIL_HOST_PASSWORD"]
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+>>>>>>> 1b26a920afd9d8d6a9c7068413d5c2079613a71d

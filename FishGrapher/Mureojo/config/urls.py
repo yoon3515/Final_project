@@ -15,6 +15,6 @@ urlpatterns = [
     path('pictures/', include('pictures.urls'), name='pictures'),
     path('fishBook/', include('fishBook.urls')),
     path('fish_info/', include('fish_info.urls')),
-    # path('analyze/', include('analyze.urls'))
+    # path('analyze/', include('analyze.urls')),
     # path('search/', include('search.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
