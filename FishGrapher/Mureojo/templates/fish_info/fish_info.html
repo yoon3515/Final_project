@@ -95,8 +95,10 @@
                         </div>
                     {% endfor %}
                 {% else %}
-                    <h4>아직 잡은 {{fish.fish_name}}가 없습니다 ㅠ_ㅠ</h4>
-                    <h4>{{fish.fish_name}}를 잡아 도감에 등록해 보세요 :)</h4>
+                    <div class="didnt_caught-space">
+                        <h4>아직 잡은 {{fish.fish_name}}가 없습니다 ㅠ_ㅠ</h4>
+                        <h4>"{{fish.fish_name}}"을(를) 잡아 도감에 등록해 보세요 :)</h4>
+                    </div>
                 {% endif %}
             </div>
         </div>
