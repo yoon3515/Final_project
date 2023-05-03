@@ -83,7 +83,7 @@
     flex-direction: row;
     align-items: center;
     padding : 0px;
-    width : 100%
+    width : 100%;
     height : 70%; /* 요소들의 높이를 100%로 조절합니다. */
   }
 
@@ -298,20 +298,9 @@
   }
 
   #middle {
-<<<<<<< HEAD
     height : 100%;
     width: 100%;
     padding-top : 30px;
-=======
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    margin-top: 30px;
->>>>>>> 1b26a920afd9d8d6a9c7068413d5c2079613a71d
   }
 
   .text-muted {
