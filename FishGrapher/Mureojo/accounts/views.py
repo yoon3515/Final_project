@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
+from .models import CustomUser
 from django.core.exceptions import PermissionDenied
 from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponse
@@ -44,7 +44,7 @@ class RecoverIdView(View):
 
 def ajax_find_id_view(request):
     email = request.POST.get('email')
-    result_id = User.objects.get(email=email)
+    result_id = CustomUser.objects.get(email=email)
 
     return HttpResponse(json.dumps({"result_id": result_id.username}, cls=DjangoJSONEncoder), content_type = "application/json")
 
@@ -63,11 +63,11 @@ class RecoverPwView(View):
 def ajax_find_pw_view(request):
     username = request.POST.get('username')
     email = request.POST.get('email')
-    result_pw = User.objects.get(username=username, email=email)
+    result_pw = CustomUser.objects.get(username=username, email=email)
 
     if result_pw:
         auth_num = email_auth_num()
-        result_pw.auth = auth_num 
+        result_pw.auth = auth_num
         result_pw.save()
 
         send_mail(
@@ -77,14 +77,13 @@ def ajax_find_pw_view(request):
                 'auth_num': auth_num,
             }),
         )
-    # print(auth_num)
     return HttpResponse(json.dumps({"result": result_pw.username}, cls=DjangoJSONEncoder), content_type = "application/json")
 
 
 def auth_confirm_view(request):
     username = request.POST.get('username')
     input_auth_num = request.POST.get('input_auth_num')
-    user = User.objects.get(username=username, auth=input_auth_num)
+    user = CustomUser.objects.get(username=username, auth=input_auth_num)
     user.auth = ""
     user.save()
     request.session['auth'] = user.username 
@@ -100,7 +99,7 @@ def auth_pw_reset_view(request):
 
     if request.method == 'POST':
         session_user = request.session['auth']
-        current_user = User.objects.get(username=session_user)
+        current_user = CustomUser.objects.get(username=session_user)
         login(request, current_user)
 
         reset_password_form = CustomSetPasswordForm(request.user, request.POST)
@@ -116,5 +115,5 @@ def auth_pw_reset_view(request):
     else:
         reset_password_form = CustomSetPasswordForm(request.user)
 
-    return render(request, 'users/password_reset.html', {'form':reset_password_form})
+    return render(request, 'accounts/password_reset.html', {'form':reset_password_form})
 
