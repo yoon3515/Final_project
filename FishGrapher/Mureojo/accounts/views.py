@@ -12,6 +12,7 @@ from django.views.generic import View
 from .decorators import logout_message_required
 from .forms import CustomSetPasswordForm, RecoverIdForm, RecoverPwForm, UserForm
 from .helper import email_auth_num, send_mail
+from .models import AuthKey
 import json
 
 # Create your views here.
@@ -67,8 +68,8 @@ def ajax_find_pw_view(request):
 
     if result_pw:
         auth_num = email_auth_num()
-        result_pw.auth = auth_num 
-        result_pw.save()
+        code = AuthKey(user=result_pw, auth=auth_num)
+        code.save()
 
         send_mail(
             '[물어조 FISHING] 비밀번호 찾기 인증메일입니다.',
@@ -77,17 +78,15 @@ def ajax_find_pw_view(request):
                 'auth_num': auth_num,
             }),
         )
-    # print(auth_num)
     return HttpResponse(json.dumps({"result": result_pw.username}, cls=DjangoJSONEncoder), content_type = "application/json")
 
 
 def auth_confirm_view(request):
     username = request.POST.get('username')
     input_auth_num = request.POST.get('input_auth_num')
-    user = User.objects.get(username=username, auth=input_auth_num)
-    user.auth = ""
-    user.save()
-    request.session['auth'] = user.username 
+    user = User.objects.get(username=username)
+    code = AuthKey.objects.get(user_id=user.id, auth=input_auth_num)
+    request.session['auth'] = user.username
     
     return HttpResponse(json.dumps({"result": user.username}, cls=DjangoJSONEncoder), content_type = "application/json")
 
@@ -116,5 +115,4 @@ def auth_pw_reset_view(request):
     else:
         reset_password_form = CustomSetPasswordForm(request.user)
 
-    return render(request, 'users/password_reset.html', {'form':reset_password_form})
-
+    return render(request, 'accounts/password_reset.html', {'form':reset_password_form})
