@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <h2 class="text-center mb-4">물고기 정보</h2>
+            {% if result %}
+            <div class="card mb-3">
+                <img class="card-img-top" src="{{ result.image }}" alt="Fish image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ result.name }}</h5>
+                    <p class="card-text">{{ result.description }}</p>
+                </div>
+            </div>
+            {% else %}
+            <p class="text-center">분석 결과가 없습니다. 다시 시도해주세요.</p>
+            {% endif %}
+            <div class="text-center">
+                <a href="/" class="btn btn-primary">새로운 물고기 찍기</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
