@@ -64,4 +64,4 @@ def today_fish(request):
         'description': fish.description,
         'image': image_data
     }
-    return render(request, 'analyze/TodayFish.html', {'result': result})
+    return render(request, 'analyze/todayFish.html', {'result': result})
