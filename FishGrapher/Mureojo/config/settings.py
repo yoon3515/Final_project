@@ -11,7 +11,7 @@ from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
 
 
-# settings.py
+#settings.py
 import pymongo
 client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client["mul_db"]
@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'fish_info',
     # 'analyze',
     'map',
+    'mypage',
     # 'todayfish',
     'pictures',
 ]

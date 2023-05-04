@@ -1,0 +1,77 @@
+
+
+
+<form method="POST", action="{% url 'mypage:modify_pw' %}">
+    {% csrf_token %}
+<fieldset>
+    <table border="0" class="tbl_model">
+        <caption>
+            <span class="blind">비밀번호 변경</span>
+        </caption>
+        <colgroup>
+            <col style="width:25%">
+            <col style="width:auto">
+        </colgroup>
+        <tbody>    
+
+            <tr>
+                <th scope="row">
+                    <div class=""thcell">
+                        <label for="id_old_password">기존 비밀번호</label>
+                    </div>
+                </th>
+                <td>
+                    <div class="tdcell">
+                        <input id="id_old_password" name="old_password" class="inputTypeText" placeholder="" autocomplete="off" maxlength="16" 0="disabled" value="" type="password">
+                    </div>                      
+                    
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <div class=""thcell">
+                        <label for="id_new_password1">새 비밀번호</label>
+                    </div>
+                </th>
+                <td>
+                    <div class="tdcell">
+                        <input id="id_new_password1" name="new_password1" class="inputTypeText" placeholder="" autocomplete="off" maxlength="16" 0="disabled" value="" type="password">
+                    </div>                      
+                    
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <div class="thcell">
+                        <label for="id_new_password2">새 비밀번호 확인</label>
+                    </div>
+                </th>
+                <td>
+                    <div class="tdcell">
+                        <input id="id_new_password2" name="new_password2" class="inputTypeText" placeholder="" autocomplete="off" maxlength="16" 0="disabled" value="" type="password">
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        </table>
+        <button type="submit" onclick="deleteMember()">비밀번호 변경</button>
+        </fieldset>
+    </form>
+    {% if messages %}
+    {% for message in messages %}
+    <script>
+            alert('{{ message }}');
+            {% with None as message %}
+            {% endwith %}
+    </script>
+    {% endfor %}
+    {% endif %}
+    <script>
+
+
+
+    window.onunload = function(){
+        window.opener.location.reload();
+    };
+
+    </script>
