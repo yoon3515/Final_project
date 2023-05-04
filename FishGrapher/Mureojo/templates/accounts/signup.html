@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 <head>
-  <link rel="stylesheet" href="{% static '/css/style.css' %}">
+  {% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static '/css/login_style.css' %}">
+  {% endblock %}
   {% block title %}
   회원가입
   {% endblock %}

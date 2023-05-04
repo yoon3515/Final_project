@@ -6,7 +6,7 @@ from PIL import Image
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from fish_info.models import FishBook
+from fishBook.models import FishBook, CaughtFishInfo
 
 def decode_image(data):
     # 'data:image/png;base64,' 부분 제거
@@ -61,7 +61,11 @@ def today_fish(request):
     # 결과 정보를 딕셔너리 형태로 저장
     result = {
         'name': fish.name,
-        'description': fish.description,
+        'habitat':fish.habitat,
+        'distribution':fish.distribution,
+        'limit_start':fish.limit_start,
+        'limit_end':fish.limit_end,
+        'prohibition_size':fish.prohibition_size,
         'image': image_data
     }
     return render(request, 'analyze/todayFish.html', {'result': result})

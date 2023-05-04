@@ -1,0 +1,111 @@
+
+/* 미디어 쿼리 */
+@media (max-width: 768px) {
+  
+
+  #middle {
+    height : 100%;
+    width: 100%;
+    padding-top : 30px;
+  }
+  
+
+  .result_area {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .col {
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    padding-top:60px;
+  }
+  
+
+  .mb {
+    width : 80%;
+    margin-bottom: 10px;
+  }
+
+
+  .mb label {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .email_form {
+    width : 100%;
+  }
+  
+
+
+  .form-control {
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.55);
+    border: none;
+    border-radius: 10px;
+    width : 100%;
+  }
+
+
+  .email_inform {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width : 80%;
+    margin-bottom : 50px;
+  }
+
+  .text-muted {
+    color: black;
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+  .find_id_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width : 80%;
+  }
+
+  .find_id_btn button {
+    border: none;
+    height: 25px;
+    background-color: #eca0a6;
+    border-radius: 6px;
+    border: none;
+    color: white; /* 버튼 글자색 #191654;*/
+    font-weight: bold;
+    width: 100%;
+  }
+
+
+  .other_action_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height : 30px;
+    margin : 10px;
+  }
+
+  .other_action_btn a {
+    color : white;
+    font-size : 12px;
+    text-decoration: none;
+  }
+
+  .other_action_btn p {
+    color : white;
+    font-size : 12px;
+    text-decoration: none;
+    margin-right : 7px;
+    margin-left : 7px;
+  }
+
+}

@@ -13,7 +13,7 @@ class UserForm(UserCreationForm):
 
 
 class RecoverIdForm(forms.Form):
-    email = forms.EmailField(widget=forms.EmailInput)
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': '  이메일 주소를 입력하세요.'}))
 
     class Meta:
         fields = ['email']
@@ -28,8 +28,8 @@ class RecoverIdForm(forms.Form):
 
 
 class RecoverPwForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput)
-    email = forms.EmailField(widget=forms.EmailInput)
+    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': '  아이디를 입력하세요.'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': '  이메일 주소를 입력하세요.'}))
 
     class Meta:
         fields = ['username', 'email']
