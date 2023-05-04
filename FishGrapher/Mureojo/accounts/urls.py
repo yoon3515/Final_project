@@ -14,4 +14,5 @@ urlpatterns = [
   path('recover/pw/find/', views.ajax_find_pw_view, name='ajax_pw'),
   path('recover/pw/auth/', views.auth_confirm_view, name='recover_auth'),
   path('recover/pw/reset/', views.auth_pw_reset_view, name='recover_pw_reset'),
+
 ]

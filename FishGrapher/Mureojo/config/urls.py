@@ -11,6 +11,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='main.html'), name='home'),
     path('accounts/', include('accounts.urls'), name='accounts'),
     path('map/', include('map.urls')),
+    path('mypage/', include('mypage.urls'), name='mypage'),
     # path('get_fishing_spots/', get_fishing_spots, name='get_fishing_spots'),
     path('pictures/', include('pictures.urls'), name='pictures'),
     path('fishBook/', include('fishBook.urls')),
