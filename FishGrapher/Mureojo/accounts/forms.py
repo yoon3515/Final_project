@@ -53,7 +53,7 @@ class CustomSetPasswordForm(SetPasswordForm):
         super(CustomSetPasswordForm, self).__init__(*args, **kwargs)
         self.fields['new_password1'].label = '새 비밀번호'
         self.fields['new_password1'].widget.attrs.update({
-            'class': 'form-control',
+            'class': 'form-control', 
         })
         self.fields['new_password2'].label = '새 비밀번호 확인'
         self.fields['new_password2'].widget.attrs.update({

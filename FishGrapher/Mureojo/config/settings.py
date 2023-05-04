@@ -152,8 +152,8 @@ LOGOUT_REDIRECT_URL = '/'
 
 
 # 이미지 띄우기 위한 설정
-MEDIA_ROOT = '/var/lib/mysql-files/' # 저장된 이미지 파일의 경로
-MEDIA_URL = '/media/' # URL 패턴
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/var/www/html/'
 
 # 회원 이메일 관련 설정
 EMAIL_CONFIG = get_secret("EMAIL_CONFIG")

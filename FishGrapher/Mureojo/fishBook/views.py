@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from .models import FishBook, CaughtFishInfo
 from django.contrib.auth.decorators import login_required
+from PIL import Image
+import requests
+from config import settings
 
 # Create your views here.
 # fishBook/views.py
@@ -28,13 +31,19 @@ def my_caught_fish_list(request):
         if fish_book:
             count = CaughtFishInfo.objects.filter(member=user, fish_book__fish_name=fish_name).count()
             fish_book.count = count
-            fish_book.image_url = fish_book.image.url
+
             fish_books.append(fish_book)
+
 
     if not fish_books:  # fish_books가 빈 리스트인 경우
         return render(request, 'fishBook/book.html', {'caught_fishes': caught_fishes})
+    
 
-    return render(request, 'fishBook/book.html', {'caught_fishes': caught_fishes, 'fish_books': fish_books})
+
+    return render(request, 'fishBook/book.html', {'caught_fishes': caught_fishes, 
+                                                  'fish_books': fish_books,
+                                                  })
+    
 
 
 
