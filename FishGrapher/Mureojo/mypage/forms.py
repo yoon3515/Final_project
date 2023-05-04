@@ -5,18 +5,32 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
 
 
-# class CustomUserChangeForm(UserChangeForm):
+
+class CustomUserChangeForm(UserChangeForm):
+
+    class Meta:
+        model = User
+        fields = ('username', 'email')
+    #
+    # def __init__(self, *args, **kwargs):
+    #     user = kwargs.pop('user', None)
+    #     super().__init__(*args, **kwargs)
+    #     if user:
+    #         self.fields['username'].initial = user.username
+    #         self.fields['email'].initial = user.email
+
+
+# class CustomPasswordChangeForm(PasswordChangeForm):
+#     def __init__(self, user, *args, **kwargs):
+#         super(CustomPasswordChangeForm, self).__init__(user, *args, **kwargs)
+#         # 'old_password' 필드 제거
+#         self.fields.pop('old_password')
 #
-#     class Meta:
-#         model = User
-#         fields = ('username', 'email')
-#
-#     def __init__(self, *args, **kwargs):
-#         user = kwargs.pop('user', None)
-#         super().__init__(*args, **kwargs)
-#         if user:
-#             self.fields['username'].initial = user.username
-#             self.fields['email'].initial = user.email
+#     def clean(self):
+#         cleaned_data = super(CustomPasswordChangeForm, self).clean()
+#         # 'old_password' 필드 검증 생략
+#         return cleaned_data
+
 
 
 # class PasswordChangeForm(forms.Form):

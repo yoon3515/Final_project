@@ -70,6 +70,7 @@
             padding: 10px 0;
             display: block;
             text-align: center;
+            margin: 2px;
         }
         .btn_right {
             float: right;
@@ -105,31 +106,27 @@
     </style>
 
         <script>
-            function memberEditAction() {
-                // 폼 데이터를 FormData 객체로 생성
-                var formData = new FormData(document.getElementById('editForm'));
-            
-                // AJAX를 사용하여 서버로 데이터 전송
-                var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        if (xhr.status === 200) {
-                            console.log(xhr.responseText);
-                            // 수정 완료 후 리다이렉트 등 필요한 작업 수행
-                        } else {
-                            console.log('Error: ' + xhr.status);
-                            // 에러 처리 등 필요한 작업 수행
-                        }
-                    }
-                };
-                xhr.open('POST', '{% url 'mypage:edit_profile' %}');
-                xhr.send(formData);
+
+            function pwmodifyAction() {
+                // 새 창을 열어 비밀번호 수정 페이지로 이동합니다.
+                var url = "{% url 'mypage:modify_pw' %}";
+                window.open(url, "Delete Profile", "width=500,height=200,scrollbars=yes");
             }
-            </script>
+
+
+            function memberDelAction() {
+                // 새 창을 열어 회원탈퇴 페이지로 이동합니다.
+                var url = "{% url 'mypage:delete_profile' %}";
+                window.open(url, "Delete Profile", "width=500,height=200,scrollbars=yes");
+            }
+
+        </script>
 
     <title>To-Do</title>
 </head>
 <body>
+
+
     {% if user.is_authenticated %}
     <div class="container">
         <div class="header">
@@ -142,7 +139,7 @@
         </div>
 
         <fieldset>
-            <form id="editForm" method="post">
+            <form id="editForm" method="post" action="{% url 'mypage:edit_profile' %}"> 
                 {% csrf_token %}
             <table border="0" class="tbl_model">
                 <caption>
@@ -153,8 +150,17 @@
                     <col style="width:auto">
                 </colgroup>
                 <tbody>    
-                  
-                      
+
+                    {% if messages %}
+                    {% for message in messages %}
+                    <script>
+                            alert('{{ message }}');
+                            {% with None as message %}
+                            {% endwith %}
+                    </script>
+                    {% endfor %}
+                    {% endif %}
+
                     <tr>
                         <th scope="row">
                             <div class=""thcell">
@@ -163,47 +169,7 @@
                         </th>
                         <td>
                             <div class="tdcell">
-                                <input id="username" name="username" class="inputTypeText" placeholder=""  value="{{ user.username }}" type="text">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <div class=""thcell">
-                                <label for="id_old_password">기존 비밀번호</label>
-                            </div>
-                        </th>
-                        <td>
-                            <div class="tdcell">
-                                <input id="id_old_password" name="old_password" class="inputTypeText" placeholder="" autocomplete="off" maxlength="16" 0="disabled" value="" type="password">
-                                (영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자)
-                            </div>                      
-                            
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <div class=""thcell">
-                                <label for="id_new_password1">비밀번호</label>
-                            </div>
-                        </th>
-                        <td>
-                            <div class="tdcell">
-                                <input id="id_new_password1" name="new_password1" class="inputTypeText" placeholder="" autocomplete="off" maxlength="16" 0="disabled" value="" type="password">
-                                (영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자)
-                            </div>                      
-                            
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <div class="thcell">
-                                <label for="id_new_password2">비밀번호 확인</label>
-                            </div>
-                        </th>
-                        <td>
-                            <div class="tdcell">
-                                <input id="id_new_password2" name="new_password2" class="inputTypeText" placeholder="" autocomplete="off" maxlength="16" 0="disabled" value="" type="password">
+                                <input id="username" name="username" class="inputTypeText" placeholder=""  value="{{ user.username }}" type="text"  readonly>
                             </div>
                         </td>
                     </tr>
@@ -219,22 +185,44 @@
                             </div>
                         </td>
                     </tr>
+                    <tr>
+                        <th scope="row">
+                            <div class=""thcell">
+                                <label for="id_old_password">비밀번호 확인</label>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="tdcell">
+                                <input id="password" name="password" class="inputTypeText" placeholder="" autocomplete="off" maxlength="16" 0="disabled" value="" type="password">
+                            </div>                      
+                            
+                        </td>
+
                 </tbody>
 
             </table>
-            </form>
+        
 
         <div class="ec-base-button">
 
             <div class="btn_left">
-                <a href="" class="modify" onclick="memberEditAction()">회원정보수정</a>
+                <!-- <a href="" class="modify" onclick="memberEditAction()">회원정보수정</a> -->
+                <button type="submit" href="" class="modify" onclick="memberEditAction()">회원정보 수정</button >
             </div>
-             
+        </form>   
+        <div class="btn_left">
+            <a href="" class="modify" onclick="pwmodifyAction()">비밀번호변경</a>
+            <!-- <button type="submit" href="" class="modify" onclick="memberEditAction()">회원정보 수정</button > -->
+        </div>
             <div class="btn_right">
-                <a href="#none" class="delete" onclick="memberDelAction(28590, -1, -1)">회원탈퇴</a>
+                <!-- <button id="delete-btn" type="button" class="delete">회원탈퇴</button> -->
+                <a href="" class="delete" onclick="memberDelAction(28590, -1, -1)">회원탈퇴</a>
             </div>
         </div>
-        
+
+
+
+
         {% else %}
         <div class="ec-base-button">
             <div class="btn_center">
@@ -244,7 +232,14 @@
     </form>      
     </fieldset>
 
+    <div id="popup" style="display:none;">
+        <p id="message"></p>
+    </div>
+
      
 </body>
 {% endif %}
 </html>
+
+
+
