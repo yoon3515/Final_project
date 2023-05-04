@@ -63,9 +63,9 @@
   .card_area {
     display: flex;
     flex-direction : row;
-    /*justify-content: center;*/
-    flex-basis: calc(33.33% - 20px);
-    flex-wrap: wrap;  /* card 요소들을 자동으로 한 줄에 표시할 수 있도록 함 */
+    /* justify-content: center; */
+    /* flex-basis: calc(33.33% - 20px); */
+    /* flex-wrap: wrap;  card 요소들을 자동으로 한 줄에 표시할 수 있도록 함 */
     width : 85%;
     height : 100%;
   }
@@ -75,12 +75,12 @@
     flex-direction : column;
     justify-content: center;
     align-items: center;
-    /* margin: 10px; */
-    height : 60px;
+    margin: 10px;
+    /* height : 60px; */
   }
 
   .card a {
-    margin : 4px;
+    /* margin : 4px; */
   }
 
   .card-img-top {
