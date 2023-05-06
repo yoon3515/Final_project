@@ -125,7 +125,8 @@
     justify-content: center;
     align-items: center;
     width : 100%;
-    height: 40px;
+    /* height: 40px; */
+    height: 6%;
     background-color: rgba(255, 255, 255, 0.55);
     border-radius: 10px;
     font-weight : bold;
@@ -134,8 +135,18 @@
 
   .caught_card_area {
     display: flex;
-    flex-direction : column;
+    /*flex-wrap: wrap;  줄 바꿈 속성 추가 */
     justify-content: center;
+    align-items: center;
+  }
+
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin : 10px;
   }
 
   .caught_card {
@@ -145,7 +156,7 @@
     align-items: center;
     width : 100px;
     height: 100px;
-    margin : 10px;
+    margin : 5px;
   }
 
   .caught_card_img {
