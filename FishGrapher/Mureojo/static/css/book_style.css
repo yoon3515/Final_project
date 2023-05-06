@@ -79,9 +79,6 @@
     /* height : 60px; */
   }
 
-  .card a {
-    /* margin : 4px; */
-  }
 
   .card-img-top {
     width : 50px;
@@ -96,8 +93,6 @@
     margin : 0px;
   }
 
-  .error-area {
-  }
 
   .error-area h4 {
     text-align: center;
