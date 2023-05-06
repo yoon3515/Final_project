@@ -8,7 +8,7 @@
             <h2 class="text-center mb-4">물고기 정보</h2>
             {% if result %}
             <div class="card mb-3">
-                <img class="card-img-top" src="{{ result.image }}" alt="Fish image">
+                <img class="card-img-top" src="http://15.152.232.36/fishBook_image/{{fish.id}}.png" alt="{{ fish.name }} 이미지">
                 <div class="card-body">
                     <h5 class="card-title">{{ result.name }}</h5>
                     <p class="card-text">{{ result.description }}</p>
