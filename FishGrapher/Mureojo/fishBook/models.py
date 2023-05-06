@@ -5,7 +5,7 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 import io 
 
 # Create your models here.
-
+'''
 class FishBook(models.Model):
     fish_name = models.CharField(max_length=50, blank=True, null=True)
     scientific_name = models.CharField(max_length=100)
@@ -39,7 +39,7 @@ class CaughtFishInfo(models.Model):
     class Meta:
         managed = True
         db_table = 'caught_fish_info'
-
+'''
 
 
 

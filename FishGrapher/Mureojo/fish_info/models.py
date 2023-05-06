@@ -24,9 +24,8 @@ class FishBook(models.Model):
         db_table = 'fish_book'
 
 
-
+User = get_user_model()
 class CaughtFishInfo(models.Model):
-    User = get_user_model()
     member = models.ForeignKey(User, models.DO_NOTHING)
     fish_book = models.ForeignKey('FishBook', models.DO_NOTHING)
     caught_date = models.DateField()

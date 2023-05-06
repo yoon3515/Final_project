@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form method="POST" action="{% url 'analyze:camera' %}" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input class="form-control" type="file" name="image" accept="image/*" capture="environment">
+  <button type="submit">Analyze</button>
+</form>
+
+{% endblock %}

@@ -1,18 +1,21 @@
+import base64
+import datetime
 import io
 import torch
-import base64
-from torchvision import transforms
-from PIL import Image
-from django.shortcuts import render
+import os
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from fishBook.models import FishBook, CaughtFishInfo
+from fish_info.models import FishBook, CaughtFishInfo
+from PIL import Image
+from torchvision import transforms
+
 
 def decode_image(data):
-    # 'data:image/png;base64,' 부분 제거
-    data = data.replace('data:image/png;base64,', '')
-    # base64로 인코딩된 이미지 데이터 디코딩
-    decoded_data = base64.b64decode(data)
+    # 이미지 데이터 로드
+    decoded_data = data.read()
     # PIL 이미지로 변환
     image = Image.open(io.BytesIO(decoded_data))
     return image
@@ -20,9 +23,10 @@ def decode_image(data):
 
 def predict_fish(image):
     # 불러온 모델 파일 경로
-    model_path = 'analyze/fish_model2.pth'
+    model_path = 'analyze/20230420_Resnet_color10-nogray.pt'
     # 불러온 모델을 CPU에 로드
     model = torch.load(model_path, map_location=torch.device('cpu'))
+    print(type(model))
     # 이미지 전처리
     transform = transforms.Compose([
         transforms.Resize((224, 224)),
@@ -39,15 +43,37 @@ def predict_fish(image):
     return predicted.item()
 
 
+@login_required
 @csrf_exempt
 def analyze(request):
     if request.method == 'POST':
         # POST 요청으로 받은 이미지 데이터 디코딩
-        image = decode_image(request.POST['image'])
+        image = decode_image(request.FILES['image'])
         # 이미지를 어종으로 판별
         fish_id = predict_fish(image)
+
+        # 이미지를 서버에 저장
+        user_id = request.user.id
+
+        fish_book = FishBook.objects.get(id=fish_id+12)
+
+        # Create a new CaughtFishInfo instance using the retrieved FishBook instance
+        caught_fish = CaughtFishInfo(member=request.user, fish_book=fish_book, caught_date=datetime.date.today())
+        caught_fish.save()
+        # 새로 생성된 객체의 ID 가져오기
+        caught_fish_id = caught_fish.id
+        # 새로운 이미지 파일 생성
+        image_name = f"{user_id}_{fish_id}_{caught_fish_id}.png"
+        image_path = os.path.join(settings.MEDIA_ROOT, image_name)
+        if request.method == 'POST':
+            image_file = request.FILES.get('image')
+            with Image.open(image_file) as img:
+                img.save(image_path, format="PNG")
+        caught_fish.myfish_photo = os.path.join(settings.MEDIA_URL, image_name)
+        caught_fish.save()
+
         # 결과 반환
-        return JsonResponse({'fish_id': fish_id, 'image': request.POST['image']})
+        return JsonResponse({'fish_id': fish_id, 'image_name': image_name})
     else:
         return render(request, 'analyze/camera.html')
 
