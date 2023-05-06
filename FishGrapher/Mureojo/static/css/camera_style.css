@@ -1,0 +1,61 @@
+
+/* 미디어 쿼리 */
+@media (max-width: 768px) {
+  /* 모바일 화면일 경우 */
+
+
+  /* 도감 서식*/
+
+  #middle {
+    height : 100%;
+    width: 100%;
+  }
+
+  .btn_area {
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    padding-top : 30px;
+    padding-bottom : 30px;
+  }
+
+  .btn_space {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn_space form {
+    display: flex;
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    align-items: center;
+    width : 70%;
+  }
+
+  .form-control {
+    /* height: 25px;
+    background-color: #eca0a6;
+    border-radius: 6px;
+    border: none; */
+    color: black; /* 버튼 글자색 #191654;*/
+    font-weight : bold;
+    margin : 10px;
+    width: 100%;
+  }
+
+  .submit_btn {
+    /* height: 25px;
+    background-color: #eca0a6;
+    border-radius: 6px;
+    border: none;
+    color: white; /* 버튼 글자색 #191654;
+    font-weight : bold; */
+    margin : 10px;
+    width: 100%;
+  }
+
+
+}
