@@ -9,8 +9,8 @@
             width : 100%;
             margin : 0px;
             overflow : visible;
-<!--            background: linear-gradient(to top, #002B66, #E7787C);-->
-<!--            background-color: #E7787C;-->
+/*            background: linear-gradient(to top, #002B66, #E7787C);*/
+/*            background-color: #E7787C;*/
             background-color: #002B66;
             animation: changeBackgroundColor 15s ease-in-out infinite;
         }
@@ -164,7 +164,7 @@
                         <a href="#">
                             <img src="{% static 'logo_images/3.png' %}" alt="search">
                         </a>
-                        <a href="#">
+                        <a href="{% url 'analyze:camera' %}">
                             <img src="{% static 'logo_images/4.png' %}" alt="camera">
                         </a>
                         <a href="{% url 'fishBook:my_caught_fish_list' %}">
