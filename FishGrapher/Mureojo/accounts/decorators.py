@@ -3,7 +3,7 @@ from django.contrib import messages
 
 # Create your decorators here.
 
-# 비로그인 확인
+# 로그인 여부 확인
 def logout_message_required(function):
     def wrap(request, *args, **kwargs):
         if request.user.is_authenticated:

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import FishBook, CaughtFishInfo
+from fish_info.models import FishBook, CaughtFishInfo
 from django.contrib.auth.decorators import login_required
 from PIL import Image
 import requests
