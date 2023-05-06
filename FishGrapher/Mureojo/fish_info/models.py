@@ -25,7 +25,7 @@ class FishBook(models.Model):
         db_table = 'fish_book'
 
 
-User = get_user_model()
+# User = get_user_model()
 
 class CaughtFishInfo(models.Model):
     member = models.ForeignKey(User, models.DO_NOTHING)
