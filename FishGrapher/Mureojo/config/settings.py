@@ -156,6 +156,7 @@ LOGOUT_REDIRECT_URL = '/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # 저장된 이미지 파일의 경로
 MEDIA_URL = '/media/' # URL 패턴
 
+
 # 회원 이메일 관련 설정
 EMAIL_CONFIG = get_secret("EMAIL_CONFIG")
 

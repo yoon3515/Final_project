@@ -159,11 +159,10 @@
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    width : 90%;
   }
 
   .signup_btn_area button {
-    margin-right: 10px;
-    margin-left: 10px;
     border: none;
     height: 25px;
     background-color: #eca0a6;
@@ -171,8 +170,21 @@
     border: none;
     color: white; /* 버튼 글자색 #191654;*/
     font-weight: bold;
+    /* width : 60%; */
   }
 
+
+  .signup_btn {
+    width : 50%;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  .next_to_signup_btn {
+    width : 50%;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
 
 
 }

@@ -1,7 +1,8 @@
 from django.db import models
-from django.contrib.auth import get_user_model
+# from django.contrib.auth import get_user_model
 from PIL import Image
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -25,6 +26,7 @@ class FishBook(models.Model):
 
 
 User = get_user_model()
+
 class CaughtFishInfo(models.Model):
     member = models.ForeignKey(User, models.DO_NOTHING)
     fish_book = models.ForeignKey('FishBook', models.DO_NOTHING)

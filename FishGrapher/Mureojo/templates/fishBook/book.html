@@ -36,7 +36,7 @@
                 <div class="card">
                     <!--        사진 경로 설정하기-->
                     <a href="{% url 'fish_info:fish_info' fish.id %}">
-                        <img class="card-img-top" src="{{ fish.image_url }}" alt="{{ fish.name }} 이미지">
+                        <img class="card-img-top" src="http://15.152.232.36/fishBook_image/{{fish.id}}.png" alt="{{ fish.name }} 이미지">
 <!--                        <img class="card-img-top" src="{% static 'logo_images/croaker.png' %}" alt="이미지가 로드되지 않습니다.">-->
                     </a>
                     <div class='card-body'>

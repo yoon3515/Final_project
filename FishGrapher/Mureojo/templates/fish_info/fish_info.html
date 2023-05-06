@@ -25,7 +25,7 @@
             <div class="fish_info_space">
                 <div class="fish-card" style="width: 200px;">
                     <div class="card-img">
-                        <img class="card-img-top" src="{{ fish.image_path }}?v=1" alt="{{ fish.image_path }} 이미지">
+                        <img class="card-img-top" src="http://15.152.232.36/fishBook_image/{{fish.id}}.png" alt="{{ fish.name }} 이미지">
 <!--                        <img class="card-img-top" src="{% static 'logo_images/test.png' %}" alt="이미지가 로드되지 않습니다.">-->
                     </div>
                 </div>
@@ -77,8 +77,8 @@
                         <div class="caught_card_area">
                             <div class="caught_card">
                                 <div class="caught_card_img">
-                                    <img class="caught_card-img-top" src="{{ my_fish.myfish_photo }}" alt="{{ fish.fish_name }} 이미지" onclick="openModal('{{ my_fish.myfish_photo }}', '{{ my_fish.fish_book.fish_name }}', '{{ my_fish.caught_date }}')">
-<!--                                <img class="card-img-top" src="{% static 'logo_images/test.png' %}" alt="이미지가 로드되지 않습니다.">-->
+                                    <img class="card-img-top" src="http://15.152.232.36/caughtFish_image/{{ my_fish.member_id }}_{{ my_fish.fish_book.id }}_{{ my_fish.id}}.jpg" alt="{{ my_fish.name }} 이미지" 
+                                        onclick="openModal('http://15.152.232.36/caughtFish_image/{{ my_fish.member_id }}_{{ my_fish.fish_book.id }}_{{ my_fish.id}}.jpg', '{{ my_fish.fish_book.fish_name }}', '{{ my_fish.caught_date }}')">
                                 </div>
                                 <div class='caught_card-body'>
                                     <p class="caught_card-text">{{ my_fish.fish_book.fish_name }}</p>
@@ -86,9 +86,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="myModal" class="modal">
+                        <div id="myModal" class="modal" style="display: none;">
                             <div id="modal-content">
-                                <img id="modal-image" src="{{ my_fish.image_path }}" alt="이미지가 로드되지 않았습니다." onclick="openModal('{{ my_fish.myfish_photo }}', '{{ my_fish.fish_book.fish_name }}', '{{ my_fish.caught_date }}')">
+                                <img id="modal-image" src="http://15.152.232.36/caughtFish_image/{{ my_fish.member_id }}_{{ my_fish.fish_book.id }}_{{ my_fish.id}}.jpg" 
+                                    alt="이미지가 로드되지 않았습니다." onclick="closeModal()">
                                 <p id="modal-text">{{ my_fish.fish_book.fish_name }}</p>
                                 <p id="modal-text2">{{ my_fish.caught_date }}</p>
                             </div>

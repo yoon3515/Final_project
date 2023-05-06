@@ -148,7 +148,14 @@
     margin : 10px;
   }
 
-  .caught_card img {
+  .caught_card_img {
+    display: flex;
+    flex-direction : column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .caught_card_img img {
     width : 50px;
     height : 50px;
     margin-bottom : 10px;
@@ -168,10 +175,42 @@
 
 
   .didnt_caught-space {
+    display : flex;
     flex-direction : column;
     justify-content: center;
     align-items: center;
   }
+
+  #myModal {
+    width : 80%;
+    position: fixed;
+    top: 50%;
+    left: 48%; 
+    transform: translate(-50%, -50%);
+    background-color: rgb(250, 250, 250);
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+
+  #modal-content {
+    display: flex;
+    flex-direction : column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #modal-content p {
+    margin : 3px;
+  }
+
+  #modal-image {
+    /* width : 300px; */
+    margin-bottom : 10px;
+    max-width: 100%;
+    border-radius: 10px;
+  }
+
 
 
 }

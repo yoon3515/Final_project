@@ -16,7 +16,9 @@
     <div class="logo_area">
       <div class="logo_area">
         <h2 class="logo">
-          회원가입
+          <a class="nav-link" href="{% url 'accounts:signup' %}">
+            회원가입
+          </a>
         </h2>
       </div>
     </div>
@@ -44,8 +46,8 @@
         </div>
       </div>
       <div class="signup_btn_area">
-        <button type="submit" class="btn btn-primary">가입하기</button>
-        <button type="button" onclick="location.href='/accounts/login/'">돌아가기</button>
+        <button class="signup_btn" type="submit" class="btn btn-primary">가입하기</button>
+        <button class="next_to_signup_btn" type="button" onclick="location.href='/accounts/login/'">돌아가기</button>
       </div>
     </form>
   </div>
