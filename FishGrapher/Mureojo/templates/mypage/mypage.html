@@ -1,245 +1,90 @@
-<html lang="ko">
-
+{% extends "base.html" %}
+{% load static %}
 <head>
-    <!-- <link rel="stylesheet" href="style.css"> -->
+  {% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static '/css/mypage_style.css' %}">
+    <script>
 
-    <meta charset="UTF-8">
-    
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-    <style>
-        input {
-            display: inline-block;
+        function pwmodifyAction() {
+            // 새 창을 열어 비밀번호 수정 페이지로 이동합니다.
+            var url = "{% url 'mypage:modify_pw' %}";
+            window.open(url, "Delete Profile", "width=500,height=200,scrollbars=yes");
         }
 
-        #email{
-        width: 280px;
-        }
-        
-        
-        table {
-            display: table;
-            width: 100%;
-            border: 0;
-            border-spacing: 0;
-            border-collapse: collapse;
-            text-indent: initial;
-        }
-        .tbl_model tbody th {
-            border-top: 1px solid #ddd;
-            padding: 10px 0 10px 19px;
-            border-bottom: 1px solid #ddd;
-            color: #353535;
-            text-align: left;
-            font-weight: normal;
-            background: #f9f9f9;
+
+        function memberDelAction() {
+            // 새 창을 열어 회원탈퇴 페이지로 이동합니다.
+            var url = "{% url 'mypage:delete_profile' %}";
+            window.open(url, "Delete Profile", "width=500,height=200,scrollbars=yes");
         }
 
-        .tbl_model td {
-            display: table-cell;
-            border-top: 1px solid #ddd;
-            padding: 10px 10px 10px;
-            border-bottom: 1px solid #ddd;
-            color: #353535;
-            vertical-align: middle;
-            word-break: break-all;
-            word-wrap: break-word;
-        }
-
-        .page-header2 {
-            margin: 20px 0 20px;
-            text-align: center;
-        }                        
-        .ec-base-button {
-            padding: 20px 0;
-            text-align: center;
-        }
-        .btn_left {
-            display: inline;
-            float: left;
-            width: 140px;
-            font-size: 13px;
-            margin: 2px;
-        }
-        .btn_left .modify {
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            background: #fff;
-            color: #222;
-            padding: 10px 0;
-            display: block;
-            text-align: center;
-            margin: 2px;
-        }
-        .btn_right {
-            float: right;
-            width: 140px;
-            font-size: 13px;
-            margin: 2px;
-        }
-        .btn_right .delete {
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            background: #fff;
-            color: #222;
-            padding: 10px 0;
-            display: block;
-            text-align: center;
-        }       
-        .btn_center {
-            display: inline;
-            float: center;
-            width: 140px;
-            font-size: 20px;
-            margin: 2px;
-        }
-        .btn_center .gologin {
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            background: #fff;
-            color: #222;
-            padding: 20px 0;
-            display: block;
-            text-align: center;
-        }       
-    </style>
-
-        <script>
-
-            function pwmodifyAction() {
-                // 새 창을 열어 비밀번호 수정 페이지로 이동합니다.
-                var url = "{% url 'mypage:modify_pw' %}";
-                window.open(url, "Delete Profile", "width=500,height=200,scrollbars=yes");
-            }
-
-
-            function memberDelAction() {
-                // 새 창을 열어 회원탈퇴 페이지로 이동합니다.
-                var url = "{% url 'mypage:delete_profile' %}";
-                window.open(url, "Delete Profile", "width=500,height=200,scrollbars=yes");
-            }
-
-        </script>
-
-    <title>To-Do</title>
+    </script>
+  {% endblock %}
+  {% block title %}
+    비밀번호 재설정
+  {% endblock %}
 </head>
-<body>
-
-
-    {% if user.is_authenticated %}
-    <div class="container">
-        <div class="header">
-            <div class="page-header">
-                <h1><small><a href="{% url 'home' %}">FISHING</a></small></h1>
-            </div>
-            <div class="page-header2">
-                <h1>MY PAGE </h1>
-            </div>
+{% block content %}
+<div id="wrap">
+    <div id="header" role="banner">
+        <div class="logo_area">
+            <h2 class="logo">
+                <a href="{% url 'mypage:showinfo' %}">
+                    My Page
+                </a>
+            </h2>
         </div>
-
-        <fieldset>
-            <form id="editForm" method="post" action="{% url 'mypage:edit_profile' %}"> 
-                {% csrf_token %}
-            <table border="0" class="tbl_model">
-                <caption>
-                    <span class="blind">내 정보</span>
-                </caption>
-                <colgroup>
-                    <col style="width:25%">
-                    <col style="width:auto">
-                </colgroup>
-                <tbody>    
-
-                    {% if messages %}
-                    {% for message in messages %}
-                    <script>
-                            alert('{{ message }}');
-                            {% with None as message %}
-                            {% endwith %}
-                    </script>
-                    {% endfor %}
-                    {% endif %}
-
-                    <tr>
-                        <th scope="row">
-                            <div class=""thcell">
-                                <label for="UserName">아이디</label>
+    </div>
+    <div id="middle">
+        <div class="result_area">
+            <div class="modify_my_info_area">
+                <form id="editForm" method="post" action="{% url 'mypage:edit_profile' %}">
+                    {% csrf_token %}
+                    <div class="my_infor_area">
+                        {% if messages %}
+                            {% for message in messages %}
+                                <script>
+                                    alert('{{ message }}');
+                                    {% with None as message %}
+                                    {% endwith %}
+                                </script>
+                            {% endfor %}
+                        {% endif %}
+                        <div class="input_id_space">
+                            <div class="label_space">
+                                <p>아이디</p>
                             </div>
-                        </th>
-                        <td>
-                            <div class="tdcell">
+                            <div class="input_bar">
                                 <input id="username" name="username" class="inputTypeText" placeholder=""  value="{{ user.username }}" type="text"  readonly>
                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <div class="thcell">
-                                <label for="email">이메일</label>
+                        </div>
+                        <div class="input_email_space">
+                            <div class="label_space">
+                                <p>이메일</p>
                             </div>
-                        </th>
-                        <td>
-                            <div class="tdcell">
+                            <div class="input_bar">
                                 <input id="email" name="email" class="inputTypeText" placeholder=""  value="{{ user.email }}" type="email">
                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <div class=""thcell">
-                                <label for="id_old_password">비밀번호 확인</label>
+                        </div>
+                        <div class="input_pw_space">
+                            <div class="label_space">
+                                <p>비밀번호 확인</p>
                             </div>
-                        </th>
-                        <td>
-                            <div class="tdcell">
+                            <div class="input_bar">
                                 <input id="password" name="password" class="inputTypeText" placeholder="" autocomplete="off" maxlength="16" 0="disabled" value="" type="password">
-                            </div>                      
-                            
-                        </td>
-
-                </tbody>
-
-            </table>
-        
-
-        <div class="ec-base-button">
-
-            <div class="btn_left">
-                <!-- <a href="" class="modify" onclick="memberEditAction()">회원정보수정</a> -->
-                <button type="submit" href="" class="modify" onclick="memberEditAction()">회원정보 수정</button >
-            </div>
-        </form>   
-        <div class="btn_left">
-            <a href="" class="modify" onclick="pwmodifyAction()">비밀번호변경</a>
-            <!-- <button type="submit" href="" class="modify" onclick="memberEditAction()">회원정보 수정</button > -->
-        </div>
-            <div class="btn_right">
-                <!-- <button id="delete-btn" type="button" class="delete">회원탈퇴</button> -->
-                <a href="" class="delete" onclick="memberDelAction(28590, -1, -1)">회원탈퇴</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn_area">
+                        <button type="submit" class="modify_my_info" onclick="memberEditAction()">회원정보 수정</button >
+                        {% comment %} <a class="modify_my_info" onclick="memberEditAction()">회원정보수정</a> {% endcomment %}
+                        <a class="change_pw" onclick="pwmodifyAction()">비밀번호변경</a>
+                        <a class="quit" onclick="memberDelAction(28590, -1, -1)">회원탈퇴</a>
+                    </div>
+                </form>
             </div>
         </div>
-
-
-
-
-        {% else %}
-        <div class="ec-base-button">
-            <div class="btn_center">
-                <a href="{% url 'accounts:login' %}" class="gologin" onclick="loginAction()">로그인 하러가기</a>
-            </div>     
-        </div>
-    </form>      
-    </fieldset>
-
-    <div id="popup" style="display:none;">
-        <p id="message"></p>
     </div>
-
-     
-</body>
-{% endif %}
-</html>
-
-
-
+</div>
+{% endblock %}

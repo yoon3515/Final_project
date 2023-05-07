@@ -3,7 +3,7 @@
 <head>
   {% block head %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static '/css/login_style.css' %}">
+    <link rel="stylesheet" href="{% static '/css/signup_style.css' %}">
   {% endblock %}
   {% block title %}
   회원가입
@@ -46,8 +46,11 @@
         </div>
       </div>
       <div class="signup_btn_area">
-        <button class="signup_btn" type="submit" class="btn btn-primary">가입하기</button>
-        <button class="next_to_signup_btn" type="button" onclick="location.href='/accounts/login/'">돌아가기</button>
+        <div class="signup_btn_space">
+          <button class="signup_btn" type="submit" class="btn btn-primary">가입하기</button>
+          <button class="next_to_signup_btn" type="button" onclick="location.href='/accounts/login/'">돌아가기</button>
+      
+        </div>
       </div>
     </form>
   </div>

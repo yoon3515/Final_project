@@ -1,0 +1,140 @@
+
+/* 미디어 쿼리 */
+@media (max-width: 768px) {
+  
+
+  /*로그인, 회원가입 박스 서식*/
+
+  #token-error {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .token {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .error {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 10px;
+    color: #ffffff;
+    margin-right : 20px;
+  }
+
+  .alert-danger {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .alert-danger strong {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 15px;
+  }
+
+  .alert-danger ul {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* 수직 가운데 정렬 */
+    width : 100%;
+    height: 100%;
+  }
+
+
+  .input_area {
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    width: 90%;
+    margin-top : 60px;
+  }
+
+  .input-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    width: 60%;
+  }
+
+
+  .input_area p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    width: 100%; /* 입력바가 차지하는 폭 설정 */
+    margin: 15px 0px; /* 화면 중앙에 위치하도록 margin 값 설정 */
+  }
+
+  .input_area input  {
+    width: 100%; /* 입력바가 차지하는 폭 설정 */
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.55);
+    border: none;
+    border-radius: 10px;
+  }
+
+  .find_signup_btn_area p {
+    color : white;
+    font-size: 10px;
+  }
+
+
+  .signup_btn_area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width : 90%;
+  }
+
+  .signup_btn_space {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width : 60%;
+    margin-left : 10px;
+  }
+
+  .signup_btn_area button {
+    border: none;
+    height: 25px;
+    background-color: #eca0a6;
+    border-radius: 6px;
+    border: none;
+    color: white; /* 버튼 글자색 #191654;*/
+    font-weight: bold;
+    padding : 0px;
+    margin : 5px;
+  }
+
+
+  .signup_btn {
+    width : 50%;
+  }
+
+  .next_to_signup_btn {
+    width : 50%;
+  }
+
+
+}
