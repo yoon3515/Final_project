@@ -48,31 +48,59 @@ def my_caught_fish_list(request):
 
 
 
+# @login_required
+# def search_fish(request):
+#     query = request.GET.get('search')
+#     result_fishes = CaughtFishInfo.objects.filter(member=request.user, fish_book__fish_name__icontains=query)
+#     result_fish_books = []
+#     if query:
+#         result_fishes = result_fishes.filter(fish_book__fish_name__icontains=query)
+#         for fish in result_fishes:
+#             fish_book = FishBook.objects.filter(fish_name=fish.fish_book.fish_name).first()
+#             if fish_book:
+#                 count = CaughtFishInfo.objects.filter(member=request.user,
+#                                                       fish_book__fish_name=fish.fish_book.fish_name).count()
+#                 fish_book.count = count
+#                 fish_book.image_url = fish_book.image.url
+#                 result_fish_books.append(fish_book)
+
+#     all_fishes = FishBook.objects.values_list('fish_name', flat=True)
+
+#     return render(request, 'fishBook/book_result.html', {'query': query,
+#                                                          'result': result_fishes,
+#                                                          'result_fish_books': result_fish_books,
+#                                                          'all_fishes': all_fishes})
+
+
+
+
 @login_required
 def search_fish(request):
     query = request.GET.get('search')
-    result_fishes = CaughtFishInfo.objects.filter(member=request.user, fish_book__fish_name__icontains=query)
     result_fish_books = []
     if query:
-        result_fishes = result_fishes.filter(fish_book__fish_name__icontains=query)
-        for fish in result_fishes:
-            fish_book = FishBook.objects.filter(fish_name=fish.fish_book.fish_name).first()
+        # 중복되지 않는 fish_name 가져오기
+        fish_names = (
+            CaughtFishInfo.objects.filter(member=request.user, fish_book__fish_name__icontains=query)
+            .values_list('fish_book__fish_name', flat=True)
+            .distinct()
+        )
+        # FishBook 정보 가져오기
+        for fish_name in fish_names:
+            fish_book = FishBook.objects.filter(fish_name=fish_name).first()
             if fish_book:
-                count = CaughtFishInfo.objects.filter(member=request.user,
-                                                      fish_book__fish_name=fish.fish_book.fish_name).count()
+                count = CaughtFishInfo.objects.filter(member=request.user, fish_book__fish_name=fish_name).count()
                 fish_book.count = count
                 fish_book.image_url = fish_book.image.url
-                result_fish_books.append(fish_book)
+                # 중복 체크 후 result_fish_books에 추가
+                if fish_book not in result_fish_books:
+                    result_fish_books.append(fish_book)
 
     all_fishes = FishBook.objects.values_list('fish_name', flat=True)
 
     return render(request, 'fishBook/book_result.html', {'query': query,
-                                                         'result': result_fishes,
                                                          'result_fish_books': result_fish_books,
                                                          'all_fishes': all_fishes})
-
-
-
 
 
 
