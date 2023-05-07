@@ -29,9 +29,9 @@
       </form>
     </div>
     <div class="result_area">
-      <div class="card_area">
 <!--        도감에 등록된 물고기 보여주기-->
-        {% if fish_books %}
+      {% if fish_books %}
+        <div class="card_area">
             {% for fish in fish_books %}
                 <div class="card">
                     <!--        사진 경로 설정하기-->
@@ -44,11 +44,13 @@
                     </div>
                 </div>
             {% endfor %}
-        {% else %}
-            <h4>도감이 비어있습니다</h4>
-            <h4>새로운 물고기를 잡아 도감에 저장해 보세요!</h4>
-        {% endif %}
-      </div>
+        </div>
+      {% else %}
+        <div class="no_book">
+          <h4>도감이 비어있습니다</h4>
+          <h4>새로운 물고기를 잡아 도감에 저장해 보세요!</h4>
+        </div>
+      {% endif %}
     </div>
   </div>
 </div>

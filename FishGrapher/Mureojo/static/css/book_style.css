@@ -99,4 +99,17 @@
     color : #FFFFFF;
   }
 
+
+  .no_book {
+    display: flex;
+    flex-direction : column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .no_book h4 {
+    color : white;
+    margin : 5px;
+  }
+
 }
