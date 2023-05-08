@@ -1,0 +1,93 @@
+
+/* 미디어 쿼리 */
+@media (max-width: 768px) {
+  
+
+  #middle {
+    height : 100%;
+    width: 100%;
+    padding-top : 30px;
+  }
+  
+
+  .result_area {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .col-12 {
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    padding-top:60px;
+  }
+  
+
+  .reset_area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width : 100%;
+  }
+
+  .md-form {
+    width: 100%;
+    margin : 10px;
+  }
+
+  .label_space {
+    margin-bottom: 5px;
+  }
+
+  .md-form label {
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+  .md-form input {
+    width : 100%;
+    margin-bottom : 10px;
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.55);
+    border: none;
+    border-radius: 10px;
+    width : 100%;
+  }
+
+
+  .reset_inform {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+
+  .text-muted {
+    color: black;
+    font-size: 10px;
+    font-weight: bold;
+  }
+  
+  .reset_btn_space {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .btn {
+    height: 25px;
+    background-color: #eca0a6;
+    border-radius: 6px;
+    border: none;
+    color: white; /* 버튼 글자색 #191654;*/
+    font-weight: bold;
+    font-size : 13px;
+    width : 100%;
+  }
+
+}
