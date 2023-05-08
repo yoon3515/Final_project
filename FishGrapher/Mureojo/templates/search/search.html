@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+
+<head>
+    {% block head %}
+        {{ block.super }}
+        <link rel="stylesheet" href="{% static '/css/book_style.css' %}">
+    {% endblock %}
+
+    {% block title %}
+        물고기 검색
+    {% endblock %}
+</head>
+
+{% block content %}
+  <div id="wrap">
+    <div id="header" role="banner">
+      <div class="logo_area">
+        <h2 class="logo">
+          <a href="{% url 'fishBook:my_caught_fish_list' %}">
+            Fish Book
+          </a>
+        </h2>
+      </div>
+    </div>
+
+    <div id="middle">
+      <div class="search_area">
+        <form class="search_form" method="get" action="{% url 'fish_info:fish_info_search' %}">
+          <input type="text" name="search" placeholder="물고기 이름을 입력하세요">
+          <button type="submit">검색</button>
+        </form>
+      </div>
+
+      <div class="result_container" style="margin-top: 50px;">
+        <div class="result_area" style="height: calc(100vh - 110px); overflow-y: auto;">
+          {% if fishes %}
+          <div class="fish_info_list">
+            {% for fish in fishes %}
+            <div class="fish_info_container" style="display: flex; margin-bottom: 20px;">
+              <div class="fish-card" style="flex: 1; max-width: 400px;">
+                <div class="card-img">
+                  <img class="card-img-top" src="http://15.152.232.36/fishBook_image/{{fish.id}}.png" alt="{{ fish.name }} 이미지" style="width: 100%; max-width: 400px;">
+                </div>
+              </div>
+              <div style="flex: 2; margin-left: 10px;">
+                <ul>
+                  <li><b>이름: </b>{{ fish.fish_name }}</li>
+                  <li><b>학명: </b>{{ fish.scientific_name }}</li>
+                  <li><b>영명: </b>{{ fish.english_name }}</li>
+                  <li><b>금지체장(cm): </b>{{fish.prohibition_size}}</li>
+                  <li><b>서식지: </b>{{ fish.habitat }}</li>
+                  <li><b>분포: </b>{{ fish.distribution }}</li>
+                  <li><b>금어기: </b>{{fish.limit_start}} ~ {{fish.limit_end}}</li>
+                  <li><a href="{% url 'fish_info:fish_info' fish_id=fish.pk %}">자세히 알아보기</a></li>
+                </ul>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          {% else %}
+          <h4>검색 결과가 없습니다.</h4>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <style>
+
+
+        .result_area {
+            height: calc(100% - 125px);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .fish_info_list {
+            width: 80%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .fish_info_container {
+            border: 1px solid black;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* 스크롤 바 디자인 */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #888;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
+    </style>
+{% endblock %}

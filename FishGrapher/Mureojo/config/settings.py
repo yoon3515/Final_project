@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'mypage',
     # 'todayfish',
     'pictures',
+    'search',
 ]
 
 MIDDLEWARE = [
