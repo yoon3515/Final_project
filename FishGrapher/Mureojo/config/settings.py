@@ -153,8 +153,8 @@ LOGOUT_REDIRECT_URL = '/'
 
 
 # 이미지 띄우기 위한 설정
-MEDIA_ROOT = '/var/www/html/caughtFish_image/' # 저장된 이미지 파일의 경로
-MEDIA_URL = '/media/' # URL 패턴
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # 저장된 이미지 파일의 경로
+MEDIA_URL = 'media/' # URL 패턴
 
 
 # 회원 이메일 관련 설정
