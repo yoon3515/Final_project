@@ -79,8 +79,10 @@
                     <div class="btn_area">
                         <button type="submit" class="modify_my_info" onclick="memberEditAction()">회원정보 수정</button >
                         {% comment %} <a class="modify_my_info" onclick="memberEditAction()">회원정보수정</a> {% endcomment %}
-                        <a class="change_pw" onclick="pwmodifyAction()">비밀번호변경</a>
-                        <a class="quit" onclick="memberDelAction(28590, -1, -1)">회원탈퇴</a>
+                        <div class="btn_space">
+                            <a class="change_pw" onclick="pwmodifyAction()">비밀번호변경</a>
+                            <a class="quit" onclick="memberDelAction(28590, -1, -1)">회원탈퇴</a>
+                        </div>
                     </div>
                 </form>
             </div>
