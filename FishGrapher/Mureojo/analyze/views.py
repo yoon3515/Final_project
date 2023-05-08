@@ -1,10 +1,11 @@
-import base64
 import datetime
 import io
 import torch
 import os
+from .models import FishImages
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.core.files.storage import FileSystemStorage
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
@@ -57,7 +58,7 @@ def analyze(request):
 
         fish_book = FishBook.objects.get(id=fish_id+12)
 
-        # Create a new CaughtFishInfo instance using the retrieved FishBook instance
+        # fish_book 이용, 정보 가져와서 caughtfishinfo 테이블 생성
         caught_fish = CaughtFishInfo(member=request.user, fish_book=fish_book, caught_date=datetime.date.today())
         caught_fish.save()
         # 새로 생성된 객체의 ID 가져오기
@@ -69,7 +70,8 @@ def analyze(request):
             image_file = request.FILES.get('image')
             with Image.open(image_file) as img:
                 img.save(image_path, format="PNG")
-        caught_fish.myfish_photo = os.path.join(settings.MEDIA_URL, image_name)
+        # 테이블에 이미지 주소 저장
+        caught_fish.myfish_photo = f"{settings.MEDIA_ROOT}{image_name}"
         caught_fish.save()
 
         # 결과 반환
