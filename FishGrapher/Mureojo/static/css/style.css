@@ -78,9 +78,11 @@
     background-color: white;
   }
 
+
   .navbar-bottom ul {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     padding : 0px;
     width : 100%;
@@ -161,6 +163,24 @@
 
   .logo_area h2 a:link, .logo_area h2 a:hover {
     text-decoration: none; /* 밑줄 제거 */
+  }
+
+
+  /* 스크롤 바 디자인 */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #888;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
   }
 
 }
