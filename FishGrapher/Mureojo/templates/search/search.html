@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+<head>
+    {% block head %}
+        {{ block.super }}
+        <link rel="stylesheet" href="{% static '/css/search_style.css' %}">
+    {% endblock %}
+
+    {% block title %}
+        물고기 검색
+    {% endblock %}
+</head>
+
+{% block content %}
+  <div id="wrap">
+    <div id="header" role="banner">
+      <div class="logo_area">
+        <h2 class="logo">
+          <a href="{% url 'search:search' %}">
+            Search
+          </a>
+        </h2>
+      </div>
+    </div>
+
+    <div id="middle">
+      <div class="search_area">
+        <form class="search_form" method="get" action="{% url 'fish_info:fish_info_search' %}">
+          <input type="text" name="search" placeholder="물고기 이름을 입력하세요">
+          <button type="submit">검색</button>
+        </form>
+      </div>
+      <div class="result_area">
+          {% if fishes %}
+          <div class="fish_info_list">
+            {% for fish in fishes %}
+            <div class="fish_info_container">
+              <div class="fish-card">
+                <div class="card-img">
+                  <a href="{% url 'fish_info:fish_info' fish.id %}">
+                    <img class="card-img-top" src="http://15.152.232.36/fishBook_image/{{fish.id}}.png" alt="{{ fish.name }} 이미지">
+                  </a>
+                </div>
+              </div>
+              <div class="fish_information">
+                <ul>
+                  <li><b>이름: </b>{{ fish.fish_name }}</li>
+                  <li><b>학명: </b>{{ fish.scientific_name }}</li>
+                  <li><b>영명: </b>{{ fish.english_name }}</li>
+                  <li><b>금지체장(cm): </b>{{fish.prohibition_size}}</li>
+                  <li><b>서식지: </b>{{ fish.habitat }}</li>
+                  <li><b>분포: </b>{{ fish.distribution }}</li>
+                  <li><b>금어기: </b>{{fish.limit_start}} ~ {{fish.limit_end}}</li>
+                  <li><a href="{% url 'fish_info:fish_info' fish_id=fish.pk %}">자세히 알아보기</a></li>
+                </ul>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          {% else %}
+          <h4>검색 결과가 없습니다.</h4>
+          {% endif %}
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

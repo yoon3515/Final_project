@@ -60,58 +60,35 @@
     padding-top : 70px;
   }
 
-  .card_area {
-    display: flex;
-    flex-direction : row;
-    /* justify-content: center; */
-    /* flex-basis: calc(33.33% - 20px); */
-    /* flex-wrap: wrap;  card 요소들을 자동으로 한 줄에 표시할 수 있도록 함 */
-    width : 85%;
-    height : 100%;
+
+  .fish_info_list {
+    width: 80%;
+    margin-bottom: 20px;
   }
 
-  .card {
+  .fish_info_container {
+    display : flex;
+    align-items: center;
+    border: 2px solid rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.55);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .fish-card {
     display: flex;
-    flex-direction : column;
     justify-content: center;
     align-items: center;
-    margin: 10px;
-    /* height : 60px; */
+    width: 45%;
+  }
+
+  .fish-card img {
+    width : 100%;
+    padding : 10px;
   }
 
 
-  .card-img-top {
-    width : 50px;
-  }
-
-  .card-body {
-    margin : 4px;
-  }
-
-  .card-body h4 {
-    color : white;
-    margin : 0px;
-  }
-
-
-  .error-area h4 {
-    text-align: center;
-    color : #FFFFFF;
-  }
-
-
-  .no_book {
-    display: flex;
-    flex-direction : column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .no_book h4 {
-    color : white;
-    margin : 5px;
-  }
-
-
+  
 
 }
