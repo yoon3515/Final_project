@@ -3,9 +3,10 @@ import io
 import torch
 import os
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from fish_info.models import FishBook, CaughtFishInfo
@@ -38,7 +39,9 @@ def predict_fish(image):
     # 모델 예측
     output = model(image)
     # 결과 반환
-    _, predicted = torch.max(output.data, 1)
+    predictvalue, predicted = torch.max(output.data, 1)
+    if predictvalue.item() <= 5:
+        return -1
     return predicted.item()
 
 
@@ -50,17 +53,21 @@ def analyze(request):
         image = decode_image(request.FILES['image'])
         # 이미지를 어종으로 판별
         fish_id = predict_fish(image)
+        if fish_id == -1:
+            messages.error(request, '해당하는 물고기를 찾을 수 없습니다.')
+            return render(request, 'analyze/camera.html')
+        else:
         # 이미지를 저장
-        user_id = request.user.id
-        image_name = '{}_{}.png'.format(user_id, fish_id)
-        image_path = os.path.join(settings.MEDIA_ROOT, 'caughtFish_image', image_name)
-        image_file = request.FILES.get('image')
-        with Image.open(image_file) as img:
-            img.save(image_path, format="png")
-        # 결과 반환
-        redirect_url = reverse('analyze:today_fish')
-        redirect_url += f'?user_id={user_id}&fish_id={int(fish_id)}&image={image_name}'
-        return HttpResponseRedirect(redirect_url)
+            user_id = request.user.id
+            image_name = '{}_{}.png'.format(user_id, fish_id)
+            image_path = os.path.join(settings.MEDIA_ROOT, 'caughtFish_image', image_name)
+            image_file = request.FILES.get('image')
+            with Image.open(image_file) as img:
+                img.save(image_path, format="png")
+            # 결과 반환
+            redirect_url = reverse('analyze:today_fish')
+            redirect_url += f'?user_id={user_id}&fish_id={int(fish_id)}&image={image_name}'
+            return HttpResponseRedirect(redirect_url)
     else:
         return render(request, 'analyze/camera.html')
 
@@ -71,19 +78,7 @@ def today_fish(request):
     fish_id = int(request.GET.get('fish_id'))
     image_name = request.GET.get('image')
     # fish_id 번호와 물고기가 할당된 테이블 번호 매핑
-    id_map = {
-    0: 16,
-    1: 12,
-    2: 22,
-    3: 21,
-    4: 20,
-    5: 13,
-    6: 14,
-    7: 15,
-    8: 17,
-    9: 18,
-    10: 19
-    }
+    id_map = {0: 16, 1: 12, 2: 22, 3: 21, 4: 20, 5: 13, 6: 14, 7: 15, 8: 17, 9: 18, 10: 19}
     fish_id = id_map.get(fish_id, fish_id)
     # 어종 ID에 해당하는 어종 정보 조회 (이미지, 이름, 설명 등)
     fish = FishBook.objects.get(id=fish_id)
