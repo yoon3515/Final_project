@@ -79,7 +79,7 @@ def today_fish(request):
     image_name = request.GET.get('image')
 
     # fish_id 번호와 물고기가 할당된 테이블 번호 매핑
-    id_map = {0: 16, 1: 12, 2: 22, 3: 21, 4: 20, 5: 13, 6: 14, 7: 15, 8: 17, 9: 18, 10: 19}
+    id_map = {0: 16, 1: 20, 2: 12, 3: 21, 4: 13, 5: 14, 6: 17, 7: 18, 8: 19, 9: 15, 10: 22}
     fish_id = id_map.get(fish_id, fish_id)
 
     # 어종 ID에 해당하는 어종 정보 조회 (이미지, 이름, 설명 등)
