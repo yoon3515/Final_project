@@ -1,0 +1,94 @@
+
+/* 미디어 쿼리 */
+@media (max-width: 768px) {
+  /* 모바일 화면일 경우 */
+
+
+  /* 도감 서식*/
+
+  #middle {
+    height : 100%;
+    width: 100%;
+  }
+
+  .search_area {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width : 100%;
+    height: 10%;
+    top: 85px;
+  }
+
+  .search_form {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width : 80%;
+    margin: 10px auto;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+  }
+
+  .search_form input[type="text"] {
+    flex: 1;
+    height: 20px;
+    margin-right : 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+  }
+
+  .search_form button[type="submit"] {
+    border: none;
+    height: 25px;
+    margin-right: 5px;
+    border-radius: 10px;
+    border: none;
+    background-color: transparent;
+  }
+
+  .result_area {
+    display: flex;
+    justify-content: center;
+    width : 100%;
+    height : 77%;
+    padding-top : 70px;
+  }
+
+
+  .fish_info_list {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+  .fish_info_container {
+    display : flex;
+    align-items: center;
+    border: 2px solid rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.55);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .fish-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+  }
+
+  .fish-card img {
+    width : 100%;
+    padding : 10px;
+  }
+
+
+
+
+}

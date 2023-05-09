@@ -1,0 +1,130 @@
+
+/* 미디어 쿼리 */
+@media (max-width: 768px) {
+  
+
+  #middle {
+    height : 100%;
+    width: 100%;
+    padding-top : 30px;
+  }
+  
+
+  .result_area {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .col {
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    padding-top:60px;
+  }
+  
+
+  .mb {
+    width : 80%;
+    margin-bottom: 20px;
+  }
+
+
+  .label_space {
+    margin-bottom : 5px;
+  }
+
+  .mb label {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .email_form {
+    width : 100%;
+  }
+  
+
+
+  .form-control {
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.55);
+    border: none;
+    border-radius: 10px;
+    width : 100%;
+  }
+
+
+  .email_inform {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width : 80%;
+    margin-bottom : 30px;
+  }
+
+  .text-muted {
+    color: black;
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+  .find_pw_btn_space {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width : 80%;
+  }
+
+  .find_pw_btn_space button {
+    height: 25px;
+    background-color: #eca0a6;
+    border-radius: 6px;
+    border: none;
+    color: white; /* 버튼 글자색 #191654;*/
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .find_pw_btn {
+    margin : 5px;
+    width : 50%;
+  }
+
+  .goback_btn {
+    margin : 5px;
+    width : 50%;
+  }
+  
+
+  .confirm_space {
+    width : 80%;
+    margin-top : 10px;
+  }
+
+  .form-inline {
+    width : 100%px;
+  }
+  
+  .md-outline input {
+    width : 100%;
+    margin-top : 5px;
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    border: none;
+    height: 20px;
+    background-color: #efddde;
+    border-radius: 6px;
+    color: rgb(0, 0, 0); /* 버튼 글자색 #191654;*/
+    font-weight: bold;
+    font-size: 10px;
+    margin-top : 10px;
+    cursor: pointer;
+  }
+  
+
+}

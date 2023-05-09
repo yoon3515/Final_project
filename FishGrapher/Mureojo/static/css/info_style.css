@@ -1,0 +1,227 @@
+
+/* 미디어 쿼리 */
+@media (max-width: 768px) {
+  /* 모바일 화면일 경우 */
+
+  /* fish_info 서식 */
+
+
+  #middle {
+    height : 100%;
+    width: 100%;
+    padding-top : 30px;
+  }
+
+  .fish_info_area{
+    display : flex;
+    justify-content: center;
+    width : 100%;
+    padding-top : 30px;
+    padding-bottom : 30px;
+  }
+
+  .fish_info_space {
+    display: flex;
+    flex-direction : column;
+    align-items: center;
+    width : 85%;
+    height : 100%;
+    background-color: rgba(255, 255, 255, 0.35);
+    border-radius: 10px;
+  }
+
+  .card_area {
+    width : 100%;
+    height : 100%;
+  }
+
+
+  .fish-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width : 400px;
+    width : 80%;
+    height : 40%;
+    padding : 10px;
+  }
+
+
+  .card-img {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width : 100%;
+    height : 100%;
+  }
+
+  .card-img-top {
+    max-width: 400px;
+    max-height: 400px;
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width : 80%;
+    height : 60%;
+    padding : 20px;
+  }
+
+
+  table {
+    width: 100%;
+    border : 2px solid rgba(0,0,0,0.2);
+    border-radius: 10px;
+    border-collapse: separate;
+    width : 100%;
+    height : 100%;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid rgba(0,0,0,0.2); /* 행 사이의 선 */
+  }
+
+  tr:last-child td,
+  tr:last-child th {
+    border-bottom: none;
+  }
+
+  th {
+    border-right: 1px solid rgba(0,0,0,0.2);
+    font-weight: bold;
+    left: 0;
+  }
+
+
+  tr {
+    border-bottom: 1px solid rgba(0,0,0,0.2); /* 행 사이의 선 */
+  }
+
+  .caught_fish_area{
+    display: flex;
+    justify-content: center;
+    width : 100%;
+    padding-bottom : 20px;
+  }
+
+  .caught_card-space {
+    display: flex;
+    flex-direction : column;
+    width : 85%;
+    background-color: rgba(255, 255, 255, 0.35);
+    border-radius: 10px;
+  }
+
+  .counting {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width : 100%;
+    /* height: 40px; */
+    /* height: 6%; */
+    background-color: rgba(255, 255, 255, 0.55);
+    border-radius: 10px;
+    font-weight : bold;
+    font : 20px;
+  }
+
+  .caught_card_area {
+    display: flex;
+    /*flex-wrap: wrap;  줄 바꿈 속성 추가 */
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin : 10px;
+  }
+
+  .caught_card {
+    display: flex;
+    flex-direction : column;
+    justify-content: center;
+    align-items: center;
+    width : 100px;
+    height: 100px;
+    margin : 5px;
+  }
+
+  .caught_card_img {
+    display: flex;
+    flex-direction : column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .caught_card_img img {
+    width : 50px;
+    height : 50px;
+    margin-bottom : 10px;
+  }
+
+  .caught_card-body {
+    display: flex;
+    flex-direction : column;
+    justify-content: center;
+    align-items: center;
+    width : 100%;
+  }
+
+  .caught_card-body p {
+    margin : 0px;
+  }
+
+
+  .didnt_caught-space {
+    display : flex;
+    flex-direction : column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #myModal {
+    width : 80%;
+    position: fixed;
+    top: 50%;
+    left: 48%; 
+    transform: translate(-50%, -50%);
+    background-color: rgb(250, 250, 250);
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+
+  #modal-content {
+    display: flex;
+    flex-direction : column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #modal-content p {
+    margin : 3px;
+  }
+
+  #modal-image {
+    /* width : 300px; */
+    margin-bottom : 10px;
+    max-width: 100%;
+    border-radius: 10px;
+  }
+
+
+  
+}

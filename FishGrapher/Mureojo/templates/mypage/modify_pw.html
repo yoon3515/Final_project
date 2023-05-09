@@ -1,0 +1,49 @@
+<form method="POST", action="{% url 'mypage:modify_pw' %}" style="display:flex; flex-direction: column; align-items: center;">
+    {% csrf_token %}
+    <div class="title">
+        <h3>- 비밀번호 변경 -</h3>
+    </div>
+    <div class="my_infor_area">
+        <div class="input_old_pw_space">
+            <div class="label_space">
+                <p style="font-size: 13px; font-weight: bold;">기존 비밀번호</p>
+            </div>
+            <div class="input_bar">
+                <input id="id_old_password" name="old_password" class="inputTypeText" placeholder="" autocomplete="off" maxlength="50" 0="disabled" value="" type="password">
+            </div>
+        </div>
+        <div class="input_new_pw_space">
+            <div class="label_space">
+                <p style="font-size: 13px; font-weight: bold;">새 비밀번호</p>
+            </div>
+            <div class="input_bar">
+                <input id="id_new_password1" name="new_password1" class="inputTypeText" placeholder="" autocomplete="off" maxlength="50" 0="disabled" value="" type="password">
+            </div>
+        </div>
+        <div class="input_check_pw_space">
+            <div class="label_space">
+                <p style="font-size: 13px; font-weight: bold;">비밀번호 확인</p>
+            </div>
+            <div class="input_bar">
+                <input id="id_new_password2" name="new_password2" class="inputTypeText" placeholder="" autocomplete="off" maxlength="50" 0="disabled" value="" type="password">
+            </div>
+        </div>
+    </div>
+    <div class="btn_area">
+        <button type="submit" onclick="deleteMember()" style="margin-top:20px;">비밀번호 변경</button>
+    </div>
+</form>
+{% if messages %}
+    {% for message in messages %}
+        <script>
+            alert('{{ message }}');
+            {% with None as message %}
+            {% endwith %}
+        </script>
+    {% endfor %}
+{% endif %}
+<script>
+    window.onunload = function(){
+        window.opener.location.reload();
+    };
+</script>

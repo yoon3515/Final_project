@@ -1,0 +1,98 @@
+#middle {
+height: calc(100% - 200px);
+}
+
+.logo_area {
+margin-top: 0;
+margin-bottom: 30px;
+}
+
+.btn_space {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding-top: 30px;
+padding-bottom: 30px;
+margin-top: 200px;
+}
+
+.btn_space form {
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 70%;
+}
+
+.camera_button, .submit_btn, .btn.btn-primary {
+border: none;
+height: 25px;
+width: 100%;
+margin: 10px;
+background-color: #eca0a6;
+border-radius: 6px;
+color: white; /* 버튼 글자색 #191654;*/
+font-weight: bold;
+cursor: pointer;
+}
+
+.camera_button:hover, .submit_btn:hover, .btn.btn-primary:hover {
+background-color: #d1707a;
+}
+
+.camera_hidden {
+/* height: 25px;
+background-color: #eca0a6;
+border-radius: 6px;
+border: none; /
+color: black; / 버튼 글자색 #191654;*/
+font-weight: bold;
+margin: 10px;
+width: 100%;
+display: none;
+}
+
+.submit_btn {
+margin: 10px 0;
+width: 100%;
+cursor: pointer;
+font-size: 1em;
+}
+
+.btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+/* 버튼 크기 */
+.btn .submit_btn {
+  width: 500px;
+  height: 80px;
+  font-size: 1em;
+}
+
+h2.logo {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+margin: 0;
+}
+
+nav {
+position: relative;
+}
+
+.btn_style {
+  height: 40px;
+  width: 150px;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #eca0a6;
+  margin: 10px;
+}

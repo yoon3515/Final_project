@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+<head>
+  {% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static '/css/signup_style.css' %}">
+  {% endblock %}
+  {% block title %}
+  회원가입
+  {% endblock %}
+</head>
+
+{% block content %}
+<div id="wrap">
+  <div id="header">
+    <div class="logo_area">
+      <div class="logo_area">
+        <h2 class="logo">
+          <a class="nav-link" href="{% url 'accounts:signup' %}">
+            회원가입
+          </a>
+        </h2>
+      </div>
+    </div>
+  </div>
+  <div id="middle">
+    <form class="login-form" method="post">
+      <div class="input_area">
+        <div id="token-error" style="display: flex; justify-content: center; align-items: center;">
+          <div class="token">{% csrf_token %}</div>
+          <div class="error">{% include "form_errors.html" %}</div>
+        </div>
+        <div class="input-bar">
+          <p>
+            <input type="text" class="form-control" name="username" placeholder=" 아이디를 입력해주세요" id="username" value="{{ form.username.value|default_if_none:'' }}">
+          </p>
+          <p>
+            <input type="email" class="form-control" name="email" placeholder=" 이메일을 입력해주세요" id="email" value="{{ form.email.value|default_if_none:'' }}">
+          </p>
+          <p>
+            <input type="password" class="form-control" name="password1" placeholder=" 비밀번호를 입력해주세요" id="password1" value="{{ form.password1.value|default_if_none:'' }}">
+          </p>
+          <p>
+            <input type="password" class="form-control" name="password2" placeholder=" 비밀번호 확인" id="password2" value="{{ form.password2.value|default_if_none:'' }}">
+          </p>
+        </div>
+      </div>
+      <div class="signup_btn_area">
+        <div class="signup_btn_space">
+          <button class="signup_btn" type="submit" class="btn btn-primary">가입하기</button>
+          <button class="next_to_signup_btn" type="button" onclick="location.href='/accounts/login/'">돌아가기</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
