@@ -36,7 +36,11 @@
                             </tr>
                             <tr>
                                 <th>금지 체장</th>
+                                {% if result.prohibition_size == "없음" %}
+                                <td>없음</td>
+                                {% else %}
                                 <td>{{result.prohibition_size}} cm</td>
+                                {% endif %}
                             </tr>
                             <tr>
                                 <th>서식지</th>
@@ -48,7 +52,11 @@
                             </tr>
                             <tr>
                                 <th>금어기</th>
+                                {% if result.limit_start == "없음" and result.limit_end == "없음" %}
+                                <td>없음</td>
+                                {% else %}
                                 <td>{{result.limit_start}} ~ {{result.limit_end}}</td>
+                                {% endif %}
                             </tr>
                             <tr>
                                 <th>자세히 알아보기</th>
