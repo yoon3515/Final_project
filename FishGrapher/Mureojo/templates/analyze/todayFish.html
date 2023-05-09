@@ -1,46 +1,81 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
+<html>
 <head>
-  {% block head %}
+    {% block head %}
     {{ block.super }}
     <link rel="stylesheet" href="{% static '/css/todayFish_style.css' %}">
-  {% endblock %}
-  {% block title %}
-  도감 등록 성공!
-  {% endblock %}
+    {% endblock %}
+    {% block title%}Today Fish{% endblock %}
 </head>
 {% block content %}
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-8">
-            <h2 class="text-center mb-4">물고기 정보</h2>
-            <div class="card mb-3">
+<div id="wrap">
+  <div id="header" role="banner">
+      <div class="logo_area">
+          <h2 id="logo">
+              {% comment %} <a href="{% url 'analyze:camera' %}"> {% endcomment %}
+                Today My Fish
+              {% comment %} </a> {% endcomment %}
+          </h2>
+      </div>
+  </div>
+  <div id="middle">
+    <div class="result_area">
+        <div class="card">
             {% if result %}
-                <div class="card-body">
+                <div class="fish_information">
+                    <div class="card_title">
+                        <h3>물고기 정보</h3>
+                    </div>
                     <img class="card-img-top" src="http://15.152.232.36/fishBook_image/{{result.id}}.png" alt="{{ result.name }} 이미지">
-                    <img class="card-img-bottom" src="/media/caughtFish_image/{{ result.image }}" alt="{{ result.name }}_user">
-                    <label>이름       </label>
-                    <p class="card-text">{{ result.name }}</p>
-                    <label>서식지     </label>
-                    <p class="card-text">{{ result.habitat }}</p>
-                    <label>분포       </label>
-                    <p class="card-text">{{ result.distribution }}</p>
-                    <label>금어기     </label>
-                    {% if result.limit_start == "없음" and result.limit_end == "없음" %}
-                        <p class="card-text">없음</p>
-                    {% else %}
-                        <p class="card-text">{{ result.limit_start }} ~ {{ result.limit_end }}</p>
-                    {% endif %}
-                    <label>금지체장   </label>
-                    {% if result.prohibition_size == "없음" %}
-                        <p class="card-text">없음</p>
-                    {% else %}
-                        <p class="card-text">{{ result.prohibition_size }}cm</p>
-                    {% endif %}
-                    <label>잡은 날짜  </label>
-                    <p class="card-text">{{ result.caught_date }}</p>
+                    <div class='card-body'>
+                        <table>
+                            <tr>
+                                <th>이름</th>
+                                <td>{{result.name}}</td>
+                            </tr>
+                            <tr>
+                                <th>금지 체장</th>
+                                {% if result.prohibition_size == "없음" %}
+                                <td>없음</td>
+                                {% else %}
+                                <td>{{result.prohibition_size}} cm</td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <th>서식지</th>
+                                <td>{{result.habitat}}</td>
+                            </tr>
+                            <tr>
+                                <th>분포</th>
+                                <td>{{result.distribution}}</td>
+                            </tr>
+                            <tr>
+                                <th>금어기</th>
+                                {% if result.limit_start == "없음" and result.limit_end == "없음" %}
+                                <td>없음</td>
+                                {% else %}
+                                <td>{{result.limit_start}} ~ {{result.limit_end}}</td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <th>자세히 알아보기</th>
+                                <td><a href="{{result.description}}">더 자세히 알아보기</a></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-                <div class="col-lg-6 col-md-8">
+                <div class="caught_fish_information">
+                    <div class="card_title">
+                        <h3>내가잡은 물고기</h3>
+                    </div>
+                    <img class="card-img-bottom" src="/media/caughtFish_image/{{ result.image }}" alt="{{ result.name }}_user">
+                    <div class="caught_fish_card-body">
+                        <label>잡은 날짜</label>
+                    <p class="card-text">{{ result.caught_date }}</p>
+                    </div>
+                </div>
+                <div class="complete_information">
                     <h2 class="text-center mb-4">도감 등록 완료!</h2>
                     <div class="card mb-3">
                       <p>잡으신 물고기 정보를 성공적으로 저장했습니다.</p>
@@ -52,13 +87,16 @@
                     </div>
                 </div>
             {% else %}
+                <div class="no_fish_inform">
+                    <p class="no_fish_txt">분석 결과가 없습니다. 다시 시도해주세요.</p>
+                </div>
                 <div class="text-center">
-                    <p>분석 결과가 없습니다. 다시 시도해주세요.</p>
-                    <a href="/analyze/camera" class="btn btn-primary">다시 찍기</a>
+                    <a href="/analyze/camera" class="btn btn-primary">새로운 물고기 찍기</a>
                 </div>
             {% endif %}
-                <a href="/" class="btn btn-primary">메인으로</a>
-            </div>
+                <div class="go_to_main">
+                    <a href="/" class="btn btn-primary">메인으로</a>
+                </div>
             </div>
         </div>
     </div>
