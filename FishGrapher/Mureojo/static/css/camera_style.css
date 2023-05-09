@@ -67,6 +67,10 @@
   }
 
   .camera_button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border: none;
     height: 25px;
     width: 100%;
@@ -77,6 +81,7 @@
     color: white;  /* 버튼 글자색 #191654;*/
     font-weight: bold;
     cursor: pointer;
+    font-size: 13px;
   }
 
   .camera_hidden {
