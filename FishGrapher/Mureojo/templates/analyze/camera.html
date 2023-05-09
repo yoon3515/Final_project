@@ -23,7 +23,6 @@
     <div class="btn_area">
       <div class="btn_space">
         <form method="POST" action="{% url 'analyze:camera' %}" enctype="multipart/form-data">
-          {% csrf_token %}
           <div class="information">
             <div class="inform-title">
               <p>※촬영 시 안내사항※</p>
@@ -37,10 +36,11 @@
           <div class="btn">
             <input class="camera_hidden" id="camera_hidden" name="image" type="file" accept="image/*" capture="camera">
             <button class="submit_btn" type="submit">분석 시작</button>
+            <p><a href="/" class="btn btn-primary">메인으로</a></p>
           </div>
         </form>
       </div>
     </div>
   </div>
-</div>  
+</div>
 {% endblock %}

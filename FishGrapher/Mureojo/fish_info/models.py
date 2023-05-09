@@ -31,7 +31,6 @@ class CaughtFishInfo(models.Model):
     member = models.ForeignKey(User, models.DO_NOTHING)
     fish_book = models.ForeignKey('FishBook', models.DO_NOTHING)
     caught_date = models.DateField()
-    #caught_location = models.CharField(max_length=100)
     myfish_photo = models.ImageField(upload_to='caughtFish_image/')
 
     objects = models.Manager()  # 'objects' 속성 정의

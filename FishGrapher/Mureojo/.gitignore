@@ -2,4 +2,5 @@
 __pycache__/
 secrets.json
 sqlite3.exe
-20230420_Resnet_color10-nogray.pt
+*.pt
+*.pth
