@@ -59,11 +59,11 @@ def analyze(request):
         else:
         # 이미지를 저장
             user_id = request.user.id
-            image_name = '{}_{}.png'.format(user_id, fish_id)
+            image_name = '{}_{}.jpg'.format(user_id, fish_id)
             image_path = os.path.join(settings.MEDIA_ROOT, 'caughtFish_image', image_name)
             image_file = request.FILES.get('image')
             with Image.open(image_file) as img:
-                img.save(image_path, format="png")
+                img.save(image_path, format="jpeg")
             # 결과 반환
             redirect_url = reverse('analyze:today_fish')
             redirect_url += f'?user_id={user_id}&fish_id={int(fish_id)}&image={image_name}'
@@ -93,11 +93,11 @@ def today_fish(request):
     caught_fish_id = caught_fish.id
 
     # 새로운 이미지 파일 생성
-    image_name2 = f"{user_id}_{fish_id}_{caught_fish_id}.png"
+    image_name2 = f"{user_id}_{fish_id}_{caught_fish_id}.jpg"
     image_path = os.path.join(settings.MEDIA_ROOT, 'caughtFish_image', image_name2)
     image_file = os.path.join(settings.MEDIA_ROOT, 'caughtFish_image', image_name)
     with Image.open(image_file) as img:
-        img.save(image_path, format="PNG")
+        img.save(image_path, format="jpeg")
 
     # 테이블에 이미지 주소 저장
     caught_fish.myfish_photo = os.path.join(settings.MEDIA_URL, 'caughtFish_image', image_name2)

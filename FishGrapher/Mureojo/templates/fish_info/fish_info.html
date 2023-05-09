@@ -78,8 +78,8 @@
                             {% for my_fish in caught_fish %}
                                 <div class="caught_card">
                                     <div class="caught_card_img">
-                                        <img class="card-img-top" src="http://15.152.232.36/caughtFish_image/{{ my_fish.member_id }}_{{ my_fish.fish_book.id }}_{{ my_fish.id}}.jpg" alt="{{ my_fish.name }} 이미지" 
-                                            onclick="openModal('http://15.152.232.36/caughtFish_image/{{ my_fish.member_id }}_{{ my_fish.fish_book.id }}_{{ my_fish.id}}.jpg', '{{ my_fish.fish_book.fish_name }}', '{{ my_fish.caught_date }}')">
+                                        <img class="card-img-top" src="/media/caughtFish_image/{{ my_fish.member_id }}_{{ my_fish.fish_book.id }}_{{ my_fish.id}}.jpg" alt="{{ my_fish.name }} 이미지"
+                                            onclick="openModal('/media/caughtFish_image/{{ my_fish.member_id }}_{{ my_fish.fish_book.id }}_{{ my_fish.id}}.jpg', '{{ my_fish.fish_book.fish_name }}', '{{ my_fish.caught_date }}')">
                                     </div>
                                     <div class='caught_card-body'>
                                         <p class="caught_card-text">{{ my_fish.fish_book.fish_name }}</p>
@@ -88,7 +88,7 @@
                                 </div>
                                 <div id="myModal" class="modal" style="display: none;">
                                     <div id="modal-content">
-                                        <img id="modal-image" src="http://15.152.232.36/caughtFish_image/{{ my_fish.member_id }}_{{ my_fish.fish_book.id }}_{{ my_fish.id}}.jpg" 
+                                        <img id="modal-image" src="/media/caughtFish_image/{{ my_fish.member_id }}_{{ my_fish.fish_book.id }}_{{ my_fish.id}}.jpg" 
                                             alt="이미지가 로드되지 않았습니다." onclick="closeModal()">
                                         <p id="modal-text">{{ my_fish.fish_book.fish_name }}</p>
                                         <p id="modal-text2">{{ my_fish.caught_date }}</p>
