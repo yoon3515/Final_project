@@ -33,6 +33,13 @@
               <li>빛 반사에 주의하세요!</li>
               <li>어류 외의 사진은 인식이 안 됩니다!</li>
             </ul>
+            {% if messages %}
+              <div class="messages">
+                {% for message in messages %}
+                  <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
           </div>
           <input class="camera_hidden" id="camera_hidden" name="image" type="file" accept="image/*" capture="camera">
           <button class="submit_btn" type="submit">분석 시작</button>
