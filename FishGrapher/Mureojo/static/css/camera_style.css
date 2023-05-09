@@ -63,6 +63,7 @@
     justify-content: center;
     align-items: center;
     margin-top : 20px;
+    width: 100%;
   }
 
   .camera_button {
@@ -100,6 +101,23 @@
     margin : 10px;
     width: 100%;
     cursor: pointer;
+  }
+
+  .btn p {
+    width: 100%;
+  }
+
+  .btn a {
+    height: 25px;
+    background-color: #eca0a6;
+    border-radius: 6px;
+    border: none;
+    color: white; /* 버튼 글자색 #191654;*/
+    font-weight : bold;
+    width: 100%;
+    text-decoration: none;
+    font-size: 13px;
+    margin : px;
   }
 
 
