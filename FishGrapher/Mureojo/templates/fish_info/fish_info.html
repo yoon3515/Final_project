@@ -78,7 +78,7 @@
                             {% for my_fish in caught_fish %}
                                 <div class="caught_card">
                                     <div class="caught_card_img">
-                                        <img class="card-img-top" src="/media/caughtFish_image/{{ my_fish.member_id }}_{{ my_fish.fish_book.id }}_{{ my_fish.id}}.jpg" alt="{{ my_fish.name }} 이미지" 
+                                        <img class="card-img-top" src="/media/caughtFish_image/{{ my_fish.member_id }}_{{ my_fish.fish_book.id }}_{{ my_fish.id}}.jpg" alt="{{ my_fish.name }} 이미지"
                                             onclick="openModal('/media/caughtFish_image/{{ my_fish.member_id }}_{{ my_fish.fish_book.id }}_{{ my_fish.id}}.jpg', '{{ my_fish.fish_book.fish_name }}', '{{ my_fish.caught_date }}')">
                                     </div>
                                     <div class='caught_card-body'>

@@ -59,7 +59,7 @@ def analyze(request):
         else:
         # 이미지를 저장
             user_id = request.user.id
-            image_name = '{}_{}.jpeg'.format(user_id, fish_id)
+            image_name = '{}_{}.jpg'.format(user_id, fish_id)
             image_path = os.path.join(settings.MEDIA_ROOT, 'caughtFish_image', image_name)
             image_file = request.FILES.get('image')
             with Image.open(image_file) as img:
@@ -93,7 +93,7 @@ def today_fish(request):
     caught_fish_id = caught_fish.id
 
     # 새로운 이미지 파일 생성
-    image_name2 = f"{user_id}_{fish_id}_{caught_fish_id}.jpeg"
+    image_name2 = f"{user_id}_{fish_id}_{caught_fish_id}.jpg"
     image_path = os.path.join(settings.MEDIA_ROOT, 'caughtFish_image', image_name2)
     image_file = os.path.join(settings.MEDIA_ROOT, 'caughtFish_image', image_name)
     with Image.open(image_file) as img:

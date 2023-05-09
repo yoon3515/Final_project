@@ -8,8 +8,8 @@
     width : 100%;
     margin : 0px;
     overflow : auto;
-    /*background: linear-gradient(to top, #304454, #285f82, #eca0a6);*/
-    background: linear-gradient(to top, #41657F, #91B0C0, #D6ADAD)
+    background: linear-gradient(to top, #41657F, #91B0C0, #D6ADAD);
+    /* background-color: #4286f4; */
   }
 
   /*내비게이션 서식*/
@@ -138,6 +138,7 @@
     justify-content: center; /* 수평 가운데 정렬 */
     align-items: center; /* 수직 가운데 정렬 */
     background-color: rgba(236, 160, 166, 0.45);
+    /* background-color: #eacda3; */
     height : 100%;
     width: 100%;
   }

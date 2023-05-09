@@ -10,61 +10,61 @@
 </head>
 {% block content %}
 <div id="wrap">
-  <div id="header" role="banner">
-      <div class="logo_area">
-          <h2 id="logo">
-              {% comment %} <a href="{% url 'analyze:camera' %}"> {% endcomment %}
-                Today My Fish
-              {% comment %} </a> {% endcomment %}
-          </h2>
-      </div>
-  </div>
-  <div id="middle">
-    <div class="result_area">
-        <div class="card">
-            {% if result %}
-                <div class="fish_information">
-                    <div class="card_title">
-                        <h3>물고기 정보</h3>
+    <div id="header" role="banner">
+        <div class="logo_area">
+            <h2 id="logo">
+                {% comment %} <a href="{% url 'analyze:camera' %}"> {% endcomment %}
+                    Today My Fish
+                {% comment %} </a> {% endcomment %}
+            </h2>
+        </div>
+    </div>
+    <div id="middle">
+        <div class="result_area">
+            <div class="card">
+                {% if result %}
+                    <div class="fish_information">
+                        <div class="card_title">
+                            <h3>물고기 정보</h3>
+                        </div>
+                        <img class="card-img-top" src="http://15.152.232.36/fishBook_image/{{result.id}}.png" alt="{{ result.name }} 이미지">
+                        <div class='card-body'>
+                            <table>
+                                <tr>
+                                    <th>이름</th>
+                                    <td>{{result.name}}</td>
+                                </tr>
+                                <tr>
+                                    <th>금지 체장</th>
+                                    {% if result.prohibition_size == "없음" %}
+                                    <td>없음</td>
+                                    {% else %}
+                                    <td>{{result.prohibition_size}} cm</td>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <th>서식지</th>
+                                    <td>{{result.habitat}}</td>
+                                </tr>
+                                <tr>
+                                    <th>분포</th>
+                                    <td>{{result.distribution}}</td>
+                                </tr>
+                                <tr>
+                                    <th>금어기</th>
+                                    {% if result.limit_start == "없음" and result.limit_end == "없음" %}
+                                    <td>없음</td>
+                                    {% else %}
+                                    <td>{{result.limit_start}} ~ {{result.limit_end}}</td>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <th>자세히 알아보기</th>
+                                    <td><a href="{{result.description}}">더 자세히 알아보기</a></td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                    <img class="card-img-top" src="http://15.152.232.36/fishBook_image/{{result.id}}.png" alt="{{ result.name }} 이미지">
-                    <div class='card-body'>
-                        <table>
-                            <tr>
-                                <th>이름</th>
-                                <td>{{result.name}}</td>
-                            </tr>
-                            <tr>
-                                <th>금지 체장</th>
-                                {% if result.prohibition_size == "없음" %}
-                                <td>없음</td>
-                                {% else %}
-                                <td>{{result.prohibition_size}} cm</td>
-                                {% endif %}
-                            </tr>
-                            <tr>
-                                <th>서식지</th>
-                                <td>{{result.habitat}}</td>
-                            </tr>
-                            <tr>
-                                <th>분포</th>
-                                <td>{{result.distribution}}</td>
-                            </tr>
-                            <tr>
-                                <th>금어기</th>
-                                {% if result.limit_start == "없음" and result.limit_end == "없음" %}
-                                <td>없음</td>
-                                {% else %}
-                                <td>{{result.limit_start}} ~ {{result.limit_end}}</td>
-                                {% endif %}
-                            </tr>
-                            <tr>
-                                <th>자세히 알아보기</th>
-                                <td><a href="{{result.description}}">더 자세히 알아보기</a></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
                 <div class="caught_fish_information">
                     <div class="card_title">
                         <h3>내가잡은 물고기</h3>
@@ -100,5 +100,10 @@
             </div>
         </div>
     </div>
+</div>
+<!-- modal 팝업창 -->
+<div class="modal-bg"></div>
+<div class="modal-wrap">
+    modal sample
 </div>
 {% endblock %}
