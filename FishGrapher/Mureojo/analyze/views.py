@@ -6,7 +6,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from fish_info.models import FishBook, CaughtFishInfo
@@ -40,7 +40,7 @@ def predict_fish(image):
     output = model(image)
     # 결과 반환
     predictvalue, predicted = torch.max(output.data, 1)
-    if predictvalue.item() <= 5:
+    if predictvalue.item() < 2:
         return -1
     return predicted.item()
 
