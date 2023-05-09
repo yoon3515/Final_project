@@ -57,7 +57,7 @@
     font-weight : bold;
     margin : 10px;
     width: 100%;
-    display: none;
+    /*display: none;*/
   }
 
   .submit_btn {

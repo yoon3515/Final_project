@@ -59,8 +59,6 @@ INSTALLED_APPS = [
     'analyze',
     'map',
     'mypage',
-    # 'todayfish',
-    'pictures',
     'search',
 ]
 
@@ -87,6 +85,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media'
             ],
         },
     },
@@ -155,7 +154,7 @@ ACCOUNT_SESSION_REMEMBER = True
 
 # 이미지 띄우기 위한 설정
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # 저장된 이미지 파일의 경로
-MEDIA_URL = 'media/' # URL 패턴
+MEDIA_URL = '/media/' # URL 패턴
 
 
 # 회원 이메일 관련 설정
