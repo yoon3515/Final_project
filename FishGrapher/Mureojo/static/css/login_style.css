@@ -116,6 +116,7 @@
     border: none;
     color: white; /* 버튼 글자색 #191654;*/
     font-weight : bold;
+    cursor: pointer;
   }
 
   .find_signup_btn_area {
@@ -140,6 +141,7 @@
     font-size : 12px;
     border : none;
     padding : 5px;
+    cursor: pointer;
   }
 
 
@@ -170,6 +172,7 @@
     border: none;
     color: white; /* 버튼 글자색 #191654;*/
     font-weight: bold;
+    cursor: pointer;
     /* width : 60%; */
   }
 
@@ -178,12 +181,14 @@
     width : 50%;
     margin-right: 10px;
     margin-left: 10px;
+    cursor: pointer;
   }
 
   .next_to_signup_btn {
     width : 50%;
     margin-right: 10px;
     margin-left: 10px;
+    cursor: pointer;
   }
 
 
