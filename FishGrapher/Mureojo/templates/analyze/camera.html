@@ -24,8 +24,18 @@
       <div class="btn_space">
         <form method="POST" action="{% url 'analyze:camera' %}" enctype="multipart/form-data">
           {% csrf_token %}
-          <input class="form-control" type="file" name="image" accept="image/*" capture="environment">
-          <button class "submit_btn" type="submit">Analyze</button>
+          <div>
+            <p>※촬영 시 안내사항※</p>
+            <ul>
+              <li>바닥에 놓고 촬영해 주세요!</li>
+              <p>(어두운 바닥에서 촬영하면 인식이 더 잘 됩니다)</p>
+              <li>길이를 알 수 있도록 촬영해 주세요!</li>
+              <li>빛 반사에 주의하세요!</li>
+              <li>어류 외의 사진은 인식이 안 됩니다!</li>
+            </ul>
+          </div>
+          <input class="camera_hidden" id="camera_hidden" name="image" type="file" accept="image/*" capture="camera">
+          <button class="submit_btn" type="submit">분석 시작</button>
         </form>
       </div>
     </div>

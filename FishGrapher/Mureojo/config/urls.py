@@ -13,9 +13,11 @@ urlpatterns = [
     path('map/', include('map.urls')),
     path('mypage/', include('mypage.urls'), name='mypage'),
     # path('get_fishing_spots/', get_fishing_spots, name='get_fishing_spots'),
-    path('pictures/', include('pictures.urls'), name='pictures'),
     path('fishBook/', include('fishBook.urls')),
     path('fish_info/', include('fish_info.urls')),
     path('analyze/', include('analyze.urls')),
     path('search/', include('search.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

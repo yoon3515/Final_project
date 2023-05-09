@@ -82,6 +82,7 @@
     color: white; /* 버튼 글자색 #191654;*/
     font-weight: bold;
     width: 100%;
+    cursor: pointer;
   }
 
 
@@ -98,6 +99,7 @@
     color : white;
     font-size : 12px;
     text-decoration: none;
+    cursor: pointer;
   }
 
   .other_action_btn p {
@@ -106,6 +108,7 @@
     text-decoration: none;
     margin-right : 7px;
     margin-left : 7px;
+    cursor: pointer;
   }
 
 }
