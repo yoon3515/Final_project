@@ -7,7 +7,7 @@ app_name = 'analyze'
 
 urlpatterns = [
 	path('camera/', views.analyze, name='camera'),
-    path('todayfish/', views.today_fish, name='today_fish')
+    path('todayfish/', views.today_fish, name='today_fish'),
 ]
 
 # 개발환경에서 미디어 파일 제공을 위한 URL 패턴 추가

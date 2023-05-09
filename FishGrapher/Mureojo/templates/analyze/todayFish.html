@@ -1,44 +1,56 @@
-{% extends 'base.html' %}
-
+{% extends "base.html" %}
+{% load static %}
+<head>
+  {% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static '/css/todayFish_style.css' %}">
+  {% endblock %}
+  {% block title %}
+  도감 등록 성공!
+  {% endblock %}
+</head>
 {% block content %}
-
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8">
             <h2 class="text-center mb-4">물고기 정보</h2>
             <div class="card mb-3">
             {% if result %}
-                <img class="card-img-top" src="http://15.152.232.36/fishBook_image/{{result.id}}.png" alt="{{ result.name }} 이미지">
                 <div class="card-body">
+                    <img class="card-img-top" src="http://15.152.232.36/fishBook_image/{{result.id}}.png" alt="{{ result.name }} 이미지">
+                    <img class="card-img-bottom" src="/media/caughtFish_image/{{ result.image }}" alt="{{ result.name }}_user">
                     <label>이름       </label>
-                        <p class="card-text">{{ result.name }}</p>
+                    <p class="card-text">{{ result.name }}</p>
                     <label>서식지     </label>
-                        <p class="card-text">{{ result.habitat }}</p>
+                    <p class="card-text">{{ result.habitat }}</p>
                     <label>분포       </label>
-                        <p class="card-text">{{ result.distribution }}</p>
+                    <p class="card-text">{{ result.distribution }}</p>
                     <label>금어기     </label>
-                        <p class="card-text">{{ result.limit_start }} ~ {{ result.limit_end }}</p>
+                    <p class="card-text">{{ result.limit_start }} ~ {{ result.limit_end }}</p>
                     <label>금지체장   </label>
-                        <p class="card-text">{{ result.prohibition_size }}cm</p>
+                    <p class="card-text">{{ result.prohibition_size }}cm</p>
+                    <label>잡은 날짜  </label>
+                    <p class="card-text">{{ result.caught_date }}</p>
                 </div>
-                <img class="card-img-bottom" src="/media/caughtFish_image/{{ result.image }}" alt="{{ result.name }}_user">
-                <div class="card-body">
-                    <label for="caught_date">포획 날짜  </label>
-                        <p class="card-text"><input type="date" class="form-control" name="caught_date" id="caught_date" min="2023-05-10" max="2099-12-31" required pattern="\d{4}-\d{2}-\d{2}"></p>
-                    <label for="caught_date">포획 위치  </label>
-                        <p class="card-text"><input type="text" class="form-control" name="caught_location" id="caught_location"></p>
-                    <label for="caught_date">길이       </label>
-                        <p class="card-text"><input type="number" class="form-control" name="caught_size" id="caught_size" step="0.1">cm</p>
-                    <label for="caught_date">별칭       </label>
-                        <p class="card-text"><input type="text" class="form-control" name="caught_alias" id="caught_alias"></p>
+                <div class="col-lg-6 col-md-8">
+                    <h2 class="text-center mb-4">도감 등록 완료!</h2>
+                    <div class="card mb-3">
+                      <p>잡으신 물고기 정보를 성공적으로 저장했습니다.</p>
+                      <p>잡으신 물고기는 도감에서 확인할 수 있습니다.</p>
+                      <div class="text-center">
+                        <a href="/fishBook" class="btn btn-primary">도감 확인하기</a>
+                        <a href="/analyze/camera" class="btn btn-primary">다른 물고기 찍기</a>
+                      </div>
+                    </div>
                 </div>
-                <p><input type="submit"></p>
             {% else %}
-                <p class="text-center">분석 결과가 없습니다. 다시 시도해주세요.</p>
-            {% endif %}
                 <div class="text-center">
-                    <a href="/analyze/camera" class="btn btn-primary">새로운 물고기 찍기</a>
+                    <p>분석 결과가 없습니다. 다시 시도해주세요.</p>
+                    <a href="/analyze/camera" class="btn btn-primary">다시 찍기</a>
                 </div>
+            {% endif %}
+                <a href="/" class="btn btn-primary">메인으로</a>
+            </div>
             </div>
         </div>
     </div>
