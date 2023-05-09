@@ -26,9 +26,17 @@
                     <label>분포       </label>
                     <p class="card-text">{{ result.distribution }}</p>
                     <label>금어기     </label>
-                    <p class="card-text">{{ result.limit_start }} ~ {{ result.limit_end }}</p>
+                    {% if result.limit_start == "없음" and result.limit_end == "없음" %}
+                        <p class="card-text">없음</p>
+                    {% else %}
+                        <p class="card-text">{{ result.limit_start }} ~ {{ result.limit_end }}</p>
+                    {% endif %}
                     <label>금지체장   </label>
-                    <p class="card-text">{{ result.prohibition_size }}cm</p>
+                    {% if result.prohibition_size == "없음" %}
+                        <p class="card-text">없음</p>
+                    {% else %}
+                        <p class="card-text">{{ result.prohibition_size }}cm</p>
+                    {% endif %}
                     <label>잡은 날짜  </label>
                     <p class="card-text">{{ result.caught_date }}</p>
                 </div>
