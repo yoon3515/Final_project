@@ -5,6 +5,3 @@ from django.db import models
 # fishBook의 FishBook, CaughtFishInfo를 import 하여 사용
 # from fishBook.models import CaughtFishInfo, FishBook
 
-
-class FishImages(models.Model):
-    image = models.ImageField(upload_to='caughtFish_image/')
