@@ -1,12 +1,12 @@
-import base64
 import datetime
 import io
 import torch
 import os
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect, render
+from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from fish_info.models import FishBook, CaughtFishInfo
 from PIL import Image
@@ -51,47 +51,55 @@ def analyze(request):
         image = decode_image(request.FILES['image'])
         # 이미지를 어종으로 판별
         fish_id = predict_fish(image)
-
-        # 이미지를 서버에 저장
+        # 이미지를 저장
         user_id = request.user.id
-
-        fish_book = FishBook.objects.get(id=fish_id+12)
-
-        # Create a new CaughtFishInfo instance using the retrieved FishBook instance
-        caught_fish = CaughtFishInfo(member=request.user, fish_book=fish_book, caught_date=datetime.date.today())
-        caught_fish.save()
-        # 새로 생성된 객체의 ID 가져오기
-        caught_fish_id = caught_fish.id
-        # 새로운 이미지 파일 생성
-        image_name = f"{user_id}_{fish_id}_{caught_fish_id}.png"
-        image_path = os.path.join(settings.MEDIA_ROOT, image_name)
-        if request.method == 'POST':
-            image_file = request.FILES.get('image')
-            with Image.open(image_file) as img:
-                img.save(image_path, format="PNG")
-        caught_fish.myfish_photo = os.path.join(settings.MEDIA_URL, image_name)
-        caught_fish.save()
-
+        image_name = '{}_{}.jpg'.format(user_id, fish_id)
         # 결과 반환
-        return JsonResponse({'fish_id': fish_id, 'image_name': image_name})
+        redirect_url = reverse('analyze:today_fish', kwargs={'user_id': user_id, 'fish_id': fish_id})
+        redirect_url += f'?image={image_name}'
+        return HttpResponseRedirect(redirect_url)
     else:
         return render(request, 'analyze/camera.html')
 
 
-def today_fish(request):
+def today_fish(request, user_id, fish_id):
     # analyze 앱의 analyze 뷰에서 넘겨받은 어종 ID와 찍은 사진 데이터
+    user_id = request.GET.get('user_id')
     fish_id = request.GET.get('fish_id')
-    image_data = request.GET.get('image')
+    image_name = request.GET.get('image')
+    image_path = os.path.join(settings.MEDIA_ROOT, 'caughtFish_image', image_name)
+    image_file = request.FILES.get('image')
+    with Image.open(image_file) as img:
+        img.save(image_path, format="PNG")
     # 어종 ID에 해당하는 어종 정보 조회 (이미지, 이름, 설명 등)
     fish = FishBook.objects.get(pk=fish_id)
+
+    # 이미지를 서버에 저장
+    # fish_book = FishBook.objects.get(id=fish_id + 12)  # id + 12의 값으로 사진이 저장되어 있음!
+    # fish_book 이용, 정보 가져와서 caughtfishinfo 테이블 생성
+    # caught_fish = CaughtFishInfo(member=request.user, fish_book=fish_book, caught_date=datetime.date.today())
+    # caught_fish.save()
+    # 새로 생성된 객체의 ID 가져오기
+    # caught_fish_id = caught_fish.id
+    # 새로운 이미지 파일 생성
+    # image_name = f"{user_id}_{fish_id}_{caught_fish_id}.png"
+    # image_path = os.path.join(settings.MEDIA_ROOT, image_name)
+    # if request.method == 'POST':
+    #     image_file = request.FILES.get('image')
+    #     with Image.open(image_file) as img:
+    #         img.save(image_path, format="PNG")
+    # 테이블에 이미지 주소 저장
+    # caught_fish.myfish_photo = f"{settings.MEDIA_ROOT}{image_name}"
+    # caught_fish.save()
+
     # 결과 정보를 딕셔너리 형태로 저장
     result = {
         'name': fish.name,
-        'habitat':fish.habitat,
-        'distribution':fish.distribution,
-        'limit_start':fish.limit_start,
-        'limit_end':fish.limit_end,
-        'prohibition_size':fish.prohibition_size,
-        'image': image_data
+        'habitat': fish.habitat,
+        'distribution': fish.distribution,
+        'limit_start': fish.limit_start,
+        'limit_end': fish.limit_end,
+        'prohibition_size': fish.prohibition_size,
+        'image': image_name
     }
     return render(request, 'analyze/todayFish.html', {'result': result})

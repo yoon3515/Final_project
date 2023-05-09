@@ -84,6 +84,7 @@
     border: none;
     color: white; /* 버튼 글자색 #191654;*/
     font-weight: bold;
+    cursor: pointer;
   }
 
   .find_pw_btn {
@@ -122,6 +123,7 @@
     font-weight: bold;
     font-size: 10px;
     margin-top : 10px;
+    cursor: pointer;
   }
   
 

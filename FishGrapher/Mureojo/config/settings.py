@@ -151,11 +151,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # 로그인 설정
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
+ACCOUNT_SESSION_REMEMBER = True
 
 # 이미지 띄우기 위한 설정
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # 저장된 이미지 파일의 경로
-MEDIA_URL = '/media/' # URL 패턴
+MEDIA_URL = 'media/' # URL 패턴
 
 
 # 회원 이메일 관련 설정
