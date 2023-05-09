@@ -26,7 +26,6 @@ def predict_fish(image):
     model_path = 'analyze/20230420_Resnet_color10-nogray.pt'
     # 불러온 모델을 CPU에 로드
     model = torch.load(model_path, map_location=torch.device('cpu'))
-    print(type(model))
     # 이미지 전처리
     transform = transforms.Compose([
         transforms.Resize((224, 224)),
@@ -53,53 +52,69 @@ def analyze(request):
         fish_id = predict_fish(image)
         # 이미지를 저장
         user_id = request.user.id
-        image_name = '{}_{}.jpg'.format(user_id, fish_id)
+        image_name = '{}_{}.png'.format(user_id, fish_id)
+        image_path = os.path.join(settings.MEDIA_ROOT, 'caughtFish_image', image_name)
+        image_file = request.FILES.get('image')
+        with Image.open(image_file) as img:
+            img.save(image_path, format="png")
         # 결과 반환
-        redirect_url = reverse('analyze:today_fish', kwargs={'user_id': user_id, 'fish_id': fish_id})
-        redirect_url += f'?image={image_name}'
+        redirect_url = reverse('analyze:today_fish')
+        redirect_url += f'?user_id={user_id}&fish_id={int(fish_id)}&image={image_name}'
         return HttpResponseRedirect(redirect_url)
     else:
         return render(request, 'analyze/camera.html')
 
 
-def today_fish(request, user_id, fish_id):
-    # analyze 앱의 analyze 뷰에서 넘겨받은 어종 ID와 찍은 사진 데이터
+def today_fish(request):
+    # analyze 앱의 analyze 뷰에서 넘겨받은 ID와 찍은 사진 데이터
     user_id = request.GET.get('user_id')
-    fish_id = request.GET.get('fish_id')
+    fish_id = int(request.GET.get('fish_id'))
     image_name = request.GET.get('image')
-    image_path = os.path.join(settings.MEDIA_ROOT, 'caughtFish_image', image_name)
-    image_file = request.FILES.get('image')
+    # fish_id 번호와 물고기가 할당된 테이블 번호 매핑
+    id_map = {
+    0: 16,
+    1: 12,
+    2: 22,
+    3: 21,
+    4: 20,
+    5: 13,
+    6: 14,
+    7: 15,
+    8: 17,
+    9: 18,
+    10: 19
+    }
+    fish_id = id_map.get(fish_id, fish_id)
+    # 어종 ID에 해당하는 어종 정보 조회 (이미지, 이름, 설명 등)
+    fish = FishBook.objects.get(id=fish_id)
+    # caughtfishinfo 테이블 생성
+    caught_fish = CaughtFishInfo(member=request.user, fish_book=fish, caught_date=datetime.date.today())
+    caught_fish.save()
+    # 새로 생성된 객체의 ID 가져오기
+    caught_fish_id = caught_fish.id
+    # 새로운 이미지 파일 생성
+    image_name2 = f"{user_id}_{fish_id}_{caught_fish_id}.png"
+    image_path = os.path.join(settings.MEDIA_ROOT, 'caughtFish_image', image_name2)
+    image_file = os.path.join(settings.MEDIA_ROOT, 'caughtFish_image', image_name)
     with Image.open(image_file) as img:
         img.save(image_path, format="PNG")
-    # 어종 ID에 해당하는 어종 정보 조회 (이미지, 이름, 설명 등)
-    fish = FishBook.objects.get(pk=fish_id)
-
-    # 이미지를 서버에 저장
-    # fish_book = FishBook.objects.get(id=fish_id + 12)  # id + 12의 값으로 사진이 저장되어 있음!
-    # fish_book 이용, 정보 가져와서 caughtfishinfo 테이블 생성
-    # caught_fish = CaughtFishInfo(member=request.user, fish_book=fish_book, caught_date=datetime.date.today())
-    # caught_fish.save()
-    # 새로 생성된 객체의 ID 가져오기
-    # caught_fish_id = caught_fish.id
-    # 새로운 이미지 파일 생성
-    # image_name = f"{user_id}_{fish_id}_{caught_fish_id}.png"
-    # image_path = os.path.join(settings.MEDIA_ROOT, image_name)
-    # if request.method == 'POST':
-    #     image_file = request.FILES.get('image')
-    #     with Image.open(image_file) as img:
-    #         img.save(image_path, format="PNG")
     # 테이블에 이미지 주소 저장
-    # caught_fish.myfish_photo = f"{settings.MEDIA_ROOT}{image_name}"
-    # caught_fish.save()
-
+    caught_fish.myfish_photo = os.path.join(settings.MEDIA_URL, 'caughtFish_image', image_name2)
+    caught_fish.save()
     # 결과 정보를 딕셔너리 형태로 저장
     result = {
-        'name': fish.name,
+        'id': fish.id,
+        'name': fish.fish_name,
         'habitat': fish.habitat,
         'distribution': fish.distribution,
         'limit_start': fish.limit_start,
         'limit_end': fish.limit_end,
         'prohibition_size': fish.prohibition_size,
-        'image': image_name
+        'image': image_name2,
     }
+    os.remove(image_file)
     return render(request, 'analyze/todayFish.html', {'result': result})
+
+
+def today_fish_save(request):
+    pass

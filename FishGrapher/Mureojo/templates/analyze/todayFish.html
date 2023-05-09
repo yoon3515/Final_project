@@ -8,7 +8,7 @@
             <h2 class="text-center mb-4">물고기 정보</h2>
             <div class="card mb-3">
             {% if result %}
-                <img class="card-img-top" src="http://15.152.232.36/fishBook_image/{{fish.id}}.png" alt="{{ fish.name }} 이미지">
+                <img class="card-img-top" src="http://15.152.232.36/fishBook_image/{{result.id}}.png" alt="{{ result.name }} 이미지">
                 <div class="card-body">
                     <label>이름       </label>
                         <p class="card-text">{{ result.name }}</p>
@@ -19,9 +19,9 @@
                     <label>금어기     </label>
                         <p class="card-text">{{ result.limit_start }} ~ {{ result.limit_end }}</p>
                     <label>금지체장   </label>
-                        <p class="card-text">{{ result.prohibition_size }}</p>
+                        <p class="card-text">{{ result.prohibition_size }}cm</p>
                 </div>
-                <img class="card-img-bottom" src="http://15.152.232.36/fishBook_image/{{fish.id}}.png" alt="{{ image_name }}">
+                <img class="card-img-bottom" src="/media/caughtFish_image/{{ result.image }}" alt="{{ result.name }}_user">
                 <div class="card-body">
                     <label for="caught_date">포획 날짜  </label>
                         <p class="card-text"><input type="date" class="form-control" name="caught_date" id="caught_date" min="2023-05-10" max="2099-12-31" required pattern="\d{4}-\d{2}-\d{2}"></p>
@@ -37,7 +37,7 @@
                 <p class="text-center">분석 결과가 없습니다. 다시 시도해주세요.</p>
             {% endif %}
                 <div class="text-center">
-                    <a href="/" class="btn btn-primary">새로운 물고기 찍기</a>
+                    <a href="/analyze/camera" class="btn btn-primary">새로운 물고기 찍기</a>
                 </div>
             </div>
         </div>
