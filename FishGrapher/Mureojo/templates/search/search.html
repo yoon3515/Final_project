@@ -48,11 +48,19 @@
                   <li><b>이름: </b>{{ fish.fish_name }}</li>
                   <li><b>학명: </b>{{ fish.scientific_name }}</li>
                   <li><b>영명: </b>{{ fish.english_name }}</li>
-                  <li><b>금지체장(cm): </b>{{fish.prohibition_size}}</li>
+                  {% if fish.prohibition_size == "없음" %}
+                    <li><b>금지체장: </b>없음</li>
+                  {% else %}
+                    <li><b>금지체장: </b>{{fish.prohibition_size}} cm</li>
+                  {% endif %}
                   <li><b>서식지: </b>{{ fish.habitat }}</li>
                   <li><b>분포: </b>{{ fish.distribution }}</li>
-                  <li><b>금어기: </b>{{fish.limit_start}} ~ {{fish.limit_end}}</li>
-                  <li><a href="{{fish.description}}">자세히 알아보기</a></li>
+                  {% if fish.limit_start == "없음" and fish.limit_end == "없음" %}
+                    <li><b>금어기: </b>없음</li>
+                  {% else %}
+                    <li><b>금어기: </b>{{fish.limit_start}} ~ {{fish.limit_end}}</li>
+                  {% endif %}
+                  <li><a href="{{fish.description}}">자세히 알아보기</a></li> 
                 </ul>
               </div>
             </div>

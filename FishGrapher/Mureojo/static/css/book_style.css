@@ -50,6 +50,7 @@
     border-radius: 10px;
     border: none;
     background-color: transparent;
+    cursor: pointer;
   }
 
   .result_area {

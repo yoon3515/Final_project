@@ -107,6 +107,7 @@
     width : 100%;
     margin : 5px;
     padding : 0px;
+    cursor: pointer;
   }
 
   .btn_area a {
@@ -154,6 +155,7 @@
     font-weight: bold;
     font-size : 13px;
     width : 100%;
+    cursor: pointer;
   }
 
 }

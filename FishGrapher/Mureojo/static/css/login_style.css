@@ -101,16 +101,11 @@
     width:90%;
   }
 
-
-  .login_btn_area button {
-    width : 60%;
-  }
-
-
   .login_btn_area button {
     margin-right : 10px;
     margin-left : 10px;
     height: 25px;
+    width : 60%;
     background-color: #eca0a6;
     border-radius: 6px;
     border: none;

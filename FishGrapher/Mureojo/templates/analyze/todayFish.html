@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
-<html>
 <head>
     {% block head %}
-    {{ block.super }}
-    <link rel="stylesheet" href="{% static '/css/todayFish_style.css' %}">
+        {{ block.super }}
+        <link rel="stylesheet" href="{% static '/css/todayFish_style.css' %}">
     {% endblock %}
-    {% block title%}Today Fish{% endblock %}
+    {% block title%}
+    Today Fish
+    {% endblock %}
 </head>
 {% block content %}
 <div id="wrap">

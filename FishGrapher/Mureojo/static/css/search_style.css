@@ -50,6 +50,7 @@
     border-radius: 10px;
     border: none;
     background-color: transparent;
+    cursor: pointer;
   }
 
   .result_area {
@@ -88,7 +89,10 @@
     padding : 10px;
   }
 
-
+  .fish_information {
+    width: 50%;
+    overflow: auto;
+  }
   
 
 }

@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
-<html>
 <head>
-    {% block head %}
+  {% block head %}
     {{ block.super }}
     <link rel="stylesheet" href="{% static '/css/camera_style.css' %}">
-    {% endblock %}
-    {% block title%}CAMERA{% endblock %}
+  {% endblock %}
+  {% block title%}
+  CAMERA
+  {% endblock %}
 </head>
 {% block content %}
 <div id="wrap">
