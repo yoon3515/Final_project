@@ -40,7 +40,7 @@ def predict_fish(image):
     output = model(image)
     # 결과 반환
     predictvalue, predicted = torch.max(output.data, 1)
-    if predictvalue.item() < 2:
+    if predictvalue.item() < 6:
         return -1
     return predicted.item()
 
