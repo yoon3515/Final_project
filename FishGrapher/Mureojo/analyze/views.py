@@ -18,7 +18,7 @@ def decode_image(data):
     # 이미지 데이터 로드
     decoded_data = data.read()
     # PIL 이미지로 변환
-    image = Image.open(io.BytesIO(decoded_data))
+    image = Image.open(io.BytesIO(decoded_data)).convert('RGB')
     return image
 
 
@@ -41,7 +41,7 @@ def predict_fish(image):
     # 결과 반환
     predictvalue, predicted = torch.max(output.data, 1)
     if predictvalue.item() < 6:
-        return -1
+        return -1  # 정확도가 떨어지면 -1을 반환, analyze에서 오류로 필터링
     return predicted.item()
 
 
@@ -54,15 +54,15 @@ def analyze(request):
         # 이미지를 어종으로 판별
         fish_id = predict_fish(image)
         if fish_id == -1:
-            messages.error(request, '해당하는 물고기를 찾을 수 없습니다.')
+            messages.error(request, '해당하는 물고기를 찾을 수 없습니다.')  # 정확도 떨어지는 사진 필터링
             return render(request, 'analyze/camera.html')
         else:
-        # 이미지를 저장
+        # 이미지를 저장 (임시)
             user_id = request.user.id
             image_name = '{}_{}.jpg'.format(user_id, fish_id)
             image_path = os.path.join(settings.MEDIA_ROOT, 'caughtFish_image', image_name)
             image_file = request.FILES.get('image')
-            with Image.open(image_file) as img:
+            with Image.open(image_file).convert('RGB') as img:
                 img.save(image_path, format="jpeg")
             # 결과 반환
             redirect_url = reverse('analyze:today_fish')
